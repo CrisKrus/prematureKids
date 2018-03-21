@@ -34,6 +34,20 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "3.1.8",
+    "@types/jasmine": "^2.8.6",
+    "@types/node": "^9.4.7",
+    "angular-cli": "^1.0.0-beta.28.3",
+    "codecov": "^3.0.0",
+    "jasmine-core": "^3.1.0",
+    "jasmine-spec-reporter": "^4.2.1",
+    "karma": "^2.0.0",
+    "karma-firefox-launcher": "^1.1.0",
+    "karma-jasmine": "^1.1.1",
+    "karma-mocha-reporter": "^2.2.5",
+    "karma-remap-istanbul": "^0.6.0",
+    "ts-node": "^5.0.1",
+    "tslint": "^5.9.1",
+    "tslint-eslint-rules": "^5.1.0",
     "typescript": "~2.6.2"
   },
   "description": "An Ionic project"
