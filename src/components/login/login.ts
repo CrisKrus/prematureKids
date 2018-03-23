@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {NavController} from "ionic-angular";
+import {HomePage} from "../../pages/home/home";
 
 @Component({
   selector: 'login',
@@ -6,13 +8,15 @@ import {Component} from '@angular/core';
 })
 export class LoginComponent {
   password: string;
-  username: string;
+  email: string;
 
-  constructor() { }
+  constructor(public navCtrl: NavController) { }
 
   logIn() {
-    console.log(this.username);
-    console.log(this.password);
+    window.localStorage.setItem('name', 'Cristian');
+    window.localStorage.setItem('age', "22");
+    window.localStorage.setItem('email', this.email);
+    this.navCtrl.setRoot(HomePage);
   }
 
   signIn() {

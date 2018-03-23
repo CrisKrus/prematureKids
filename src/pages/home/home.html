@@ -1,11 +1,20 @@
-<ion-header *ngIf="user != null">
+<ion-header *ngIf="name != null">
   <ion-navbar>
     <ion-title>
-      Bienvenido {{user.name}}
+      Bienvenido {{name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding *ngIf="user == null">
-  <login></login>
+<ion-content padding *ngIf="name == null">
+  <login ></login>
+</ion-content>
+
+<ion-content padding *ngIf="name != null">
+
+  <p>Edad: {{age}} años</p>
+  <p>Email: {{email}} </p>
+
+  <button ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
+
 </ion-content>
