@@ -1,0 +1,19 @@
+<ion-list>
+  <ion-item>
+    <ion-label floating>Usuario</ion-label>
+    <ion-input [(ngModel)]="username" type="text"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Contraseña</ion-label>
+    <ion-input [(ngModel)]="password" type="password"></ion-input>
+  </ion-item>
+</ion-list>
+
+<div padding>
+  <button ion-button color="primary" block (click)="logIn()" >Iniciar sesión</button>
+
+  <p></p>
+
+  <button ion-button color="secondary" block (click)="signIn()" >Crear cuenta</button>
+</div>

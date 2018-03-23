@@ -1,11 +1,11 @@
-<ion-header>
+<ion-header *ngIf="user != null">
   <ion-navbar>
     <ion-title>
-      Bienvenido
+      Bienvenido {{user.name}}
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  App asistencial para niños neonatos
+<ion-content padding *ngIf="user == null">
+  <login></login>
 </ion-content>
