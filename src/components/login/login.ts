@@ -3,6 +3,7 @@ import {NavController, ToastController} from "ionic-angular";
 import {HomePage} from "../../pages/home/home";
 import {UserProvider} from "../../providers/user/user";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {SigninPage} from "../../pages/signin/signin";
 
 @Component({
   selector: 'login',
@@ -14,11 +15,11 @@ export class LoginComponent {
   loginForm: FormGroup;
 
   constructor(public navCtrl: NavController, private userProvider: UserProvider, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
-    this.addInputValidators(formBuilder);
+    this.addInputValidators();
   }
 
-  private addInputValidators(formBuilder: FormBuilder) {
-    this.loginForm = formBuilder.group({
+  private addInputValidators() {
+    this.loginForm = this.formBuilder.group({
       email: ['', Validators.compose([
         Validators.required,
         Validators.email
@@ -34,6 +35,7 @@ export class LoginComponent {
     let user = this.userProvider.getUser(this.email.toLowerCase());
     if (user != undefined){
       // TODO extract that
+      // TODO can add user as object on navParams??
       window.localStorage.setItem('name', user['name']);
       window.localStorage.setItem('age', user['age']);
       window.localStorage.setItem('email', user['email']);
@@ -52,7 +54,7 @@ export class LoginComponent {
     toast.present();
   }
 
-  signIn() {
-
+  signin() {
+    this.navCtrl.push(SigninPage);
   }
 }

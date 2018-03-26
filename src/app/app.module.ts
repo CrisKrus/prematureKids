@@ -9,12 +9,14 @@ import { HomePage } from '../pages/home/home';
 import {LoginComponent} from '../components/login/login';
 import { UserProvider } from '../providers/user/user';
 import {HttpClientModule} from "@angular/common/http";
+import {SigninPage} from "../pages/signin/signin";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginComponent,
+    SigninPage
   ],
   imports: [
     BrowserModule,
@@ -25,6 +27,7 @@ import {HttpClientModule} from "@angular/common/http";
   entryComponents: [
     MyApp,
     HomePage,
+    SigninPage
   ],
   providers: [
     StatusBar,
