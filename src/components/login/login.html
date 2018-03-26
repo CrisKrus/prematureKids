@@ -1,17 +1,28 @@
-<ion-list>
+<form [formGroup]="loginForm">
+
+
   <ion-item>
     <ion-label floating>Correo</ion-label>
-    <ion-input [(ngModel)]="email" type="text"></ion-input>
+    <ion-input [(ngModel)]="email" formControlName="email" type="email"></ion-input>
+  </ion-item>
+  <ion-item *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.touched">
+    <p>No se olvide de completar este campo!</p>
+  </ion-item>
+  <ion-item *ngIf="loginForm.controls.email.hasError('email') && loginForm.controls.email.touched">
+    <p>El correo introducido no es correcto</p>
   </ion-item>
 
   <ion-item>
     <ion-label floating>Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" type="password"></ion-input>
+    <ion-input [(ngModel)]="password" formControlName="password" type="password"></ion-input>
   </ion-item>
-</ion-list>
+  <ion-item *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+    <p>No se olvide de completar este campo!</p>
+  </ion-item>
+</form>
 
 <div padding>
-  <button ion-button color="primary" block (click)="logIn()" >Iniciar sesión</button>
+  <button ion-button color="primary" block [disabled]="!loginForm.valid" (click)="logIn()" >Iniciar sesión</button>
 
   <p></p>
 

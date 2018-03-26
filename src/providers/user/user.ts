@@ -9,13 +9,18 @@ export class UserProvider {
         name: "Cristian Suarez Vera",
         age: 22,
         gender: "male",
-        password: "1234"
+        password: "1234",
+        type: "doctor",
+        email: "cristian@correo.com"
       },
       "antonio@correo.com": {
         name: "Antonio Perez Perez",
         age: 34,
         gender: "male",
-        password: "1234"
+        password: "1234",
+        type: "patient",
+        email: "antonio@correo.com",
+        exercises: {}
       }
     };
 
