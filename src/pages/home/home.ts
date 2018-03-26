@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from "ionic-angular";
+import {NavController, NavParams} from "ionic-angular";
 
 @Component({
   selector: 'page-home',
@@ -10,10 +10,10 @@ export class HomePage {
   private age: string | null;
   private email: string | null;
 
-  constructor(public navCtrl: NavController) {
-    this.name = window.localStorage.getItem('name');
-    this.age = window.localStorage.getItem('age');
-    this.email = window.localStorage.getItem('email');
+  constructor(public navCtrl: NavController, private navParams: NavParams) {
+    this.name = navParams.data["name"];
+    this.age = navParams.data["age"];
+    this.email = navParams.data["email"];
   }
 
   logout() {

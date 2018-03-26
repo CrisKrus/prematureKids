@@ -34,12 +34,7 @@ export class LoginComponent {
   login() {
     let user = this.userProvider.getUser(this.email.toLowerCase());
     if (user != undefined){
-      // TODO extract that
-      // TODO can add user as object on navParams??
-      window.localStorage.setItem('name', user['name']);
-      window.localStorage.setItem('age', user['age']);
-      window.localStorage.setItem('email', user['email']);
-      this.navCtrl.setRoot(HomePage);
+      this.navCtrl.setRoot(HomePage, user);
     }else {
       this.showWarning("Correo o contraseña incorrectos");
     }
