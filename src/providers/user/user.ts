@@ -1,18 +1,32 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class UserProvider {
-  userUrl = 'users.json';
+  static userUrl = '/src/providers/user/users.json';
+  private mockUsers =
+    {
+      "cristian@correo.com": {
+        name: "Cristian Suarez Vera",
+        age: 22,
+        gender: "male",
+        password: "1234"
+      },
+      "antonio@correo.com": {
+        name: "Antonio Perez Perez",
+        age: 34,
+        gender: "male",
+        password: "1234"
+      }
+    };
 
-  constructor(public http: HttpClient) { }
+  constructor() {
+  }
 
   getUser(email: string){
-    this.getUsers().subscribe(users => console.log(users));
+    return this.getUsers()[email];
   }
 
   private getUsers() {
-    console.log(this.userUrl);
-    return this.http.get(this.userUrl);
+    return this.mockUsers;
   }
 }
