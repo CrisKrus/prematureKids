@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController} from "ionic-angular";
+import {NavController, ToastController} from "ionic-angular";
 import {HomePage} from "../../pages/home/home";
 import {UserProvider} from "../../providers/user/user";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -13,22 +13,8 @@ export class LoginComponent {
   email: string;
   loginForm: FormGroup;
 
-  constructor(public navCtrl: NavController, public userProvider: UserProvider, public formBuilder: FormBuilder) {
+  constructor(public navCtrl: NavController, private userProvider: UserProvider, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
     this.addInputValidators(formBuilder);
-  }
-
-  logIn() {
-    let user = this.userProvider.getUser(this.email.toLowerCase());
-    if (user != 'undefined'){
-      window.localStorage.setItem('name', user['name']);
-      window.localStorage.setItem('age', user['age']);
-      window.localStorage.setItem('email', user['email']);
-      this.navCtrl.setRoot(HomePage);
-    }
-  }
-
-  signIn() {
-
   }
 
   private addInputValidators(formBuilder: FormBuilder) {
@@ -42,5 +28,31 @@ export class LoginComponent {
         Validators.minLength(8)
       ])]
     });
+  }
+
+  login() {
+    let user = this.userProvider.getUser(this.email.toLowerCase());
+    if (user != undefined){
+      // TODO extract that
+      window.localStorage.setItem('name', user['name']);
+      window.localStorage.setItem('age', user['age']);
+      window.localStorage.setItem('email', user['email']);
+      this.navCtrl.setRoot(HomePage);
+    }else {
+      this.showWarning("Correo o contraseña incorrectos");
+    }
+  }
+
+  private showWarning(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
+  }
+
+  signIn() {
+
   }
 }
