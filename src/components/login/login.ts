@@ -1,9 +1,11 @@
 import {Component} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
-import {HomePage} from "../../pages/home/home";
-import {UserProvider} from "../../providers/user/user";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+
+import {HomePage} from "../../pages/home/home";
 import {SigninPage} from "../../pages/signin/signin";
+
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'login',

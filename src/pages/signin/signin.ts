@@ -1,8 +1,11 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {UserProvider} from "../../providers/user/user";
+
 import {HomePage} from "../home/home";
+
+import {UserProvider} from "../../providers/user/user";
+import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
 
 @IonicPage()
 @Component({
@@ -11,9 +14,12 @@ import {HomePage} from "../home/home";
 })
 export class SigninPage {
   user: FormGroup;
+  private municipalitiesGranCanaria: any;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private userProvider: UserProvider) {
+  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private userProvider: UserProvider, private municipalitiesProvider: MunicipalitiesProvider) {
     this.addInputValidators();
+    this.municipalitiesGranCanaria = this.municipalitiesProvider.getGranCanaria();
+    console.log(this.municipalitiesGranCanaria);
   }
 
   addInputValidators() {
