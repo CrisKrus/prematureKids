@@ -1,0 +1,87 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Crear cuenta</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form [formGroup]="user" (ngSubmit)="submit(user.value)">
+
+    <ion-item [ngClass]="{'error-border':!user.controls.name.valid && user.controls.name.touched}">
+      <ion-label floating>Nombre</ion-label>
+      <ion-input formControlName="name" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item
+      *ngIf="user.controls.name.hasError('required') && user.controls.name.touched">
+      <p>¡No se olvide de completar este campo!</p>
+    </ion-item>
+    <ion-item
+      *ngIf="user.controls.name.hasError('pattern') && user.controls.name.touched">
+      <p>¡No se permiten números!</p>
+    </ion-item>
+    <ion-item
+      *ngIf="user.controls.name.hasError('minlength') && user.controls.name.touched">
+      <p>¡Al menos tiene que escribir 10 letras!</p>
+    </ion-item>
+    <ion-item
+      *ngIf="user.controls.name.hasError('maxlength') && user.controls.name.touched">
+      <p>¡No están permitidas más de 50 letras!</p>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Género</ion-label>
+      <ion-select formControlName="gender">
+        <ion-option value="male">Hombre</ion-option>
+        <ion-option value="female">Mujer</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label>Cumpleaños</ion-label>
+      <ion-input formControlName="birthday" type="date"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Ciudad</ion-label>
+      <ion-select formControlName="city">
+        <ion-option *ngFor="let municipality of municipalities" value="{{municipality['Gran Canaria']}}" >{{municipality["Gran Canaria"]}}</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Teléfono</ion-label>
+      <ion-input formControlName="phone" type="tel"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Tipo</ion-label>
+      <ion-select formControlName="type">
+        <ion-option value="doctor">Paciente</ion-option>
+        <ion-option value="patient">Doctor</ion-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Correo</ion-label>
+      <ion-input formControlName="email" type="email"></ion-input>
+    </ion-item>
+
+    <ion-item [ngClass]="{'error-border': !user.controls.password.valid && user.controls.password.touched}">
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item *ngIf="user.controls.password.hasError('required') && user.controls.password.touched">
+      <p>¡No se olvide de completar este campo!</p>
+    </ion-item>
+    <ion-item *ngIf="user.controls.password.hasError('minlength') && user.controls.password.touched">
+      <p>¡La contraseña al menos tiene que tener 8 caracteres!</p>
+    </ion-item>
+
+    <button ion-button block color="primary" [disabled]="!user.valid" type="submit">Registrar</button>
+  </form>
+</ion-content>
