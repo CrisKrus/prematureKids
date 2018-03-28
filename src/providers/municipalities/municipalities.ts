@@ -4,34 +4,34 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MunicipalitiesProvider {
   static municipalitiesUrl = '/src/providers/user/municipalities.json';
-  private mockMunicipalities = {
-    "Agaete": true,
-    "Agüimes": true,
-    "La Aldea de San Nicolás": true,
-    "Artenara": true,
-    "Arucas": true,
-    "Firgas": true,
-    "Gáldar":  true,
-    "Ingenio":true,
-    "Mogán": true,
-    "Moya": true,
-    "Las Palmas de Gran Canaria": true,
-    "San Bartolomé de Tirajana": true,
-    "Santa Brígida": true,
-    "Santa Lucía de Tirajana": true,
-    "Santa María de Guía": true,
-    "Tejeda": true,
-    "Telde": true,
-    "Teror": true,
-    "Valleseco": true,
-    "Valsequillo": true,
-    "Vega de San Mateo": true
-  };
+  private mockMunicipalities = [
+    {"Gran Canaria": "Agaete"},
+    {"Gran Canaria": "Agüimes"},
+    {"Gran Canaria": "La Aldea de San Nicolás"},
+    {"Gran Canaria": "Artenara"},
+    {"Gran Canaria": "Arucas"},
+    {"Gran Canaria": "Firgas"},
+    {"Gran Canaria": "Gáldar"},
+    {"Gran Canaria": "Ingenio"},
+    {"Gran Canaria": "Mogán"},
+    {"Gran Canaria": "Moya"},
+    {"Gran Canaria": "Las Palmas de Gran Canaria"},
+    {"Gran Canaria": "San Bartolomé de Tirajana"},
+    {"Gran Canaria": "Santa Brígida"},
+    {"Gran Canaria": "Santa Lucía de Tirajana"},
+    {"Gran Canaria": "Santa María de Guía"},
+    {"Gran Canaria": "Tejeda"},
+    {"Gran Canaria": "Telde"},
+    {"Gran Canaria": "Teror"},
+    {"Gran Canaria": "Valleseco"},
+    {"Gran Canaria": "Valsequillo"},
+    {"Gran Canaria": "Vega de San Mateo"}
+  ];
 
   constructor(public http: HttpClient) {
   }
 
-  getGranCanaria(){
+  getMunicipalities(){
     return this.mockMunicipalities;
   }
 }

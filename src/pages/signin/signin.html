@@ -48,7 +48,7 @@
     <ion-item>
       <ion-label floating>Ciudad</ion-label>
       <ion-select formControlName="city">
-
+        <ion-option *ngFor="let municipality of municipalities" value="{{municipality['Gran Canaria']}}" >{{municipality["Gran Canaria"]}}</ion-option>
       </ion-select>
     </ion-item>
 

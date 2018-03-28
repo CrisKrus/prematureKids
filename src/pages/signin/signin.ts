@@ -14,12 +14,11 @@ import {MunicipalitiesProvider} from "../../providers/municipalities/municipalit
 })
 export class SigninPage {
   user: FormGroup;
-  private municipalitiesGranCanaria: any;
+  private municipalities: any;
 
   constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private userProvider: UserProvider, private municipalitiesProvider: MunicipalitiesProvider) {
     this.addInputValidators();
-    this.municipalitiesGranCanaria = this.municipalitiesProvider.getGranCanaria();
-    console.log(this.municipalitiesGranCanaria);
+    this.municipalities = this.municipalitiesProvider.getMunicipalities();
   }
 
   addInputValidators() {
