@@ -9,10 +9,10 @@ import {MunicipalitiesProvider} from "../../providers/municipalities/municipalit
 
 @IonicPage()
 @Component({
-  selector: 'page-signin',
-  templateUrl: 'signin.html',
+  selector: 'page-signingUp',
+  templateUrl: 'signingUp.html',
 })
-export class SigninPage {
+export class SigningUpPage {
   user: FormGroup;
   private municipalities: any;
 
@@ -41,6 +41,9 @@ export class SigninPage {
       phone: ['', Validators.compose([
         Validators.required,
         Validators.pattern('[0-9]{9}'),
+      ])],
+      type: ['', Validators.compose([
+        Validators.required
       ])],
       email: ['', Validators.compose([
         Validators.required,

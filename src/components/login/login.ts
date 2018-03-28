@@ -3,7 +3,7 @@ import {NavController, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {HomePage} from "../../pages/home/home";
-import {SigninPage} from "../../pages/signin/signin";
+import {SigningUpPage} from "../../pages/signingUp/signingUp";
 
 import {UserProvider} from "../../providers/user/user";
 
@@ -52,6 +52,6 @@ export class LoginComponent {
   }
 
   signin() {
-    this.navCtrl.push(SigninPage);
+    this.navCtrl.push(SigningUpPage);
   }
 }

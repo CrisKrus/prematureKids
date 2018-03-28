@@ -17,6 +17,7 @@ export class HomePage {
   }
 
   logout() {
+    //TODO this do not know how it is working yet, user is not store on local storage we are using nav params
     window.localStorage.removeItem("name");
     this.navCtrl.setRoot(HomePage);
   }

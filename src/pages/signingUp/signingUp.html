@@ -57,7 +57,13 @@
       <ion-input formControlName="phone" type="tel"></ion-input>
     </ion-item>
 
-    <!--TODO add user type [doctor, patient]-->
+    <ion-item>
+      <ion-label floating>Tipo</ion-label>
+      <ion-select formControlName="type">
+        <ion-option value="doctor">Paciente</ion-option>
+        <ion-option value="patient">Doctor</ion-option>
+      </ion-select>
+    </ion-item>
 
     <ion-item>
       <ion-label floating>Correo</ion-label>

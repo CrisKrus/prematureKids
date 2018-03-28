@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import {LoginComponent} from '../components/login/login';
 import { UserProvider } from '../providers/user/user';
 import {HttpClientModule} from "@angular/common/http";
-import {SigninPage} from "../pages/signin/signin";
+import {SigningUpPage} from "../pages/signingUp/signingUp";
 import { MunicipalitiesProvider } from '../providers/municipalities/municipalities';
 
 @NgModule({
@@ -17,7 +17,7 @@ import { MunicipalitiesProvider } from '../providers/municipalities/municipaliti
     MyApp,
     HomePage,
     LoginComponent,
-    SigninPage
+    SigningUpPage
   ],
   imports: [
     BrowserModule,
@@ -28,7 +28,7 @@ import { MunicipalitiesProvider } from '../providers/municipalities/municipaliti
   entryComponents: [
     MyApp,
     HomePage,
-    SigninPage
+    SigningUpPage
   ],
   providers: [
     StatusBar,
