@@ -1,14 +1,13 @@
-<ion-header>
-  <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
-  </ion-navbar>
-</ion-header>
+<ion-content padding *ngIf="name == null">
+  <login ></login>
+</ion-content>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content padding *ngIf="name != null">
+
+  <p>{{name}}</p>
+  <p>Edad: {{age}} años</p>
+  <p>Email: {{email}} </p>
+
+  <button ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
+
 </ion-content>
