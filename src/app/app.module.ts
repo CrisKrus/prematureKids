@@ -30,7 +30,8 @@ import {ViewProfilePage} from "../pages/view-profile/view-profile";
   entryComponents: [
     MyApp,
     HomePage,
-    SigningUpPage
+    SigningUpPage,
+    ViewProfilePage
   ],
   providers: [
     StatusBar,

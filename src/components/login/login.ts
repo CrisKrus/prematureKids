@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-
-import {HomePage} from "../../pages/home/home";
 import {SigningUpPage} from "../../pages/signingUp/signingUp";
 
 import {UserProvider} from "../../providers/user/user";
+import {ViewProfilePage} from "../../pages/view-profile/view-profile";
 
 @Component({
   selector: 'login',
@@ -36,7 +35,7 @@ export class LoginComponent {
   login() {
     let user = this.userProvider.getUser(this.email.toLowerCase());
     if (user != undefined){
-      this.navCtrl.setRoot(HomePage, user);
+      this.navCtrl.setRoot(ViewProfilePage, user);
     }else {
       this.showWarning("Correo o contraseña incorrectos");
     }

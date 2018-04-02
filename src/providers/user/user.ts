@@ -3,23 +3,28 @@ import {Injectable} from '@angular/core';
 @Injectable()
 export class UserProvider {
   static userUrl = '/src/providers/user/users.json';
+  //TODO users need to have email property because, when you push one to a page you are pushing the properties not the key
   private mockUsers =
     {
       "cristian@correo.com": {
         name: "Cristian Suarez Vera",
-        age: 22,
         gender: "male",
-        password: "1234",
+        birthday: "1995-12-29",
+        city: "Telde",
+        phone: "686722255",
+        email: "cristian@correo.com",
         type: "doctor",
-        email: "cristian@correo.com"
+        password: "1234"
       },
       "antonio@correo.com": {
         name: "Antonio Perez Perez",
-        age: 34,
         gender: "male",
-        password: "1234",
-        type: "patient",
+        birthday: "1990-04-22",
+        city: "Las Palmas",
+        phone: "444555666",
         email: "antonio@correo.com",
+        type: "patient",
+        password: "1234",
         exercises: {}
       }
     };

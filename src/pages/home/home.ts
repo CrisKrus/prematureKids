@@ -18,6 +18,8 @@ export class HomePage {
 
   logout() {
     //TODO this do not know how it is working yet, user is not store on local storage we are using nav params
+    // it works because when you push an user you are pushing their properties not the object user, them
+    // the property name exist on params
     window.localStorage.removeItem("name");
     this.navCtrl.setRoot(HomePage);
   }

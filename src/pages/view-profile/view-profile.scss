@@ -1,3 +1,11 @@
 page-view-profile {
+  img{
+    border-radius: 50%;
+    object-fit: cover;
+    padding: 2em;
+  }
 
+  ion-avatar{
+    background-color: aliceblue;
+  }
 }
