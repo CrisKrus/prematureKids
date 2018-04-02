@@ -11,6 +11,9 @@ log.txt
 .sourcemaps/
 www/
 .idea/
+plugins/
+platforms/
+
 .vscode/
 .sass-cache/
 .versions/

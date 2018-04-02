@@ -11,13 +11,15 @@ import { UserProvider } from '../providers/user/user';
 import {HttpClientModule} from "@angular/common/http";
 import {SigningUpPage} from "../pages/signingUp/signingUp";
 import { MunicipalitiesProvider } from '../providers/municipalities/municipalities';
+import {ViewProfilePage} from "../pages/view-profile/view-profile";
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LoginComponent,
-    SigningUpPage
+    SigningUpPage,
+    ViewProfilePage
   ],
   imports: [
     BrowserModule,
