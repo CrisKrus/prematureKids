@@ -1,15 +1,19 @@
 import { Component } from '@angular/core';
+import {HomePage} from "../../pages/home/home";
+import {ViewProfilePage} from "../../pages/view-profile/view-profile";
 
 @Component({
   selector: 'navbar-tabs',
   templateUrl: 'navbar-tabs.html'
 })
 export class NavbarTabsComponent {
-
-  text: string;
+  home = HomePage;
+  profile = ViewProfilePage;
 
   constructor() {
-    console.log('Hello NavbarTabsComponent Component');
-    this.text = 'Hello World';
+  }
+
+  ionViewDidLoad(){
+    console.log('Hello');
   }
 }
