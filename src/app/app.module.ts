@@ -12,6 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {SigningUpPage} from "../pages/signingUp/signingUp";
 import { MunicipalitiesProvider } from '../providers/municipalities/municipalities';
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
+import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import {ViewProfilePage} from "../pages/view-profile/view-profile";
     HomePage,
     LoginComponent,
     SigningUpPage,
-    ViewProfilePage
+    ViewProfilePage,
+    NavbarTabsComponent
   ],
   imports: [
     BrowserModule,
