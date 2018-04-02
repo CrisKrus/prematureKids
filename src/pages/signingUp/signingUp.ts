@@ -2,10 +2,9 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
-import {HomePage} from "../home/home";
-
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
+import {ViewProfilePage} from "../view-profile/view-profile";
 
 @IonicPage()
 @Component({
@@ -59,9 +58,8 @@ export class SigningUpPage {
   submit(userFields: any): void{
     if (this.user.valid && this.isNotRegisterJet(userFields.email)){
 
-      console.log(userFields);
       //TODO make a register on data base
-      this.navCtrl.setRoot(HomePage, userFields);
+      this.navCtrl.setRoot(ViewProfilePage, userFields);
     }
   }
 

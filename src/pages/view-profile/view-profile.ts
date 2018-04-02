@@ -28,4 +28,7 @@ export class ViewProfilePage {
   //  TODO if the profile is the same as the logged saw it if not don't show it (if you are patient)
   }
 
+  editProfile() {
+    console.log('Edit-profile');
+  }
 }
