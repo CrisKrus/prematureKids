@@ -12,7 +12,7 @@
 
     <!--TODO this can create a confusion it is not only the name is the full name-->
     <ion-item [ngClass]="{'error-border':!user.controls.name.valid && user.controls.name.touched}">
-      <ion-label floating>Nombre</ion-label>
+      <ion-label floating>Nombre completo</ion-label>
       <ion-input formControlName="name" type="text"></ion-input>
     </ion-item>
 
@@ -33,19 +33,21 @@
       <p>¡No están permitidas más de 50 letras!</p>
     </ion-item>
 
-    <!--TODO add an option "not want to tell you" or "others"-->
     <ion-item>
       <ion-label floating>Género</ion-label>
       <ion-select formControlName="gender">
         <ion-option value="male">Hombre</ion-option>
         <ion-option value="female">Mujer</ion-option>
+        <ion-option value="not-said">Prefiero no decirlo</ion-option>
       </ion-select>
     </ion-item>
 
-    <!--TODO to search your birthday you have to scroll a lot, change it!-->
+    <!--TODO put this in one line-->
     <ion-item>
-      <ion-label>Cumpleaños</ion-label>
-      <ion-input formControlName="birthday" type="date"></ion-input>
+      <ion-label stacked>Cumpleaños</ion-label>
+      <ion-input formControlName="day" type="number" min="1" max="31" placeholder="Dia"></ion-input>
+      <ion-input formControlName="month" type="number" min="1" max="12" placeholder="Mes"></ion-input>
+      <ion-input formControlName="year" type="number" min="1940" placeholder="Año"></ion-input>
     </ion-item>
 
     <ion-item>
