@@ -1,13 +1,3 @@
-<ion-content padding *ngIf="name == null">
-  <login ></login>
-</ion-content>
+<login *ngIf="name == null"></login>
 
-<ion-content padding *ngIf="name != null">
-
-  <p>{{name}}</p>
-  <p>Edad: {{age}} años</p>
-  <p>Email: {{email}} </p>
-
-  <button ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
-
-</ion-content>
+<page-view-profile *ngIf="name != null"></page-view-profile>

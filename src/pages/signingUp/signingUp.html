@@ -10,6 +10,7 @@
 <ion-content padding>
   <form [formGroup]="user" (ngSubmit)="submit(user.value)">
 
+    <!--TODO this can create a confusion it is not only the name is the full name-->
     <ion-item [ngClass]="{'error-border':!user.controls.name.valid && user.controls.name.touched}">
       <ion-label floating>Nombre</ion-label>
       <ion-input formControlName="name" type="text"></ion-input>

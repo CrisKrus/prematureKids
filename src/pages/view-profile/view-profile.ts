@@ -16,7 +16,7 @@ export class ViewProfilePage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.name = navParams.get('name');
-    //TODO this is not the best way to do it
+    //TODO this is not the best way to do it, if the param is null show Mujer
     this.gender = navParams.get('gender') == 'male' ? "Hombre" : "Mujer";
     this.birthday = navParams.get('birthday');
     this.city = navParams.get('city');
