@@ -20,6 +20,7 @@ export class SigningUpPage {
     this.municipalities = this.municipalitiesProvider.getMunicipalities();
   }
 
+  //TODO check if the date is valid
   addInputValidators() {
     this.user = this.formBuilder.group({
       name: ['', Validators.compose([
@@ -31,7 +32,13 @@ export class SigningUpPage {
       gender: ['', Validators.compose([
         Validators.required
       ])],
-      birthday: ['', Validators.compose([
+      day: ['', Validators.compose([
+        Validators.required
+      ])],
+      month: ['', Validators.compose([
+        Validators.required
+      ])],
+      year: ['', Validators.compose([
         Validators.required
       ])],
       city: ['', Validators.compose([
