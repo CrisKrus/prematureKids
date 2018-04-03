@@ -33,7 +33,8 @@ import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
     MyApp,
     HomePage,
     SigningUpPage,
-    ViewProfilePage
+    ViewProfilePage,
+    NavbarTabsComponent
   ],
   providers: [
     StatusBar,
