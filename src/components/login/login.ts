@@ -35,7 +35,8 @@ export class LoginComponent {
   login() {
     let user = this.userProvider.getUser(this.email.toLowerCase());
     if (user != undefined){
-      this.navCtrl.setRoot(ViewProfilePage, user);
+      localStorage.setItem('user', JSON.stringify(user));
+      this.navCtrl.setRoot(ViewProfilePage);
     }else {
       this.showWarning("Correo o contraseña incorrectos");
     }
