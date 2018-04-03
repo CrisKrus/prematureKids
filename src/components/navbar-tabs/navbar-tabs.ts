@@ -9,11 +9,9 @@ import {ViewProfilePage} from "../../pages/view-profile/view-profile";
 export class NavbarTabsComponent {
   home = HomePage;
   profile = ViewProfilePage;
+  user: any;
 
   constructor() {
-  }
-
-  ionViewDidLoad(){
-    console.log('Hello');
+    this.user = JSON.parse(localStorage.getItem('user'));
   }
 }
