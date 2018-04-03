@@ -65,6 +65,7 @@ export class SigningUpPage {
   submit(userFields: any): void{
     if (this.user.valid && this.isNotRegisterJet(userFields.email)){
       //TODO make a register on data base
+      //TODO format date before save it
       localStorage.setItem('user', JSON.stringify(userFields));
       this.navCtrl.setRoot(ViewProfilePage);
     }
