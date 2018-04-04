@@ -13,6 +13,7 @@ import {SigningUpPage} from "../pages/signingUp/signingUp";
 import { MunicipalitiesProvider } from '../providers/municipalities/municipalities';
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
 import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
+import {SearchPatientPage} from "../pages/search-patient/search-patient";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
     LoginComponent,
     SigningUpPage,
     ViewProfilePage,
-    NavbarTabsComponent
+    NavbarTabsComponent,
+    SearchPatientPage
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
     LoginComponent,
     SigningUpPage,
     ViewProfilePage,
-    NavbarTabsComponent
+    NavbarTabsComponent,
+    SearchPatientPage
   ],
   providers: [
     StatusBar,

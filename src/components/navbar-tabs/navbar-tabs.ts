@@ -3,6 +3,7 @@ import {HomePage} from "../../pages/home/home";
 import {ViewProfilePage} from "../../pages/view-profile/view-profile";
 import {NavController} from "ionic-angular";
 import {LoginComponent} from "../login/login";
+import {SearchPatientPage} from "../../pages/search-patient/search-patient";
 
 @Component({
   selector: 'navbar-tabs',
@@ -11,6 +12,7 @@ import {LoginComponent} from "../login/login";
 export class NavbarTabsComponent {
   home = HomePage;
   profile = ViewProfilePage;
+  search = SearchPatientPage;
   user: any;
 
   constructor(public navCtrl: NavController) {
