@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SigningUpPage} from "../../pages/signingUp/signingUp";
 
 import {UserProvider} from "../../providers/user/user";
-import {ViewProfilePage} from "../../pages/view-profile/view-profile";
+import {NavbarTabsComponent} from "../navbar-tabs/navbar-tabs";
 
 @Component({
   selector: 'login',
@@ -36,7 +36,7 @@ export class LoginComponent {
     let user = this.userProvider.getUser(this.email.toLowerCase());
     if (user != undefined){
       localStorage.setItem('user', JSON.stringify(user));
-      this.navCtrl.setRoot(ViewProfilePage);
+      this.navCtrl.setRoot(NavbarTabsComponent);
     }else {
       this.showWarning("Correo o contraseña incorrectos");
     }

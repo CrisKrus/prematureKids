@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
 import {ViewProfilePage} from "../view-profile/view-profile";
+import {NavbarTabsComponent} from "../../components/navbar-tabs/navbar-tabs";
 
 @IonicPage()
 @Component({
@@ -67,7 +68,7 @@ export class SigningUpPage {
       //TODO make a register on data base
       //TODO format date before save it
       localStorage.setItem('user', JSON.stringify(userFields));
-      this.navCtrl.setRoot(ViewProfilePage);
+      this.navCtrl.setRoot(NavbarTabsComponent);
     }
   }
 

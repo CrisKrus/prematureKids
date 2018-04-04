@@ -32,6 +32,7 @@ import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
   entryComponents: [
     MyApp,
     HomePage,
+    LoginComponent,
     SigningUpPage,
     ViewProfilePage,
     NavbarTabsComponent

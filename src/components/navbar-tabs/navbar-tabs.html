@@ -1,5 +1,5 @@
 <ion-tabs>
   <ion-tab [root]="home" tabIcon="home"></ion-tab>
-  <ion-tab *ngIf="user != null" [root]="profile" tabIcon="person"></ion-tab>
-  <ion-tab *ngIf="user != null && user['type'] == 'doctor'" [root]="profile" tabIcon="search"></ion-tab>
+  <ion-tab [root]="profile" *ngIf="user != null" tabIcon="person"></ion-tab>
+  <ion-tab [root]="profile" *ngIf="user != null && user['type'] == 'doctor'" tabIcon="search"></ion-tab>
 </ion-tabs>
