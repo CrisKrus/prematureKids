@@ -35,7 +35,7 @@ export class UserProvider {
     return this.getUsers()[email];
   }
 
-  private getUsers() {
+  getUsers() {
     return this.mockUsers;
   }
 }

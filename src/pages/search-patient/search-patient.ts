@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {IonicPage, NavController} from 'ionic-angular';
+import {UserProvider} from "../../providers/user/user";
 
 @IonicPage()
 @Component({
@@ -7,12 +8,27 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'search-patient.html',
 })
 export class SearchPatientPage {
+  private users;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public userProvider: UserProvider) {
+    this.users = userProvider.getUsers();
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad SearchPatientPage');
-  }
+  search(event){
+    this.users = this.userProvider.getUsers();
 
+    let val = event.target.value;
+
+    if (val && val.trim() != ''){
+      for (let key in this.users) {
+        if(searchValueIsInTheUsername(this.users[key])){
+          return this.users[key];
+        }
+      }
+    }
+
+    function searchValueIsInTheUsername(user: any) {
+        return user['name'].toLowerCase().includes(val.toLowerCase());
+    }
+  }
 }
