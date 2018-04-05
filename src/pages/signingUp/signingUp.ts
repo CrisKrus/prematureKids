@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
-import {ViewProfilePage} from "../view-profile/view-profile";
 import {NavbarTabsComponent} from "../../components/navbar-tabs/navbar-tabs";
 
 @IonicPage()
