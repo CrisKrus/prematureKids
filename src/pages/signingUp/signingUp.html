@@ -10,7 +10,6 @@
 <ion-content padding>
   <form [formGroup]="user" (ngSubmit)="submit(user.value)">
 
-    <!--TODO this can create a confusion it is not only the name is the full name-->
     <ion-item [ngClass]="{'error-border':!user.controls.name.valid && user.controls.name.touched}">
       <ion-label floating>Nombre completo</ion-label>
       <ion-input formControlName="name" type="text"></ion-input>
@@ -42,7 +41,6 @@
       </ion-select>
     </ion-item>
 
-    <!--TODO put this in one line-->
     <ion-item>
       <ion-label stacked>Cumpleaños</ion-label>
       <ion-input formControlName="day" type="number" min="1" max="31" placeholder="Dia"></ion-input>
@@ -66,8 +64,8 @@
     <ion-item>
       <ion-label floating>Tipo</ion-label>
       <ion-select formControlName="type">
-        <ion-option value="doctor">Paciente</ion-option>
-        <ion-option value="patient">Doctor</ion-option>
+        <ion-option value="patient">Paciente</ion-option>
+        <ion-option value="doctor">Doctor</ion-option>
       </ion-select>
     </ion-item>
 

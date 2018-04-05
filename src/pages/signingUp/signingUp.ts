@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, NavController, ToastController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {UserProvider} from "../../providers/user/user";
@@ -15,7 +15,11 @@ export class SigningUpPage {
   user: FormGroup;
   private municipalities: any;
 
-  constructor(public navCtrl: NavController, private formBuilder: FormBuilder, private userProvider: UserProvider, private municipalitiesProvider: MunicipalitiesProvider) {
+  constructor(public navCtrl: NavController,
+              private formBuilder: FormBuilder,
+              private userProvider: UserProvider,
+              private municipalitiesProvider: MunicipalitiesProvider,
+              private toastCtrl: ToastController) {
     this.addInputValidators();
     this.municipalities = this.municipalitiesProvider.getMunicipalities();
   }
@@ -63,16 +67,35 @@ export class SigningUpPage {
   }
 
   submit(userFields: any): void{
+    let birthday = new Date (userFields.year + "-" + userFields.month + "-" + userFields.day);
+
     if (this.user.valid && this.isNotRegisterJet(userFields.email)){
-      //TODO make a register on data base
-      //TODO format date before save it
-      localStorage.setItem('user', JSON.stringify(userFields));
-      this.navCtrl.setRoot(NavbarTabsComponent);
+      if(this.isNotValidDate(birthday)) {
+        this.showWarning("La fecha introducida no es valida");
+      }else {
+        //TODO make a register on data base
+        userFields.birthday = birthday;
+        localStorage.setItem('user', JSON.stringify(userFields));
+        this.navCtrl.setRoot(NavbarTabsComponent);
+      }
     }
+  }
+
+  private isNotValidDate(birthday: Date) {
+    return birthday.toString() == 'Invalid Date';
   }
 
   private isNotRegisterJet(email: string) {
     return this.userProvider.getUser(email.toLowerCase()) == undefined;
+  }
+
+  private showWarning(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 
 }
