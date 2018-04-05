@@ -9,7 +9,7 @@ import { HomePage } from '../pages/home/home';
 import {LoginComponent} from '../components/login/login';
 import { UserProvider } from '../providers/user/user';
 import {HttpClientModule} from "@angular/common/http";
-import {SigningUpPage} from "../pages/signingUp/signingUp";
+import {SigningUpPage} from "../pages/signing-up/signing-up";
 import { MunicipalitiesProvider } from '../providers/municipalities/municipalities';
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
 import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";

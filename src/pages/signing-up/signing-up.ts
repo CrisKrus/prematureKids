@@ -9,7 +9,7 @@ import {NavbarTabsComponent} from "../../components/navbar-tabs/navbar-tabs";
 @IonicPage()
 @Component({
   selector: 'page-signingUp',
-  templateUrl: 'signingUp.html',
+  templateUrl: 'signing-up.html',
 })
 export class SigningUpPage {
   user: FormGroup;
@@ -24,7 +24,6 @@ export class SigningUpPage {
     this.municipalities = this.municipalitiesProvider.getMunicipalities();
   }
 
-  //TODO check if the date is valid
   addInputValidators() {
     this.user = this.formBuilder.group({
       name: ['', Validators.compose([

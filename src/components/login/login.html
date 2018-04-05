@@ -1,30 +1,32 @@
-<form [formGroup]="loginForm">
+<ion-content>
+  <form [formGroup]="loginForm">
 
-  <!--TODO add image of the app-->
-  <ion-item>
-    <ion-label floating>Correo</ion-label>
-    <ion-input [(ngModel)]="email" formControlName="email" type="email"></ion-input>
-  </ion-item>
-  <ion-item *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.touched">
-    <p>No se olvide de completar este campo!</p>
-  </ion-item>
-  <ion-item *ngIf="loginForm.controls.email.hasError('email') && loginForm.controls.email.touched">
-    <p>El correo introducido no es correcto</p>
-  </ion-item>
+    <!--TODO add image of the app-->
+    <ion-item>
+      <ion-label floating>Correo</ion-label>
+      <ion-input [(ngModel)]="email" formControlName="email" type="email"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="loginForm.controls.email.hasError('required') && loginForm.controls.email.touched">
+      <p>No se olvide de completar este campo!</p>
+    </ion-item>
+    <ion-item *ngIf="loginForm.controls.email.hasError('email') && loginForm.controls.email.touched">
+      <p>El correo introducido no es correcto</p>
+    </ion-item>
 
-  <ion-item>
-    <ion-label floating>Contraseña</ion-label>
-    <ion-input [(ngModel)]="password" formControlName="password" type="password"></ion-input>
-  </ion-item>
-  <ion-item *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
-    <p>No se olvide de completar este campo!</p>
-  </ion-item>
-</form>
+    <ion-item>
+      <ion-label floating>Contraseña</ion-label>
+      <ion-input [(ngModel)]="password" formControlName="password" type="password"></ion-input>
+    </ion-item>
+    <ion-item *ngIf="loginForm.controls.password.hasError('required') && loginForm.controls.password.touched">
+      <p>No se olvide de completar este campo!</p>
+    </ion-item>
+  </form>
 
-<div padding>
-  <button ion-button color="primary" block [disabled]="!loginForm.valid" (click)="login()" >Iniciar sesión</button>
+  <div padding>
+    <button ion-button color="primary" block [disabled]="!loginForm.valid" (click)="login()" >Iniciar sesión</button>
 
-  <p></p>
+    <p></p>
 
-  <button ion-button color="secondary" block (click)="signin()">Crear cuenta</button>
-</div>
+    <button ion-button color="secondary" block (click)="signin()">Crear cuenta</button>
+  </div>
+</ion-content>
