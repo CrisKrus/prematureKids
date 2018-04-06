@@ -10,10 +10,17 @@ import {HomePage} from "../home/home";
 export class ViewProfilePage {
   private user: any;
   private gender: string;
+  private showLogout: boolean;
+  private showEditProfile: boolean;
 
   constructor(public navCtrl: NavController, private navParams: NavParams) {
-    if (this.isUserOnParams()) this.user = this.navParams.get('user');
-    else this.user = JSON.parse(localStorage.getItem('user'));
+    if (this.isUserOnParams()){
+      this.user = this.navParams.get('user');
+      this.showLogout = this.showEditProfile = false;
+    } else {
+      this.user = JSON.parse(localStorage.getItem('user'));
+      this.showLogout = this.showEditProfile = true;
+    }
     this.gender = this.translateGender();
   }
 

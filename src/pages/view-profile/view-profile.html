@@ -24,10 +24,11 @@
     <ion-item>{{user['email']}}</ion-item>
   </ion-item-group>
 
-  <ion-fab bottom right>
+  <ion-fab bottom right *ngIf="showEditProfile">
     <button ion-fab (click)="editProfile()"><ion-icon name="create"></ion-icon></button>
   </ion-fab>
 
-  <button ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
+  <button *ngIf="showLogout"
+      ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
 
 </ion-content>
