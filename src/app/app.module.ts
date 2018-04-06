@@ -14,6 +14,7 @@ import { MunicipalitiesProvider } from '../providers/municipalities/municipaliti
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
 import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
 import {SearchPatientPage} from "../pages/search-patient/search-patient";
+import { ExercisesProvider } from '../providers/exercises/exercises';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import {SearchPatientPage} from "../pages/search-patient/search-patient";
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     UserProvider,
     MunicipalitiesProvider,
+    ExercisesProvider,
   ]
 })
 export class AppModule {}
