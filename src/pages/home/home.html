@@ -1,1 +1,5 @@
-<p *ngIf="user != null">{{text}}</p>
+<ion-list *ngIf="isDoctor">
+  <ion-item *ngFor="let patient of patientsNames">
+    {{patient}}
+  </ion-item>
+</ion-list>

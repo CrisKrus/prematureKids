@@ -13,7 +13,12 @@ export class UserProvider {
         phone: "686722255",
         email: "cristian@correo.com",
         type: "doctor",
-        password: "1234"
+        password: "1234",
+        patients: {
+          "antonio@correo.com": "antonio@correo.com",
+          "one@correo.com": "one@correo.com",
+          "three@correo.com": "three@correo.com"
+        }
       },
       "antonio@correo.com": {
         name: "Antonio Perez Perez",
@@ -45,7 +50,8 @@ export class UserProvider {
         phone: "444555666",
         email: "two@correo.com",
         type: "doctor",
-        password: "1234"
+        password: "1234",
+        patients: {}
       },
       "three@correo.com": {
         name: "Three three three",
@@ -77,7 +83,8 @@ export class UserProvider {
         phone: "444555666",
         email: "five@correo.com",
         type: "doctor",
-        password: "1234"
+        password: "1234",
+        patients: {}
       },
       "six@correo.com": {
         name: "Six six six",
@@ -98,7 +105,8 @@ export class UserProvider {
         phone: "000010229",
         email: "doctor@correo.com",
         type: "doctor",
-        password: "Mjolnir"
+        password: "Mjolnir",
+        patients: {}
       }
     };
 
