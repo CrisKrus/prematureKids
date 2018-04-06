@@ -14,37 +14,48 @@ export class SearchPatientPage {
 
   constructor(public navCtrl: NavController, public userProvider: UserProvider) {
     this.users = userProvider.getUsers();
-    this.initializeUsers();
+    this.initializePatientList();
   }
 
-  private initializeUsers() {
+  private initializePatientList() {
     this.searchResult = [];
     for (let key in this.users) {
-      this.searchResult.push((this.users[key]));
+      if(this.isPatient(key)){
+        this.searchResult.push((this.users[key]));
+      }
     }
+  }
+
+  private isPatient(key) {
+    return this.users[key]['type'] == 'patient';
   }
 
   search(event){
     this.searchResult = [];
 
-    let val = event.target.value;
+    let nameToSearch = event.target.value;
 
-    if (val && val.trim() != ''){
-      for (let key in this.users) {
-        if(searchValueIsInTheUsername(this.users[key])){
-          this.searchResult.push(this.users[key]);
-        }
-      }
+    if (nameToSearch && nameToSearch.trim() != ''){
+      this.updatePatientList(nameToSearch);
     }else {
-      this.initializeUsers();
+      this.initializePatientList();
     }
+  }
 
-    function searchValueIsInTheUsername(user: any) {
-        return user['name'].toLowerCase().includes(val.toLowerCase());
+  private updatePatientList(nameToSearch: string) {
+    for (let key in this.users) {
+      if (this.isPatient(key) && this.searchValueIsInTheUsername(this.users[key], nameToSearch)) {
+        this.searchResult.push(this.users[key]);
+      }
     }
   }
 
   userSelected(user: any) {
     this.navCtrl.push(ViewProfilePage, {user: user});
+  }
+
+  //TODO this is not well named
+  private searchValueIsInTheUsername(user: any, nameToSearch: string) {
+    return user['name'].toLowerCase().includes(nameToSearch.toLowerCase());
   }
 }
