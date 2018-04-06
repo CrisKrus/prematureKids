@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 
 @IonicPage()
@@ -11,12 +11,17 @@ export class ViewProfilePage {
   private user: any;
   private gender: string;
 
-  constructor(public navCtrl: NavController) {
-    this.user = JSON.parse(localStorage.getItem('user'));
+  constructor(public navCtrl: NavController, private navParams: NavParams) {
+    if (this.isUserOnParams()) this.user = this.navParams.get('user');
+    else this.user = JSON.parse(localStorage.getItem('user'));
     this.gender = this.translateGender();
   }
 
-  //TODO this is not the best way to do it, I think
+  private isUserOnParams() {
+    return this.navParams.get('user') != null;
+  }
+
+//TODO this is not the best way to do it, I think
   private translateGender() {
     return this.user['gender'] == "male" && "Hombre"
       || this.user['gender'] == "female" && "Mujer"

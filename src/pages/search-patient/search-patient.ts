@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
+import {ViewProfilePage} from "../view-profile/view-profile";
 
 @IonicPage()
 @Component({
@@ -19,7 +20,7 @@ export class SearchPatientPage {
   private initializeUsers() {
     this.searchResult = [];
     for (let key in this.users) {
-      this.searchResult.push((this.users[key]['name']));
+      this.searchResult.push((this.users[key]));
     }
   }
 
@@ -31,7 +32,7 @@ export class SearchPatientPage {
     if (val && val.trim() != ''){
       for (let key in this.users) {
         if(searchValueIsInTheUsername(this.users[key])){
-          this.searchResult.push(this.users[key]['name']);
+          this.searchResult.push(this.users[key]);
         }
       }
     }else {
@@ -41,5 +42,9 @@ export class SearchPatientPage {
     function searchValueIsInTheUsername(user: any) {
         return user['name'].toLowerCase().includes(val.toLowerCase());
     }
+  }
+
+  userSelected(user: any) {
+    this.navCtrl.push(ViewProfilePage, {user: user});
   }
 }
