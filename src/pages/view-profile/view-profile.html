@@ -24,11 +24,19 @@
     <ion-item>{{user['email']}}</ion-item>
   </ion-item-group>
 
-  <ion-fab bottom right *ngIf="showEditProfile">
+  <ion-fab bottom right *ngIf="isMyProfile">
     <button ion-fab (click)="editProfile()"><ion-icon name="create"></ion-icon></button>
   </ion-fab>
 
-  <button *ngIf="showLogout"
-      ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
+  <button *ngIf="isMyProfile"
+          ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
+
+  <ion-fab right bottom *ngIf="!isMyProfile">
+    <button ion-fab color="light"><ion-icon name="add"></ion-icon></button>
+    <ion-fab-list side="left">
+      <button ion-fab (click)="chat()"><ion-icon name="chatbubbles"></ion-icon></button>
+      <button ion-fab (click)="seeHistory()"><ion-icon name="document"></ion-icon></button>
+    </ion-fab-list>
+  </ion-fab>
 
 </ion-content>

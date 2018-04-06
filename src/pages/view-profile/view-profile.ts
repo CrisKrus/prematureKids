@@ -10,16 +10,15 @@ import {HomePage} from "../home/home";
 export class ViewProfilePage {
   private user: any;
   private gender: string;
-  private showLogout: boolean;
-  private showEditProfile: boolean;
+  private isMyProfile: boolean;
 
   constructor(public navCtrl: NavController, private navParams: NavParams) {
     if (this.isUserOnParams()){
       this.user = this.navParams.get('user');
-      this.showLogout = this.showEditProfile = false;
+      this.isMyProfile = false;
     } else {
       this.user = JSON.parse(localStorage.getItem('user'));
-      this.showLogout = this.showEditProfile = true;
+      this.isMyProfile = true;
     }
     this.gender = this.translateGender();
   }
@@ -42,5 +41,13 @@ export class ViewProfilePage {
   logout() {
     window.localStorage.removeItem('user');
     this.navCtrl.setRoot(HomePage);
+  }
+
+  seeHistory() {
+    console.log('History');
+  }
+
+  chat() {
+    console.log('Chat');
   }
 }
