@@ -29,10 +29,38 @@ export class UserProvider {
         email: "antonio@correo.com",
         type: "patient",
         password: "1234",
-        exercises: {
-          "001": true,
-          "002": true,
-          "003": true
+        assignedExercises: {
+          "001": {
+            done: {
+              "2018-02-20": true,
+              "2018-02-22": true,
+              "2018-02-24": true,
+              "2018-02-26": true,
+              "2018-03-04": true,
+              "2018-03-06": true,
+              "2018-03-09": true,
+              "2018-03-11": true,
+            }
+          },
+          "002": {
+            done: {
+              "2018-02-20": true,
+              "2018-02-22": true,
+              "2018-02-24": true,
+              "2018-03-06": true,
+              "2018-03-09": true,
+              "2018-03-11": true,
+            }
+          },
+          "003": {
+            done: {
+              "2018-02-22": true,
+              "2018-02-24": true,
+              "2018-02-26": true,
+              "2018-03-04": true,
+              "2018-03-06": true,
+            }
+          }
         }
       },
       "one@correo.com": {
@@ -44,7 +72,7 @@ export class UserProvider {
         email: "one@correo.com",
         type: "patient",
         password: "1234",
-        exercises: {}
+        assignedExercises: {}
       },
       "two@correo.com": {
         name: "Two two two",
@@ -66,7 +94,7 @@ export class UserProvider {
         email: "three@correo.com",
         type: "patient",
         password: "1234",
-        exercises: {}
+        assignedExercises: {}
       },
       "four@correo.com": {
         name: "Four four four",
@@ -77,7 +105,7 @@ export class UserProvider {
         email: "four@correo.com",
         type: "patient",
         password: "1234",
-        exercises: {}
+        assignedExercises: {}
       },
       "five@correo.com": {
         name: "Five five five",
@@ -99,7 +127,7 @@ export class UserProvider {
         email: "six@correo.com",
         type: "patient",
         password: "1234",
-        exercises: {}
+        assignedExercises: {}
       },
       "doctor@correo.com": {
         name: "Doc thor",

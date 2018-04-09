@@ -13,7 +13,9 @@ export class HomePage {
   private patientsNames: any[];
   private exercises: any[];
 
-  constructor(public navCtrl: NavController, private userProvider: UserProvider, private exercisesProvider: ExercisesProvider) {
+  constructor(public navCtrl: NavController,
+              private userProvider: UserProvider,
+              private exercisesProvider: ExercisesProvider) {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.controlUserType();
   }
@@ -25,8 +27,7 @@ export class HomePage {
         this.patientsNames = this.formatPatients(this.user['patients']);
       } else if (this.user['type'] == 'patient') {
         this.isDoctor = false;
-        this.exercises = this.setExercises(this.user['exercises']);
-        console.log(this.exercises);
+        this.exercises = this.setExercises(this.user['assignedExercises']);
       }
     }
   }
@@ -39,11 +40,21 @@ export class HomePage {
     return result;
   }
 
-  private setExercises(exercises: any) {
+  private setExercises(assignedExercises: any) {
     let result = [];
-    for (let exercise in exercises) {
-      result.push(this.exercisesProvider.getExercise(exercise)['title']);
+    for (let exercise in assignedExercises) {
+      let item = this.exercisesProvider.getExercise(exercise);
+      item.done = this.user['assignedExercises'][exercise]['done'];
+      result.push(item);
     }
     return result;
+  }
+
+  exerciseDone(exercise: any) {
+    console.log("Exercise done ", exercise);
+  }
+
+  exerciseSelected(exercise: any) {
+    console.log("Exercise clicked ", exercise);
   }
 }
