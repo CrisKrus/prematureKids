@@ -1,7 +1,7 @@
 <ion-list *ngIf="isDoctor">
-  <ion-item *ngFor="let patient of patientsNames">
-    {{patient}}
-  </ion-item>
+  <button ion-item *ngFor="let patient of patients" (click)="patientSelected(patient)">
+    {{patient.name}}
+  </button>
 </ion-list>
 
 <ion-list *ngIf="!isDoctor">

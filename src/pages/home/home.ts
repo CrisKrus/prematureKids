@@ -3,6 +3,7 @@ import {NavController} from "ionic-angular";
 import {UserProvider} from "../../providers/user/user";
 import {ExercisesProvider} from "../../providers/exercises/exercises";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
+import {ViewProfilePage} from "../view-profile/view-profile";
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ import {ViewExercisePage} from "../view-exercise/view-exercise";
 export class HomePage {
   private user: any | null;
   private isDoctor: boolean;
-  private patientsNames: any[];
+  private patients: any[];
   private exercises: any[];
 
   constructor(public navCtrl: NavController,
@@ -25,7 +26,7 @@ export class HomePage {
     if (this.user != null) {
       if (this.user['type'] == 'doctor') {
         this.isDoctor = true;
-        this.patientsNames = this.formatPatients(this.user['patients']);
+        this.patients = this.formatPatients(this.user['patients']);
       } else if (this.user['type'] == 'patient') {
         this.isDoctor = false;
         this.exercises = this.setExercises(this.user['assignedExercises']);
@@ -36,7 +37,7 @@ export class HomePage {
   private formatPatients(patients: any) {
     let result = [];
     for (let patient in patients){
-      result.push(this.userProvider.getUser(patient)['name']);
+      result.push(this.userProvider.getUser(patient));
     }
     return result;
   }
@@ -53,5 +54,10 @@ export class HomePage {
 
   exerciseSelected(exercise: any) {
     this.navCtrl.push(ViewExercisePage, exercise);
+  }
+
+
+  patientSelected(patient: any) {
+    this.navCtrl.push(ViewProfilePage, {user: patient})
   }
 }
