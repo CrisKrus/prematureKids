@@ -11,8 +11,8 @@ export class ViewExercisePage {
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log(this.navParams.get('title'));
+  exerciseDone() {
+    console.log("Exercise done at: ", new Date());
+    this.navCtrl.pop();
   }
-
 }

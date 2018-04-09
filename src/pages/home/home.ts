@@ -51,10 +51,6 @@ export class HomePage {
     return result;
   }
 
-  exerciseDone(exercise: any) {
-    console.log("Exercise done ", exercise);
-  }
-
   exerciseSelected(exercise: any) {
     this.navCtrl.push(ViewExercisePage, exercise);
   }

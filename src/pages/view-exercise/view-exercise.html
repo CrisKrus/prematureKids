@@ -1,7 +1,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>ViewExercise</ion-title>
+    <ion-title>{{navParams.get('title')}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -9,4 +9,11 @@
 
 <ion-content padding>
 
+  <p>{{navParams.get('description')}}</p>
+  <p *ngIf="navParams.get('observations') != undefined">
+    <b>Observaciones: </b>
+    {{navParams.get('observations')}}
+  </p>
+
+  <button ion-button color="primary" (click)="exerciseDone()" block>Hecho!</button>
 </ion-content>
