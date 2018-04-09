@@ -22,11 +22,11 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     MyApp,
     HomePage,
     LoginPage,
-    NavbarTabsComponent,
     SearchPatientPage,
     SigningUpPage,
     ViewProfilePage,
-    ViewExercisePage
+    ViewExercisePage,
+    NavbarTabsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,11 +38,12 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     MyApp,
     HomePage,
     LoginPage,
-    NavbarTabsComponent,
     SearchPatientPage,
     SigningUpPage,
     ViewProfilePage,
-    ViewExercisePage
+    ViewExercisePage,
+    NavbarTabsComponent
+
   ],
   providers: [
     StatusBar,

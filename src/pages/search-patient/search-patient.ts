@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController} from 'ionic-angular';
+import {NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {ViewProfilePage} from "../view-profile/view-profile";
 
@@ -43,7 +43,7 @@ export class SearchPatientPage {
 
   private updatePatientList(nameToSearch: string) {
     for (let key in this.users) {
-      if (this.isPatient(key) && this.searchValueIsInTheUsername(this.users[key], nameToSearch)) {
+      if (this.isPatient(key) && this.searchStringOnUsername(this.users[key], nameToSearch)) {
         this.searchResult.push(this.users[key]);
       }
     }
@@ -53,8 +53,7 @@ export class SearchPatientPage {
     this.navCtrl.push(ViewProfilePage, {user: user});
   }
 
-  //TODO this is not well named
-  private searchValueIsInTheUsername(user: any, nameToSearch: string) {
+  private searchStringOnUsername(user: any, nameToSearch: string) {
     return user['name'].toLowerCase().includes(nameToSearch.toLowerCase());
   }
 }
