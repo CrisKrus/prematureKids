@@ -6,7 +6,6 @@ import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
 import {NavbarTabsComponent} from "../../components/navbar-tabs/navbar-tabs";
 
-@IonicPage()
 @Component({
   selector: 'page-signingUp',
   templateUrl: 'signing-up.html',

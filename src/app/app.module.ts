@@ -22,26 +22,26 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     MyApp,
     HomePage,
     LoginPage,
-    SigningUpPage,
-    ViewProfilePage,
     NavbarTabsComponent,
     SearchPatientPage,
+    SigningUpPage,
+    ViewProfilePage,
     ViewExercisePage
   ],
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    HttpClientModule
+    HttpClientModule,
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     HomePage,
     LoginPage,
-    SigningUpPage,
-    ViewProfilePage,
     NavbarTabsComponent,
     SearchPatientPage,
+    SigningUpPage,
+    ViewProfilePage,
     ViewExercisePage
   ],
   providers: [

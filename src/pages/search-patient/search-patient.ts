@@ -3,7 +3,6 @@ import {IonicPage, NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {ViewProfilePage} from "../view-profile/view-profile";
 
-@IonicPage()
 @Component({
   selector: 'page-search-patient',
   templateUrl: 'search-patient.html',

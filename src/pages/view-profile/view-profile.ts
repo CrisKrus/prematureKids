@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 
-@IonicPage()
 @Component({
   selector: 'page-view-profile',
   templateUrl: 'view-profile.html',
