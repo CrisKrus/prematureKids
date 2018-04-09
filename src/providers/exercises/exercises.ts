@@ -57,6 +57,8 @@ export class ExercisesProvider {
   }
 
   getExercise(exercise: string) {
-    return exercise;
+    return this.mockExercises[exercise];
   }
+
+
 }

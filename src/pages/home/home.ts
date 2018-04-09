@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {NavController, UrlSerializer} from "ionic-angular";
+import {NavController} from "ionic-angular";
 import {UserProvider} from "../../providers/user/user";
+import {ExercisesProvider} from "../../providers/exercises/exercises";
 
 @Component({
   selector: 'page-home',
@@ -9,23 +10,39 @@ import {UserProvider} from "../../providers/user/user";
 export class HomePage {
   private user: any | null;
   private isDoctor: boolean;
-  private patientsNames;
+  private patientsNames: any[];
+  private exercises: any[];
 
-  constructor(public navCtrl: NavController, private userProvider: UserProvider) {
+  constructor(public navCtrl: NavController, private userProvider: UserProvider, private exercisesProvider: ExercisesProvider) {
     this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user != null && this.user['type'] == 'doctor') {
-      this.isDoctor = true;
-      console.log('Before format patients, ' + this.user['patients']);
-      this.patientsNames = this.formatPatients(this.user['patients']);
-      console.log('After format patients');
+    this.controlUserType();
+  }
+
+  private controlUserType() {
+    if (this.user != null) {
+      if (this.user['type'] == 'doctor') {
+        this.isDoctor = true;
+        this.patientsNames = this.formatPatients(this.user['patients']);
+      } else if (this.user['type'] == 'patient') {
+        this.isDoctor = false;
+        this.exercises = this.setExercises(this.user['exercises']);
+        console.log(this.exercises);
+      }
     }
   }
 
   private formatPatients(patients: any) {
     let result = [];
-    console.log(patients);
     for (let patient in patients){
       result.push(this.userProvider.getUser(patient)['name']);
+    }
+    return result;
+  }
+
+  private setExercises(exercises: any) {
+    let result = [];
+    for (let exercise in exercises) {
+      result.push(this.exercisesProvider.getExercise(exercise)['title']);
     }
     return result;
   }

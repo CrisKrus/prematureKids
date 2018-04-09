@@ -29,7 +29,11 @@ export class UserProvider {
         email: "antonio@correo.com",
         type: "patient",
         password: "1234",
-        exercises: {}
+        exercises: {
+          "001": true,
+          "002": true,
+          "003": true
+        }
       },
       "one@correo.com": {
         name: "one one one",
@@ -114,7 +118,7 @@ export class UserProvider {
   }
 
   getUser(email: string){
-    return this.getUsers()[email];
+    return this.mockUsers[email];
   }
 
   getUsers() {

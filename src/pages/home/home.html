@@ -3,3 +3,9 @@
     {{patient}}
   </ion-item>
 </ion-list>
+
+<ion-list *ngIf="!isDoctor">
+  <ion-item *ngFor="let exercise of exercises">
+    {{exercise}}
+  </ion-item>
+</ion-list>
