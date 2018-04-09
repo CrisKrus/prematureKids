@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from "ionic-angular";
 import {UserProvider} from "../../providers/user/user";
 import {ExercisesProvider} from "../../providers/exercises/exercises";
+import {ViewExercisePage} from "../view-exercise/view-exercise";
 
 @Component({
   selector: 'page-home',
@@ -55,6 +56,6 @@ export class HomePage {
   }
 
   exerciseSelected(exercise: any) {
-    console.log("Exercise clicked ", exercise);
+    this.navCtrl.push(ViewExercisePage, exercise);
   }
 }
