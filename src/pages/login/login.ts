@@ -1,16 +1,16 @@
 import {Component} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {SigningUpPage} from "../../pages/signing-up/signing-up";
+import {SigningUpPage} from "../signing-up/signing-up";
 
 import {UserProvider} from "../../providers/user/user";
-import {NavbarTabsComponent} from "../navbar-tabs/navbar-tabs";
+import {NavbarTabsComponent} from "../../components/navbar-tabs/navbar-tabs";
 
 @Component({
   selector: 'login',
   templateUrl: 'login.html'
 })
-export class LoginComponent {
+export class LoginPage {
   password: string;
   email: string;
   loginForm: FormGroup;

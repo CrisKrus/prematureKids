@@ -6,7 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import {LoginComponent} from '../components/login/login';
+import {LoginPage} from '../pages/login/login';
 import { UserProvider } from '../providers/user/user';
 import {HttpClientModule} from "@angular/common/http";
 import {SigningUpPage} from "../pages/signing-up/signing-up";
@@ -21,7 +21,7 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
   declarations: [
     MyApp,
     HomePage,
-    LoginComponent,
+    LoginPage,
     SigningUpPage,
     ViewProfilePage,
     NavbarTabsComponent,
@@ -37,7 +37,7 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
   entryComponents: [
     MyApp,
     HomePage,
-    LoginComponent,
+    LoginPage,
     SigningUpPage,
     ViewProfilePage,
     NavbarTabsComponent,

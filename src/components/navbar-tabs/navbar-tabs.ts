@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {HomePage} from "../../pages/home/home";
 import {ViewProfilePage} from "../../pages/view-profile/view-profile";
 import {NavController} from "ionic-angular";
-import {LoginComponent} from "../login/login";
+import {LoginPage} from "../../pages/login/login";
 import {SearchPatientPage} from "../../pages/search-patient/search-patient";
 
 @Component({
@@ -17,6 +17,6 @@ export class NavbarTabsComponent {
 
   constructor(public navCtrl: NavController) {
     this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user == null) navCtrl.setRoot(LoginComponent);
+    if (this.user == null) navCtrl.setRoot(LoginPage);
   }
 }

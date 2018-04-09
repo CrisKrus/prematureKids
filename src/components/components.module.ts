@@ -1,11 +1,9 @@
-import { NgModule } from '@angular/core';
-import { LoginComponent } from './login/login';
-import { NavbarTabsComponent } from './navbar-tabs/navbar-tabs';
+import {NgModule} from '@angular/core';
+import {NavbarTabsComponent} from './navbar-tabs/navbar-tabs';
+
 @NgModule({
-	declarations: [LoginComponent,
-    NavbarTabsComponent],
+	declarations: [NavbarTabsComponent],
 	imports: [],
-	exports: [LoginComponent,
-    NavbarTabsComponent]
+	exports: [NavbarTabsComponent]
 })
 export class ComponentsModule {}
