@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
+import {SearchExercisePage} from "../search-exercise/search-exercise";
 
 @Component({
   selector: 'page-view-profile',
@@ -48,5 +49,9 @@ export class ViewProfilePage {
 
   chat() {
     console.log('Chat');
+  }
+
+  addExercise() {
+    this.navCtrl.push(SearchExercisePage);
   }
 }

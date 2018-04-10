@@ -16,6 +16,7 @@ import {TabsComponent} from "../pages/tabs/tabs";
 import {SearchPatientPage} from "../pages/search-patient/search-patient";
 import { ExercisesProvider } from '../providers/exercises/exercises';
 import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
+import {SearchExercisePage} from "../pages/search-exercise/search-exercise";
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     SigningUpPage,
     ViewProfilePage,
     ViewExercisePage,
-    TabsComponent
+    TabsComponent,
+    SearchExercisePage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     SigningUpPage,
     ViewProfilePage,
     ViewExercisePage,
-    TabsComponent
+    TabsComponent,
+    SearchExercisePage
   ],
   providers: [
     StatusBar,
