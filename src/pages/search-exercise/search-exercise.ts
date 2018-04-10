@@ -7,22 +7,42 @@ import {ExercisesProvider} from "../../providers/exercises/exercises";
 })
 export class SearchExercisePage {
   private exercises;
-  private exercisesResult: string[];
+  private exercisesShowingList: string[];
 
   constructor(private exerciseProvider: ExercisesProvider) {
     this.exercises = exerciseProvider.getExercises();
-    this.initializeExercises();
+    this.initializeShowingListExercises();
   }
 
-  private initializeExercises() {
-    this.exercisesResult = [];
+  private initializeShowingListExercises() {
+    this.exercisesShowingList = [];
     for (let key in this.exercises) {
-      this.exercisesResult.push(this.exercises[key]);
+      this.exercisesShowingList.push(this.exercises[key]);
     }
   }
 
   search(event){
-    console.log('Search, ', event);
+    this.exercisesShowingList = [];
+
+    let exerciseToSearch = event.target.value;
+    
+    if (exerciseToSearch && exerciseToSearch.trim() != ''){
+      this.updateExerciseList(exerciseToSearch);
+    } else {
+      this.initializeShowingListExercises();
+    }
+  }
+
+  private updateExerciseList(exerciseToSearch: string) {
+    for (let key in this.exercises) {
+      if(this.searchStringOnTitle(this.exercises[key], exerciseToSearch)){
+        this.exercisesShowingList.push(this.exercises[key]);
+      }
+    }
+  }
+
+  private searchStringOnTitle(exercise: any, exerciseToSearch: string) {
+    return exercise['title'].toLowerCase().includes(exerciseToSearch.toLowerCase());
   }
 
   exerciseSelected(exercise: any){

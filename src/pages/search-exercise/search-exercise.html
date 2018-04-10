@@ -1,10 +1,12 @@
 <ion-header>
-  <ion-searchbar (ionInput)="search($event)" ></ion-searchbar>
+  <ion-navbar>
+    <ion-searchbar (ionInput)="search($event)"></ion-searchbar>
+  </ion-navbar>
 </ion-header>
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let exercise of exercisesResult" (click)="exerciseSelected(exercise)">
+    <button ion-item *ngFor="let exercise of exercisesShowingList" (click)="exerciseSelected(exercise)">
       {{exercise.title}}
     </button>
   </ion-list>
