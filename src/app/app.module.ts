@@ -12,7 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {SigningUpPage} from "../pages/signing-up/signing-up";
 import { MunicipalitiesProvider } from '../providers/municipalities/municipalities';
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
-import {NavbarTabsComponent} from "../components/navbar-tabs/navbar-tabs";
+import {TabsComponent} from "../pages/tabs/tabs";
 import {SearchPatientPage} from "../pages/search-patient/search-patient";
 import { ExercisesProvider } from '../providers/exercises/exercises';
 import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
@@ -26,7 +26,7 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     SigningUpPage,
     ViewProfilePage,
     ViewExercisePage,
-    NavbarTabsComponent
+    TabsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,8 +42,7 @@ import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
     SigningUpPage,
     ViewProfilePage,
     ViewExercisePage,
-    NavbarTabsComponent
-
+    TabsComponent
   ],
   providers: [
     StatusBar,

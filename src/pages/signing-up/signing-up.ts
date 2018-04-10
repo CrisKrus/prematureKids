@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, ToastController} from 'ionic-angular';
+import {NavController, ToastController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
-import {NavbarTabsComponent} from "../../components/navbar-tabs/navbar-tabs";
+import {TabsComponent} from "../tabs/tabs";
 
 @Component({
   selector: 'page-signingUp',
@@ -74,7 +74,7 @@ export class SigningUpPage {
         //TODO make a register on data base
         userFields.birthday = birthday;
         localStorage.setItem('user', JSON.stringify(userFields));
-        this.navCtrl.setRoot(NavbarTabsComponent);
+        this.navCtrl.setRoot(TabsComponent);
       }
     }
   }

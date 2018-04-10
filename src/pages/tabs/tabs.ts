@@ -1,15 +1,14 @@
 import { Component } from '@angular/core';
-import {HomePage} from "../../pages/home/home";
-import {ViewProfilePage} from "../../pages/view-profile/view-profile";
+import {HomePage} from "../home/home";
+import {ViewProfilePage} from "../view-profile/view-profile";
 import {NavController} from "ionic-angular";
-import {LoginPage} from "../../pages/login/login";
-import {SearchPatientPage} from "../../pages/search-patient/search-patient";
+import {LoginPage} from "../login/login";
+import {SearchPatientPage} from "../search-patient/search-patient";
 
 @Component({
-  selector: 'navbar-tabs',
-  templateUrl: 'navbar-tabs.html'
+  templateUrl: 'tabs.html'
 })
-export class NavbarTabsComponent {
+export class TabsComponent {
   home = HomePage;
   profile = ViewProfilePage;
   search = SearchPatientPage;
