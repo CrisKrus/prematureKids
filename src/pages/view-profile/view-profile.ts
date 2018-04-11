@@ -52,6 +52,6 @@ export class ViewProfilePage {
   }
 
   addExercise() {
-    this.navCtrl.push(SearchExercisePage);
+    this.navCtrl.push(SearchExercisePage, {assignedExercises : this.user.assignedExercises});
   }
 }

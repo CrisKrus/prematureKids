@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
 import {ExercisesProvider} from "../../providers/exercises/exercises";
-import {NavController} from "ionic-angular";
+import {NavController, NavParams, ToastController} from "ionic-angular";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
+import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'page-search-exercise',
@@ -10,10 +11,15 @@ import {ViewExercisePage} from "../view-exercise/view-exercise";
 export class SearchExercisePage {
   private exercises;
   private exercisesShowingList: string[];
+  private userAssignedExercises: string[];
 
-  constructor(private navCtrl: NavController, private exerciseProvider: ExercisesProvider) {
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private exerciseProvider: ExercisesProvider,
+              private toastCtrl: ToastController) {
     this.exercises = exerciseProvider.getExercises();
     this.initializeShowingListExercises();
+    this.userAssignedExercises = navParams.get('assignedExercises');
   }
 
   private initializeShowingListExercises() {
@@ -53,5 +59,27 @@ export class SearchExercisePage {
     //TODO when doctor assign exercise can add observations
     //TODO observations have to be on patient history not on exercise data, bc each observations is different fon each patient
     this.navCtrl.push(ViewExercisePage, exercise);
+  }
+
+  isExerciseAssigned(exerciseID: string) {
+    return this.userAssignedExercises[exerciseID] != undefined;
+  }
+
+  checkboxChange(event: any, exerciseTitle: string) {
+    if (event.checked){
+      this.showToast("Ejercicio " + exerciseTitle + " asignado")
+    }else {
+      this.showToast("Ejercicio " + exerciseTitle + " desasignado")
+    }
+  }
+
+  //TODO extract toasts to class
+  private showToast(message: string) {
+    let toast = this.toastCtrl.create({
+      message: message,
+      duration: 3000,
+      position: 'top'
+    });
+    toast.present();
   }
 }

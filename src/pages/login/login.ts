@@ -42,6 +42,7 @@ export class LoginPage {
     }
   }
 
+  //TODO extract toasts to class
   private showWarning(message: string) {
     let toast = this.toastCtrl.create({
       message: message,
