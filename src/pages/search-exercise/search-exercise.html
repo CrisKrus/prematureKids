@@ -6,8 +6,10 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let exercise of exercisesShowingList" (click)="exerciseSelected(exercise)">
-      {{exercise.title}}
-    </button>
+    <ion-item *ngFor="let exercise of exercisesShowingList">
+      <ion-label>{{exercise.title}}</ion-label>
+      <ion-checkbox item-left ></ion-checkbox>
+      <ion-icon name="arrow-forward" (click)="exerciseSelected(exercise)" item-right></ion-icon>
+    </ion-item>
   </ion-list>
 </ion-content>
