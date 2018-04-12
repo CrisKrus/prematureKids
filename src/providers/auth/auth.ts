@@ -7,7 +7,7 @@ export class AuthProvider {
   constructor(private angularFireAuth: AngularFireAuth) {
   }
 
-  registerUser(email: string, password: string){
+  register(email: string, password: string){
       return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
           .then((res) => {
               console.log('Usuario creado');
@@ -15,4 +15,9 @@ export class AuthProvider {
           .catch(err => Promise.reject(err));
   }
 
+  login(email: string, password: string){
+    return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
+      .then(user => Promise.resolve(user))
+      .catch(err => Promise.reject(err))
+  }
 }

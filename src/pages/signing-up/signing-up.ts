@@ -74,7 +74,7 @@ export class SigningUpPage {
         this.showWarning("La fecha introducida no es valida");
       }else {
         //TODO make a register on data base
-        this.auth.registerUser(userFields.email, userFields.password);
+        this.auth.register(userFields.email, userFields.password);
         userFields.birthday = birthday;
         localStorage.setItem('user', JSON.stringify(userFields));
         this.navCtrl.setRoot(TabsComponent);

@@ -5,6 +5,7 @@ import {SigningUpPage} from "../signing-up/signing-up";
 
 import {UserProvider} from "../../providers/user/user";
 import {TabsComponent} from "../tabs/tabs";
+import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'login',
@@ -15,7 +16,11 @@ export class LoginPage {
   email: string;
   loginForm: FormGroup;
 
-  constructor(public navCtrl: NavController, private userProvider: UserProvider, private formBuilder: FormBuilder, private toastCtrl: ToastController) {
+  constructor(public navCtrl: NavController,
+              private userProvider: UserProvider,
+              private formBuilder: FormBuilder,
+              private toastCtrl: ToastController,
+              private auth: AuthProvider) {
     this.addInputValidators();
   }
 
@@ -33,6 +38,14 @@ export class LoginPage {
   }
 
   login() {
+    this.auth.login(this.email, this.password)
+      .then((user) => {
+        console.log('User logged ', user);
+      })
+      .catch(err => {
+        this.showWarning('Error, ' + err)
+      });
+
     let user = this.userProvider.getUser(this.email.toLowerCase());
     if (user != undefined){
       localStorage.setItem('user', JSON.stringify(user));
