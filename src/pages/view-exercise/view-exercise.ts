@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Component} from '@angular/core';
+import {NavController} from 'ionic-angular';
 
 @Component({
   selector: 'page-view-exercise',
@@ -7,7 +7,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ViewExercisePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController) {
   }
 
   exerciseDone() {

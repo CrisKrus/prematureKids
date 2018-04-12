@@ -12,7 +12,7 @@ import {TabsComponent} from "../tabs/tabs";
 })
 export class SigningUpPage {
   user: FormGroup;
-  private municipalities: any;
+  protected municipalities: any;
 
   constructor(public navCtrl: NavController,
               private formBuilder: FormBuilder,

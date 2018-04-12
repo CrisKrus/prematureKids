@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {ExercisesProvider} from "../../providers/exercises/exercises";
 import {NavController, NavParams, ToastController} from "ionic-angular";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
-import {el} from "@angular/platform-browser/testing/src/browser_util";
 
 @Component({
   selector: 'page-search-exercise',
@@ -14,8 +13,8 @@ export class SearchExercisePage {
   private userAssignedExercises: string[];
 
   constructor(private navCtrl: NavController,
-              private navParams: NavParams,
-              private exerciseProvider: ExercisesProvider,
+              protected navParams: NavParams,
+              protected exerciseProvider: ExercisesProvider,
               private toastCtrl: ToastController) {
     this.exercises = exerciseProvider.getExercises();
     this.initializeShowingListExercises();

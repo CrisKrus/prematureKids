@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 
@@ -9,8 +9,8 @@ import {SearchExercisePage} from "../search-exercise/search-exercise";
 })
 export class ViewProfilePage {
   private user: any;
-  private gender: string;
-  private isMyProfile: boolean;
+  protected gender: string;
+  protected isMyProfile: boolean;
 
   constructor(public navCtrl: NavController, private navParams: NavParams) {
     if (this.isUserOnParams()){

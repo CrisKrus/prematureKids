@@ -11,9 +11,9 @@ import {ViewProfilePage} from "../view-profile/view-profile";
 })
 export class HomePage {
   private user: any | null;
-  private isDoctor: boolean;
-  private patients: any[];
-  private exercises: any[];
+  protected isDoctor: boolean;
+  protected patients: any[];
+  protected exercises: any[];
 
   constructor(public navCtrl: NavController,
               private userProvider: UserProvider,
