@@ -10,7 +10,7 @@ export class AuthProvider {
   register(email: string, password: string){
       return this.angularFireAuth.auth.createUserWithEmailAndPassword(email, password)
           .then((res) => {
-              console.log('Usuario creado');
+              console.log(res);
           })
           .catch(err => Promise.reject(err));
   }
@@ -19,5 +19,15 @@ export class AuthProvider {
     return this.angularFireAuth.auth.signInWithEmailAndPassword(email, password)
       .then(user => Promise.resolve(user))
       .catch(err => Promise.reject(err))
+  }
+
+  get Session(){
+    return this.angularFireAuth.authState;
+  }
+
+  logout(){
+    this.angularFireAuth.auth.signOut().then(() => {
+      console.log('Logout complete');
+    })
   }
 }

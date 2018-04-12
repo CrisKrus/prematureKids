@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SigningUpPage} from "../signing-up/signing-up";
 
 import {UserProvider} from "../../providers/user/user";
-import {TabsComponent} from "../tabs/tabs";
+import {TabsPage} from "../tabs/tabs";
 import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
@@ -46,13 +46,13 @@ export class LoginPage {
         this.showWarning('Error, ' + err)
       });
 
-    let user = this.userProvider.getUser(this.email.toLowerCase());
-    if (user != undefined){
-      localStorage.setItem('user', JSON.stringify(user));
-      this.navCtrl.setRoot(TabsComponent);
-    }else {
-      this.showWarning("Correo o contraseña incorrectos");
-    }
+    // let user = this.userProvider.getUser(this.email.toLowerCase());
+    // if (user != undefined){
+    //   localStorage.setItem('user', JSON.stringify(user));
+    //   this.navCtrl.setRoot(TabsPage);
+    // }else {
+    //   this.showWarning("Correo o contraseña incorrectos");
+    // }
   }
 
   //TODO extract toasts to class

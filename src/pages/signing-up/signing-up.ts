@@ -4,7 +4,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
-import {TabsComponent} from "../tabs/tabs";
+import {TabsPage} from "../tabs/tabs";
 import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
@@ -77,7 +77,7 @@ export class SigningUpPage {
         this.auth.register(userFields.email, userFields.password);
         userFields.birthday = birthday;
         localStorage.setItem('user', JSON.stringify(userFields));
-        this.navCtrl.setRoot(TabsComponent);
+        this.navCtrl.setRoot(TabsPage);
       }
     }
   }

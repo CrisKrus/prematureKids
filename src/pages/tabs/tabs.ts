@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {HomePage} from "../home/home";
 import {ViewProfilePage} from "../view-profile/view-profile";
 import {NavController} from "ionic-angular";
@@ -8,7 +8,7 @@ import {SearchPatientPage} from "../search-patient/search-patient";
 @Component({
   templateUrl: 'tabs.html'
 })
-export class TabsComponent {
+export class TabsPage {
   home = HomePage;
   profile = ViewProfilePage;
   search = SearchPatientPage;

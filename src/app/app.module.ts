@@ -12,7 +12,7 @@ import {HttpClientModule} from "@angular/common/http";
 import {SigningUpPage} from "../pages/signing-up/signing-up";
 import {MunicipalitiesProvider} from '../providers/municipalities/municipalities';
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
-import {TabsComponent} from "../pages/tabs/tabs";
+import {TabsPage} from "../pages/tabs/tabs";
 import {SearchPatientPage} from "../pages/search-patient/search-patient";
 import {ExercisesProvider} from '../providers/exercises/exercises';
 import {ViewExercisePage} from "../pages/view-exercise/view-exercise";
@@ -32,7 +32,7 @@ import { AuthProvider } from '../providers/auth/auth';
     SigningUpPage,
     ViewProfilePage,
     ViewExercisePage,
-    TabsComponent,
+    TabsPage,
     SearchExercisePage
   ],
   imports: [
@@ -53,7 +53,7 @@ import { AuthProvider } from '../providers/auth/auth';
     SigningUpPage,
     ViewProfilePage,
     ViewExercisePage,
-    TabsComponent,
+    TabsPage,
     SearchExercisePage
   ],
   providers: [
