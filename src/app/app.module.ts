@@ -21,6 +21,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireModule} from "angularfire2";
 import {enviroment} from "../enviroments/enviroments";
+import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
   declarations: [
@@ -62,6 +63,7 @@ import {enviroment} from "../enviroments/enviroments";
     UserProvider,
     MunicipalitiesProvider,
     ExercisesProvider,
+    AuthProvider,
   ]
 })
 export class AppModule {}

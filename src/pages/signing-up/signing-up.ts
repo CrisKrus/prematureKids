@@ -5,6 +5,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
 import {TabsComponent} from "../tabs/tabs";
+import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-signingUp',
@@ -18,7 +19,8 @@ export class SigningUpPage {
               private formBuilder: FormBuilder,
               private userProvider: UserProvider,
               private municipalitiesProvider: MunicipalitiesProvider,
-              private toastCtrl: ToastController) {
+              private toastCtrl: ToastController,
+              private auth: AuthProvider) {
     this.addInputValidators();
     this.municipalities = this.municipalitiesProvider.getMunicipalities();
   }
@@ -72,6 +74,7 @@ export class SigningUpPage {
         this.showWarning("La fecha introducida no es valida");
       }else {
         //TODO make a register on data base
+        this.auth.registerUser(userFields.email, userFields.password);
         userFields.birthday = birthday;
         localStorage.setItem('user', JSON.stringify(userFields));
         this.navCtrl.setRoot(TabsComponent);
