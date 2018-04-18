@@ -39,21 +39,13 @@ export class LoginPage {
 
   login() {
     this.auth.login(this.email, this.password)
-      .then((user) => {
-        console.log('User logged ', user);
+      .then(() => {
+        this.navCtrl.setRoot(TabsPage);
       })
       .catch(err => {
-        this.showWarning('Error, ' + err)
+        this.showWarning(err)
       });
-
-    // let user = this.userProvider.getUser(this.email.toLowerCase());
-    // if (user != undefined){
-    //   localStorage.setItem('user', JSON.stringify(user));
-    //   this.navCtrl.setRoot(TabsPage);
-    // }else {
-    //   this.showWarning("Correo o contraseña incorrectos");
-    // }
-  }
+    }
 
   //TODO extract toasts to class
   private showWarning(message: string) {

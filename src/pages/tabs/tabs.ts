@@ -4,6 +4,7 @@ import {ViewProfilePage} from "../view-profile/view-profile";
 import {NavController} from "ionic-angular";
 import {LoginPage} from "../login/login";
 import {SearchPatientPage} from "../search-patient/search-patient";
+import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -14,8 +15,7 @@ export class TabsPage {
   search = SearchPatientPage;
   user: any;
 
-  constructor(public navCtrl: NavController) {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    if (this.user == null) navCtrl.setRoot(LoginPage);
+  constructor(private auth: AuthProvider) {
+    this.user = this.auth.Session;
   }
 }

@@ -10,7 +10,7 @@ import {LoginPage} from "../pages/login/login";
   templateUrl: 'app.html'
 })
 export class MyApp {
-  rootPage:any = LoginPage;
+  rootPage: any = LoginPage;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
@@ -27,10 +27,9 @@ export class MyApp {
 
   private checkSessionAndSetRootPage() {
     this.auth.Session.subscribe(session => {
-      console.log('Sessio, ', session);
       if (session) {
+        console.log('Session, ', session);
         this.rootPage = TabsPage;
-        this.auth.logout();
       } else {
         this.rootPage = LoginPage;
       }
