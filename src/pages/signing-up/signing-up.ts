@@ -69,14 +69,11 @@ export class SigningUpPage {
   submit(userFields: any): void{
     let birthday = new Date (userFields.year + "-" + userFields.month + "-" + userFields.day);
 
-    if (this.user.valid && this.isNotRegisterJet(userFields.email)){
+    if (this.user.valid){
       if(this.isNotValidDate(birthday)) {
         this.showWarning("La fecha introducida no es valida");
       }else {
-        //TODO make a register on data base
-        this.auth.register(userFields.email, userFields.password);
-        userFields.birthday = birthday;
-        localStorage.setItem('user', JSON.stringify(userFields));
+        this.auth.register(userFields);
         this.navCtrl.setRoot(TabsPage);
       }
     }
@@ -84,10 +81,6 @@ export class SigningUpPage {
 
   private isNotValidDate(birthday: Date) {
     return birthday.toString() == 'Invalid Date';
-  }
-
-  private isNotRegisterJet(email: string) {
-    return this.userProvider.getUser(email.toLowerCase()) == undefined;
   }
 
   private showWarning(message: string) {
