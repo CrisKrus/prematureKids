@@ -4,7 +4,6 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SigningUpPage} from "../signing-up/signing-up";
 
 import {UserProvider} from "../../providers/user/user";
-import {TabsPage} from "../tabs/tabs";
 import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
@@ -39,25 +38,20 @@ export class LoginPage {
 
   login() {
     this.auth.login(this.email, this.password)
-      .then(() => {
-        this.navCtrl.setRoot(TabsPage);
-      })
-      .catch(err => {
-        this.showWarning(err)
-      });
-    }
+      .then(() => this.email = this.password = '')
+      .catch((error) => this.showWarning(error));
+  }
 
-  //TODO extract toasts to class
   private showWarning(message: string) {
     let toast = this.toastCtrl.create({
       message: message,
-      duration: 3000,
+      duration: 10000,
       position: 'top'
     });
     toast.present();
   }
 
-  signin() {
+  openSigninPage() {
     this.navCtrl.push(SigningUpPage);
   }
 }

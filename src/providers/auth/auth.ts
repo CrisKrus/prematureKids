@@ -27,9 +27,7 @@ export class AuthProvider {
   }
 
   logout() {
-    this.angularFireAuth.auth.signOut().then(() => {
-      console.log('Logout complete');
-    })
+    this.angularFireAuth.auth.signOut();
   }
 
   private setUserData(user, userData) {
