@@ -10,22 +10,22 @@
 
   <ion-item-group>
     <ion-item-divider color="light">Nombre</ion-item-divider>
-    <ion-item>{{user['name']}}</ion-item>
+    <ion-item>{{user.name}}</ion-item>
 
     <ion-item-divider color="light">Genero</ion-item-divider>
     <ion-item>{{gender}}</ion-item>
 
     <ion-item-divider color="light">Fecha de nacimiento</ion-item-divider>
-    <ion-item>{{user['birthday'] | slice:0:10 }}</ion-item>
+    <ion-item>{{user.day + '-' + user.month + '-' + user.year}}</ion-item>
 
     <ion-item-divider color="light">Residencia</ion-item-divider>
-    <ion-item>{{user['city']}}</ion-item>
+    <ion-item>{{user.city}}</ion-item>
 
     <ion-item-divider color="light">Teléfono</ion-item-divider>
-    <ion-item>{{user['phone']}}</ion-item>
+    <ion-item>{{user.phone}}</ion-item>
 
     <ion-item-divider color="light">Correo</ion-item-divider>
-    <ion-item>{{user['email']}}</ion-item>
+    <ion-item>{{user.email}}</ion-item>
   </ion-item-group>
 
   <ion-fab bottom right *ngIf="isMyProfile">

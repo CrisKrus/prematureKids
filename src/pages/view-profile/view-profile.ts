@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
-import {HomePage} from "../home/home";
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {AuthProvider} from "../../providers/auth/auth";
 import * as firebase from "firebase";
@@ -18,7 +17,6 @@ export class ViewProfilePage {
               private auth: AuthProvider) {
 
     this.user = this.navParams.get('user') || this.auth.Session;
-    this.gender = this.translateGender();
   }
 
   private ionViewWillEnter(){
@@ -28,8 +26,9 @@ export class ViewProfilePage {
   //TODO store data on local variable to show it
   private chargeData() {
     let ref = firebase.database().ref('users/' + this.auth.uid);
-    ref.on('value', function (snapshot) {
-      console.log(snapshot.val());
+    ref.on('value', (snapshot) => {
+      this.user = snapshot.val();
+      this.gender = this.translateGender();
     }, function (error) {
       console.log('Charge data error, ', error.code);
     });
