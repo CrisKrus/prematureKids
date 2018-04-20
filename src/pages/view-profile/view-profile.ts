@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {HomePage} from "../home/home";
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {AuthProvider} from "../../providers/auth/auth";
+import * as firebase from "firebase";
 
 @Component({
   selector: 'page-view-profile',
@@ -10,7 +11,7 @@ import {AuthProvider} from "../../providers/auth/auth";
 })
 export class ViewProfilePage {
   private user: any;
-  protected gender: string;
+  private gender: string;
 
   constructor(public navCtrl: NavController,
               private navParams: NavParams,
@@ -18,6 +19,20 @@ export class ViewProfilePage {
 
     this.user = this.navParams.get('user') || this.auth.Session;
     this.gender = this.translateGender();
+  }
+
+  private ionViewWillEnter(){
+    this.chargeData();
+  }
+
+  //TODO store data on local variable to show it
+  private chargeData() {
+    let ref = firebase.database().ref('users/' + this.auth.uid);
+    ref.on('value', function (snapshot) {
+      console.log(snapshot.val());
+    }, function (error) {
+      console.log('Charge data error, ', error.code);
+    });
   }
 
   private isMyProfile() {
@@ -37,7 +52,6 @@ export class ViewProfilePage {
 
   logout() {
     this.auth.logout();
-    this.navCtrl.setRoot(HomePage);
   }
 
   seeHistory() {

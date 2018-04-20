@@ -73,7 +73,7 @@ export class SigningUpPage {
       if(this.isNotValidDate(birthday)) {
         this.showWarning("La fecha introducida no es valida");
       }else {
-        this.auth.register(userFields);
+        this.auth.signupUser(userFields);
         this.navCtrl.setRoot(TabsPage);
       }
     }
