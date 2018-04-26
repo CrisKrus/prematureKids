@@ -10,20 +10,21 @@ import * as firebase from "firebase";
 })
 export class ViewProfilePage {
   private user: any;
-  private gender: string;
+  gender: string;
 
   constructor(public navCtrl: NavController,
               private navParams: NavParams,
               private auth: AuthProvider) {
 
-    this.user = this.navParams.get('user') || this.auth.Session;
+    this.user = this.navParams.get('user') || this.auth.session;
   }
 
-  private ionViewWillEnter(){
+  ionViewWillEnter(){
+    //TODO should only charge the data the first time, not all the time that the user enter (too much petitions)
     this.chargeData();
   }
 
-  //TODO store data on local variable to show it
+  //TODO this should be extracted on auth provider
   private chargeData() {
     let ref = firebase.database().ref('users/' + this.auth.uid);
     ref.on('value', (snapshot) => {
@@ -34,15 +35,15 @@ export class ViewProfilePage {
     });
   }
 
-  private isMyProfile() {
+  isMyProfile() {
     return this.navParams.get('user') == null;
   }
 
   //TODO this is not the best way to do it, I think
   private translateGender() {
     return this.user['gender'] == "male" && "Hombre"
-      || this.user['gender'] == "female" && "Mujer"
-      || "No especificado";
+        || this.user['gender'] == "female" && "Mujer"
+        || "No especificado";
   }
 
   editProfile() {

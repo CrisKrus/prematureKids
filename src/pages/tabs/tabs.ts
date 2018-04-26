@@ -12,10 +12,12 @@ export class TabsPage {
   profile = ViewProfilePage;
   search = SearchPatientPage;
 
-  private user;
+  userType;
 
   constructor(private auth: AuthProvider) {
-    this.user = this.auth.Session;
+    this.auth.userType.then((responseUserType) => {
+      this.userType = responseUserType;
+    });
   }
 
 }

@@ -26,7 +26,7 @@ export class MyApp {
   }
 
   private checkSessionAndSetRootPage() {
-    this.auth.Session.subscribe(session => {
+    this.auth.session.subscribe(session => {
       if (session) {
         this.rootPage = TabsPage;
       } else {

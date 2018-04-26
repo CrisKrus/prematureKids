@@ -16,7 +16,7 @@ export class LoginPage {
   loginForm: FormGroup;
 
   constructor(public navCtrl: NavController,
-              private userProvider: UserProvider,
+              userProvider: UserProvider,
               private formBuilder: FormBuilder,
               private toastCtrl: ToastController,
               private auth: AuthProvider) {

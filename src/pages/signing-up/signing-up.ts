@@ -1,10 +1,9 @@
 import {Component} from '@angular/core';
-import {NavController, ToastController} from 'ionic-angular';
+import {ToastController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
-import {TabsPage} from "../tabs/tabs";
 import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
@@ -15,9 +14,8 @@ export class SigningUpPage {
   user: FormGroup;
   protected municipalities: any;
 
-  constructor(public navCtrl: NavController,
-              private formBuilder: FormBuilder,
-              private userProvider: UserProvider,
+  constructor(private formBuilder: FormBuilder,
+              userProvider: UserProvider,
               private municipalitiesProvider: MunicipalitiesProvider,
               private toastCtrl: ToastController,
               private auth: AuthProvider) {
@@ -73,8 +71,7 @@ export class SigningUpPage {
       if(this.isNotValidDate(birthday)) {
         this.showWarning("La fecha introducida no es valida");
       }else {
-        this.auth.signupUser(userFields);
-        this.navCtrl.setRoot(TabsPage);
+        this.auth.createUser(userFields);
       }
     }
   }
