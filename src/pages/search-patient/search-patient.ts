@@ -10,17 +10,15 @@ import {AuthProvider} from "../../providers/auth/auth";
 })
 export class SearchPatientPage {
   private users;
-  private searchResult: string[];
   private users_live;
+  private searchResult: string[];
   private searchResult_live: string[];
 
   constructor(public navCtrl: NavController, public userProvider: UserProvider, public auth: AuthProvider) {
-    this.users = userProvider.getUsers();
     auth.users.then(value => {
       this.users_live = value;
       this.initializePatientList();
     });
-    this.initializePatientList();
   }
 
   //TODO all the referent with the list should be extracted to a class 'patient list'
@@ -32,21 +30,10 @@ export class SearchPatientPage {
         this.searchResult_live.push(this.users_live[key])
       }
     }
-
-    this.searchResult = [];
-    for (let key in this.users) {
-      if(this.isPatient(key)){
-        this.searchResult.push((this.users[key]));
-      }
-    }
   }
 
   private isPatient_live(user){
     return user.type == 'patient';
-  }
-
-  private isPatient(key) {
-    return this.users[key]['type'] == 'patient';
   }
 
   search(event){
@@ -56,7 +43,7 @@ export class SearchPatientPage {
     let nameToSearch = event.target.value;
 
     if (this.searchBarIsNotEmpty(nameToSearch)){
-      this.updatePatientList(nameToSearch);
+      this.updatePatientList_live(nameToSearch);
     }else {
       this.initializePatientList();
     }
@@ -66,10 +53,10 @@ export class SearchPatientPage {
     return nameToSearch && nameToSearch.trim() != '';
   }
 
-  private updatePatientList(nameToSearch: string) {
-    for (let key in this.users) {
-      if (this.isPatient(key) && this.searchStringOnUsername(this.users[key], nameToSearch)) {
-        this.searchResult.push(this.users[key]);
+  private updatePatientList_live(nameToSearch: string){
+    for (let key in this.users_live){
+      if (this.isPatient_live(this.users_live[key]) && this.searchStringOnUsername(this.users_live[key], nameToSearch)) {
+        this.searchResult_live.push(this.users_live[key]);
       }
     }
   }
