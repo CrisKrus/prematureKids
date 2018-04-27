@@ -20,7 +20,7 @@ import {SearchExercisePage} from "../pages/search-exercise/search-exercise";
 import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireModule} from "angularfire2";
-import {enviroment} from "../enviroments/enviroments";
+import {environment} from "../enviroments/environments";
 import { AuthProvider } from '../providers/auth/auth';
 
 @NgModule({
@@ -42,7 +42,7 @@ import { AuthProvider } from '../providers/auth/auth';
     HttpClientModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(enviroment.firebase)
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
