@@ -4,7 +4,7 @@
 
 <ion-content>
   <ion-list>
-    <button ion-item *ngFor="let user of searchResult_live" (click)="userSelected(user)">
+    <button ion-item *ngFor="let user of searchResult" (click)="userSelected(user)">
       {{user.name}}
     </button>
   </ion-list>

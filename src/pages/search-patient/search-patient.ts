@@ -1,6 +1,5 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
-import {UserProvider} from "../../providers/user/user";
 import {ViewProfilePage} from "../view-profile/view-profile";
 import {AuthProvider} from "../../providers/auth/auth";
 
@@ -9,41 +8,38 @@ import {AuthProvider} from "../../providers/auth/auth";
   templateUrl: 'search-patient.html',
 })
 export class SearchPatientPage {
-  private users;
-  private users_live;
-  private searchResult: string[];
-  private searchResult_live: string[];
+  users;
+  searchResult: string[];
 
-  constructor(public navCtrl: NavController, public userProvider: UserProvider, public auth: AuthProvider) {
+  constructor(public navCtrl: NavController, public auth: AuthProvider) {
     auth.users.then(value => {
-      this.users_live = value;
+      this.users = value;
       this.initializePatientList();
     });
   }
 
   //TODO all the referent with the list should be extracted to a class 'patient list'
   private initializePatientList() {
-    this.searchResult_live = [];
-    for (let key in this.users_live) {
-      if (this.isPatient_live(this.users_live[key])) {
+    this.searchResult = [];
+    for (let key in this.users) {
+      if (this.isPatient(this.users[key])) {
         //TODO will need uid then? Should be on a copy on each user
-        this.searchResult_live.push(this.users_live[key])
+        this.searchResult.push(this.users[key])
       }
     }
   }
 
-  private isPatient_live(user){
+  //TODO if only get patients this is not need it
+  private isPatient(user){
     return user.type == 'patient';
   }
 
   search(event){
-    this.searchResult_live = [];
     this.searchResult = [];
-
     let nameToSearch = event.target.value;
 
     if (this.searchBarIsNotEmpty(nameToSearch)){
-      this.updatePatientList_live(nameToSearch);
+      this.updatePatientList(nameToSearch);
     }else {
       this.initializePatientList();
     }
@@ -53,10 +49,11 @@ export class SearchPatientPage {
     return nameToSearch && nameToSearch.trim() != '';
   }
 
-  private updatePatientList_live(nameToSearch: string){
-    for (let key in this.users_live){
-      if (this.isPatient_live(this.users_live[key]) && this.searchStringOnUsername(this.users_live[key], nameToSearch)) {
-        this.searchResult_live.push(this.users_live[key]);
+  private updatePatientList(nameToSearch: string){
+    for (let key in this.users){
+      if (this.isPatient(this.users[key])
+        &&this.nameToSearchIsInUsername(this.users[key], nameToSearch)) {
+        this.searchResult.push(this.users[key]);
       }
     }
   }
@@ -65,7 +62,7 @@ export class SearchPatientPage {
     this.navCtrl.push(ViewProfilePage, {user: user});
   }
 
-  private searchStringOnUsername(user: any, nameToSearch: string) {
+  private nameToSearchIsInUsername(user: any, nameToSearch: string) {
     return user['name'].toLowerCase().includes(nameToSearch.toLowerCase());
   }
 
