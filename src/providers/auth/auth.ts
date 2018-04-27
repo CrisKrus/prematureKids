@@ -7,6 +7,9 @@ export class AuthProvider {
   constructor(private angularFireAuth: AngularFireAuth) {
   }
 
+  //TODO create two separate sets of users one for doctors another for patients
+  // user/patients/uid and user/doctors/uid
+  // them have to change data access
   createUser(userData) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password)
       .then((user) => {
@@ -39,8 +42,19 @@ export class AuthProvider {
       firebase.database().ref('users/' + this.uid + '/type')
         .on('value', (snapshot) => {
           resolve(snapshot.val());
-        }, function (error) {
+        }, (error) => {
           //TODO handle error
+          error(error.code);
+        });
+    });
+  }
+
+  get users(){
+    return new Promise(resolve => {
+      firebase.database().ref('users/')
+        .on('value', (snapshot) => {
+          resolve(snapshot.val());
+        }, (error) => {
           error(error.code);
         });
     });
