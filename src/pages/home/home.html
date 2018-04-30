@@ -1,20 +1,22 @@
-<ion-list *ngIf="isDoctor">
-  <p *ngIf="patients != null && patients.length == 0">Usted no tiene pacientes asignados</p>
+<ion-content>
+  <ion-list *ngIf="isDoctor">
+    <p *ngIf="patients == null || patients.length == 0">Usted no tiene pacientes asignados</p>
 
-  <button ion-item *ngFor="let patient of patients" (click)="patientSelected(patient)">
-    {{patient.name}}
-  </button>
-</ion-list>
+    <button ion-item *ngFor="let patient of patients" (click)="patientSelected(patient)">
+      {{patient.name}}
+    </button>
+  </ion-list>
 
-<ion-list *ngIf="!isDoctor">
-  <p *ngIf="exercises != null && exercises.length == 0">Usted no tiene ejercicios asignados</p>
+  <ion-list *ngIf="!isDoctor">
+    <p *ngIf="exercises == null || exercises.length == 0">Usted no tiene ejercicios asignados</p>
 
-  <button ion-item *ngFor="let exercise of exercises" (click)="exerciseSelected(exercise)">
-    {{exercise.title}}
-    <!--TODO this button should be with the name to click when exercise is done, without go in
-    but if is there only recognize parent button-->
-    <!--<ion-icon name="checkmark" item-start (click)="exerciseDone(exercise)"></ion-icon>-->
-    <!--TODO this number should be the times that he done de exercise-->
-    <ion-badge item-end>7</ion-badge>
-  </button>
-</ion-list>
+    <button ion-item *ngFor="let exercise of exercises" (click)="exerciseSelected(exercise)">
+      {{exercise.title}}
+      <!--TODO this button should be with the name to click when exercise is done, without go in
+      but if is there only recognize parent button-->
+      <!--<ion-icon name="checkmark" item-start (click)="exerciseDone(exercise)"></ion-icon>-->
+      <!--TODO this number should be the times that he done de exercise-->
+      <ion-badge item-end>7</ion-badge>
+    </button>
+  </ion-list>
+</ion-content>

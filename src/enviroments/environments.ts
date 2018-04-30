@@ -1,5 +1,5 @@
 export const environment = {
-    production: true,
+    production: false,
     firebase: {
         apiKey: "AIzaSyCMKxsN-fqj1SGyYUjm5g1qR6Eb3OeSuM4",
         authDomain: "premature-kids.firebaseapp.com",
