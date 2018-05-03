@@ -61,14 +61,6 @@ export class AuthProvider {
     });
   }
 
-  logout() {
-    this.angularFireAuth.auth.signOut();
-  }
-
-  private setUserData(user, userData) {
-    firebase.database().ref('users/' + user.uid).set(userData);
-  }
-
   getUser(userUid: string) {
     return new Promise(resolve => {
       firebase.database().ref('users/' + userUid)
@@ -78,5 +70,13 @@ export class AuthProvider {
           error(error.code);
         });
     });
+  }
+
+  logout() {
+    this.angularFireAuth.auth.signOut();
+  }
+
+  private setUserData(user, userData) {
+    firebase.database().ref('users/' + user.uid).set(userData);
   }
 }

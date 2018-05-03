@@ -18,8 +18,10 @@ export class HomePage {
   constructor(public navCtrl: NavController,
               private authProvider: AuthProvider,
               private exercisesProvider: ExercisesProvider) {
-    this.user = JSON.parse(localStorage.getItem('user'));
-    this.controlUserType();
+    authProvider.getUser(authProvider.uid).then((user) => {
+      this.user = user;
+      this.controlUserType();
+    });
   }
 
   private controlUserType() {
