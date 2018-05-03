@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {AuthProvider} from "../../providers/auth/auth";
-import * as firebase from "firebase";
 
 @Component({
   selector: 'page-view-profile',
@@ -16,25 +15,24 @@ export class ViewProfilePage {
               private navParams: NavParams,
               private auth: AuthProvider) {
 
-    this.user = this.navParams.get('user') || this.auth.session;
-  }
-
-  ionViewWillEnter(){
-    //TODO should only charge the data the first time, not all the time that the user enter (too much petitions)
-    this.chargeData();
-  }
-
-  //TODO this should be extracted on auth provider
-  private chargeData() {
-    let ref = firebase.database().ref('users/' + this.auth.uid);
-    ref.on('value', (snapshot) => {
-      this.user = snapshot.val();
+    if (this.navParams.get('user')) {
+      this.user = this.navParams.get('user');
       this.gender = this.translateGender();
-    }, function (error) {
-      console.log('Charge data error, ', error.code);
+    } else {
+      //TODO should only charge the data the first time
+      // not all the time that the user enter (too much petitions)
+      this.setLoggedUser(auth);
+    }
+  }
+
+  private setLoggedUser(auth: AuthProvider) {
+    auth.getUser(auth.uid).then((user) => {
+      this.user = user;
+      this.gender = this.translateGender();
     });
   }
 
+  //TODO the elements that should appear with that condition do not, like when is not the logged profile
   isMyProfile() {
     return this.navParams.get('user') == null;
   }
@@ -42,8 +40,8 @@ export class ViewProfilePage {
   //TODO this is not the best way to do it, I think
   private translateGender() {
     return this.user['gender'] == "male" && "Hombre"
-        || this.user['gender'] == "female" && "Mujer"
-        || "No especificado";
+      || this.user['gender'] == "female" && "Mujer"
+      || "No especificado";
   }
 
   editProfile() {
@@ -63,6 +61,6 @@ export class ViewProfilePage {
   }
 
   addExercise() {
-    this.navCtrl.push(SearchExercisePage, {assignedExercises : this.user.assignedExercises});
+    this.navCtrl.push(SearchExercisePage, {assignedExercises: this.user.assignedExercises});
   }
 }

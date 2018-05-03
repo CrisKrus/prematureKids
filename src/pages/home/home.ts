@@ -60,7 +60,6 @@ export class HomePage {
     this.navCtrl.push(ViewExercisePage, exercise);
   }
 
-
   patientSelected(patient: any) {
     this.navCtrl.push(ViewProfilePage, {user: patient})
   }
