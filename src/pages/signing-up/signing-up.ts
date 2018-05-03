@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ToastController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
-import {UserProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-signingUp',

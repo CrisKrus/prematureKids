@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SigningUpPage} from "../signing-up/signing-up";
-import {UserProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'login',

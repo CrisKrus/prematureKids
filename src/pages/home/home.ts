@@ -3,7 +3,7 @@ import {NavController} from "ionic-angular";
 import {ExercisesProvider} from "../../providers/exercises/exercises";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
 import {ViewProfilePage} from "../view-profile/view-profile";
-import {UserProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-home',

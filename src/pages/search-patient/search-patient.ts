@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {ViewProfilePage} from "../view-profile/view-profile";
-import {UserProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-search-patient',

@@ -19,7 +19,7 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireModule} from "angularfire2";
 import {environment} from "../enviroments/environments";
-import { UserProvider } from '../providers/auth/auth';
+import { UserProvider } from '../providers/user/user';
 
 @NgModule({
   declarations: [

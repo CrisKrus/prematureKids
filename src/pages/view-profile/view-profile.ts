@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SearchExercisePage} from "../search-exercise/search-exercise";
-import {UserProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-view-profile',
