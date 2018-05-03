@@ -2,8 +2,6 @@ import {Component} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SigningUpPage} from "../signing-up/signing-up";
-
-import {UserProvider} from "../../providers/user/user";
 import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
@@ -16,7 +14,6 @@ export class LoginPage {
   loginForm: FormGroup;
 
   constructor(public navCtrl: NavController,
-              userProvider: UserProvider,
               private formBuilder: FormBuilder,
               private toastCtrl: ToastController,
               private auth: AuthProvider) {

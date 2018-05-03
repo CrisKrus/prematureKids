@@ -1,8 +1,6 @@
 import {Component} from '@angular/core';
 import {ToastController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-
-import {UserProvider} from "../../providers/user/user";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
 import {AuthProvider} from "../../providers/auth/auth";
 
@@ -15,7 +13,6 @@ export class SigningUpPage {
   protected municipalities: any;
 
   constructor(private formBuilder: FormBuilder,
-              userProvider: UserProvider,
               private municipalitiesProvider: MunicipalitiesProvider,
               private toastCtrl: ToastController,
               private auth: AuthProvider) {

@@ -13,6 +13,7 @@ export class AuthProvider {
   createUser(userData) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password)
       .then((user) => {
+        delete userData.password;
         this.setUserData(user, userData);
         return Promise.resolve(user);
       })
