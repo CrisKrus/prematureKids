@@ -1,9 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable()
 export class MunicipalitiesProvider {
-  static municipalitiesUrl = '/src/providers/user/municipalities.json';
   private mockMunicipalities = [
     {"Gran Canaria": "Agaete"},
     {"Gran Canaria": "Agüimes"},
@@ -27,9 +25,6 @@ export class MunicipalitiesProvider {
     {"Gran Canaria": "Valsequillo"},
     {"Gran Canaria": "Vega de San Mateo"}
   ];
-
-  constructor(public http: HttpClient) {
-  }
 
   getMunicipalities(){
     return this.mockMunicipalities;
