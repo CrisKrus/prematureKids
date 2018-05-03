@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {NavController} from "ionic-angular";
-import {UserProvider} from "../../providers/user/user";
 import {ExercisesProvider} from "../../providers/exercises/exercises";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
 import {ViewProfilePage} from "../view-profile/view-profile";
+import {AuthProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-home',
@@ -16,7 +16,7 @@ export class HomePage {
   protected exercises: any[];
 
   constructor(public navCtrl: NavController,
-              private userProvider: UserProvider,
+              private authProvider: AuthProvider,
               private exercisesProvider: ExercisesProvider) {
     this.user = JSON.parse(localStorage.getItem('user'));
     this.controlUserType();
@@ -34,10 +34,12 @@ export class HomePage {
     }
   }
 
-  private formatPatients(patients: any) {
+  private formatPatients(patientsUid: any) {
     let result = [];
-    for (let patient in patients){
-      result.push(this.userProvider.getUser(patient));
+    for (let patient in patientsUid){
+      this.authProvider.getUser(patient).then((user) => {
+        result.push(user);
+      });
     }
     return result;
   }

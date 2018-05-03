@@ -68,4 +68,15 @@ export class AuthProvider {
   private setUserData(user, userData) {
     firebase.database().ref('users/' + user.uid).set(userData);
   }
+
+  getUser(userUid: string) {
+    return new Promise(resolve => {
+      firebase.database().ref('users/' + userUid)
+        .on('value', (snapshot) => {
+          resolve(snapshot.val());
+        }, (error) => {
+          error(error.code);
+        });
+    });
+  }
 }

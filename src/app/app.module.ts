@@ -7,8 +7,6 @@ import {StatusBar} from '@ionic-native/status-bar';
 import {MyApp} from './app.component';
 import {HomePage} from '../pages/home/home';
 import {LoginPage} from '../pages/login/login';
-import {UserProvider} from '../providers/user/user';
-import {HttpClientModule} from "@angular/common/http";
 import {SigningUpPage} from "../pages/signing-up/signing-up";
 import {MunicipalitiesProvider} from '../providers/municipalities/municipalities';
 import {ViewProfilePage} from "../pages/view-profile/view-profile";
@@ -38,8 +36,6 @@ import { AuthProvider } from '../providers/auth/auth';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    //TODO http client module is really in use?
-    HttpClientModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireModule.initializeApp(environment.firebase)
@@ -60,7 +56,6 @@ import { AuthProvider } from '../providers/auth/auth';
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    UserProvider,
     MunicipalitiesProvider,
     ExercisesProvider,
     AuthProvider,
