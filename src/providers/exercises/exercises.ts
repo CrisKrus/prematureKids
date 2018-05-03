@@ -1,4 +1,5 @@
 import {Injectable} from '@angular/core';
+import * as firebase from "firebase";
 
 @Injectable()
 export class ExercisesProvider {
@@ -53,11 +54,16 @@ export class ExercisesProvider {
       }
     };
 
-  constructor() {
-  }
-
-  getExercise(exercise: string) {
-    return this.mockExercises[exercise];
+  getExercise(exerciseUid: string) {
+    // return this.mockExercises[exercise];
+    return new Promise(resolve => {
+      firebase.database().ref('exercises/' + exerciseUid)
+        .on('value', (snapshot) => {
+          resolve(snapshot.val());
+        }, (error) => {
+          error(error.code);
+        });
+    });
   }
 
 

@@ -29,13 +29,13 @@ export class HomePage {
 
   private setDataToShow() {
     if (this.isDoctor){
-      this.patients = this.formatPatients(this.user['patients']);
+      this.patients = this.setPatients(this.user['patients']);
     }else{
       this.exercises = this.setExercises(this.user['exercises']);
     }
   }
 
-  private formatPatients(patientsUid: any) {
+  private setPatients(patientsUid: any) {
     let result = [];
     for (let patient in patientsUid){
       this.userProvider.getUser(patient).then((user) => {
@@ -45,12 +45,13 @@ export class HomePage {
     return result;
   }
 
-  private setExercises(exercises) {
+  private setExercises(patientAssignedExercises) {
     let result = [];
-    for (let exercise in exercises) {
-      let item = this.exercisesProvider.getExercise(exercise);
-      item.done = this.user['exercises'][exercise]['done'];
-      result.push(item);
+    for (let exerciseID in patientAssignedExercises) {
+      this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
+        // let done = this.user['exercises'][exerciseID]['done'];
+        result.push(exercise);
+      });
     }
     return result;
   }
