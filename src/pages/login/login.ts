@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, ToastController} from "ionic-angular";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {SigningUpPage} from "../signing-up/signing-up";
-import {AuthProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'login',
@@ -16,7 +16,7 @@ export class LoginPage {
   constructor(public navCtrl: NavController,
               private formBuilder: FormBuilder,
               private toastCtrl: ToastController,
-              private auth: AuthProvider) {
+              private userProvider: UserProvider) {
     this.addInputValidators();
   }
 
@@ -34,7 +34,7 @@ export class LoginPage {
   }
 
   login() {
-    this.auth.login(this.email, this.password)
+    this.userProvider.login(this.email, this.password)
       .then(() => this.email = this.password = '')
       .catch((error) => this.showWarning(error));
   }

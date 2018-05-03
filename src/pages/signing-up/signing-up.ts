@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {ToastController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
-import {AuthProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-signingUp',
@@ -15,7 +15,7 @@ export class SigningUpPage {
   constructor(private formBuilder: FormBuilder,
               private municipalitiesProvider: MunicipalitiesProvider,
               private toastCtrl: ToastController,
-              private auth: AuthProvider) {
+              private userProvider: UserProvider) {
     this.addInputValidators();
     this.municipalities = this.municipalitiesProvider.getMunicipalities();
   }
@@ -68,7 +68,7 @@ export class SigningUpPage {
       if(this.isNotValidDate(birthday)) {
         this.showWarning("La fecha introducida no es valida");
       }else {
-        this.auth.createUser(userFields);
+        this.userProvider.createUser(userFields);
       }
     }
   }

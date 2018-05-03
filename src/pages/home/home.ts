@@ -3,7 +3,7 @@ import {NavController} from "ionic-angular";
 import {ExercisesProvider} from "../../providers/exercises/exercises";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
 import {ViewProfilePage} from "../view-profile/view-profile";
-import {AuthProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-home',
@@ -16,9 +16,9 @@ export class HomePage {
   protected exercises: any[];
 
   constructor(public navCtrl: NavController,
-              private authProvider: AuthProvider,
+              private userProvider: UserProvider,
               private exercisesProvider: ExercisesProvider) {
-    authProvider.getUser(authProvider.uid).then((user) => {
+    userProvider.getUser(userProvider.uid).then((user) => {
       this.user = user;
       this.controlUserType();
     });
@@ -39,7 +39,7 @@ export class HomePage {
   private formatPatients(patientsUid: any) {
     let result = [];
     for (let patient in patientsUid){
-      this.authProvider.getUser(patient).then((user) => {
+      this.userProvider.getUser(patient).then((user) => {
         result.push(user);
       });
     }

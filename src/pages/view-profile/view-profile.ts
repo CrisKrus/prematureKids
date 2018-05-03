@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SearchExercisePage} from "../search-exercise/search-exercise";
-import {AuthProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-view-profile',
@@ -12,7 +12,7 @@ export class ViewProfilePage {
   gender: string;
   isMyProfile: boolean;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private auth: AuthProvider) {
+  constructor(public navCtrl: NavController, private navParams: NavParams, private userProvider: UserProvider) {
     if (this.isNotLoggedProfile()) {
       this.chargeDataFromNotLoggedProfile();
     } else {
@@ -33,7 +33,7 @@ export class ViewProfilePage {
   //TODO should only charge the data the first time
   // not all the time that the user enter (too much petitions, I think)
   private chargeDataFromLoggedProfile() {
-    this.auth.getUser(this.auth.uid).then((user) => {
+    this.userProvider.getUser(this.userProvider.uid).then((user) => {
       this.user = user;
       this.gender = this.translateGender();
       this.isMyProfile = true;
@@ -52,7 +52,7 @@ export class ViewProfilePage {
   }
 
   logout() {
-    this.auth.logout();
+    this.userProvider.logout();
   }
 
   seeHistory() {

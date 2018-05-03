@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {ViewProfilePage} from "../view-profile/view-profile";
-import {AuthProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/auth/auth";
 
 @Component({
   selector: 'page-search-patient',
@@ -11,7 +11,7 @@ export class SearchPatientPage {
   users;
   searchResult: string[];
 
-  constructor(public navCtrl: NavController, public auth: AuthProvider) {
+  constructor(public navCtrl: NavController, public auth: UserProvider) {
     auth.users.then(value => {
       this.users = value;
       this.initializePatientList();

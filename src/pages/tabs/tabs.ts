@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {HomePage} from "../home/home";
 import {ViewProfilePage} from "../view-profile/view-profile";
 import {SearchPatientPage} from "../search-patient/search-patient";
-import {AuthProvider} from "../../providers/auth/auth";
+import {UserProvider} from "../../providers/auth/auth";
 
 @Component({
   templateUrl: 'tabs.html'
@@ -14,8 +14,8 @@ export class TabsPage {
 
   userType;
 
-  constructor(private auth: AuthProvider) {
-    this.auth.userType.then((responseUserType) => {
+  constructor(private userProvider: UserProvider) {
+    this.userProvider.userType.then((responseUserType) => {
       this.userType = responseUserType;
     });
   }

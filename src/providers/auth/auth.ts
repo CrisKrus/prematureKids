@@ -3,7 +3,7 @@ import {AngularFireAuth} from "angularfire2/auth";
 import * as firebase from "firebase";
 
 @Injectable()
-export class AuthProvider {
+export class UserProvider {
   constructor(private angularFireAuth: AngularFireAuth) {
   }
 
