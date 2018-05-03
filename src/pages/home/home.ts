@@ -15,24 +15,23 @@ export class HomePage {
   protected patients: any[];
   protected exercises: any[];
 
-  constructor(public navCtrl: NavController,
-              private userProvider: UserProvider,
-              private exercisesProvider: ExercisesProvider) {
+  constructor(public navCtrl: NavController, private userProvider: UserProvider, private exercisesProvider: ExercisesProvider) {
     userProvider.getUser(userProvider.uid).then((user) => {
       this.user = user;
-      this.controlUserType();
+      this.setUserType();
+      this.setDataToShow();
     });
   }
 
-  private controlUserType() {
-    if (this.user != null) {
-      if (this.user['type'] == 'doctor') {
-        this.isDoctor = true;
-        this.patients = this.formatPatients(this.user['patients']);
-      } else if (this.user['type'] == 'patient') {
-        this.isDoctor = false;
-        this.exercises = this.setExercises(this.user['assignedExercises']);
-      }
+  private setUserType() {
+    this.isDoctor = (this.user.type == 'doctor');
+  }
+
+  private setDataToShow() {
+    if (this.isDoctor){
+      this.patients = this.formatPatients(this.user['patients']);
+    }else{
+      this.exercises = this.setExercises(this.user['exercises']);
     }
   }
 
@@ -46,11 +45,11 @@ export class HomePage {
     return result;
   }
 
-  private setExercises(assignedExercises: any) {
+  private setExercises(exercises) {
     let result = [];
-    for (let exercise in assignedExercises) {
+    for (let exercise in exercises) {
       let item = this.exercisesProvider.getExercise(exercise);
-      item.done = this.user['assignedExercises'][exercise]['done'];
+      item.done = this.user['exercises'][exercise]['done'];
       result.push(item);
     }
     return result;
@@ -63,4 +62,5 @@ export class HomePage {
   patientSelected(patient: any) {
     this.navCtrl.push(ViewProfilePage, {user: patient})
   }
+
 }
