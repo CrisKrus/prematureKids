@@ -10,8 +10,8 @@
       <ion-checkbox item-left
                     [checked]="isExerciseAssigned(exercise.id)"
                     (ionChange)="checkboxChange($event, exercise.title)"></ion-checkbox>
-      <ion-label>{{exercise.title}}</ion-label>
-      <ion-icon name="arrow-forward" (click)="exerciseSelected(exercise)" item-right></ion-icon>
+      <ion-label (click)="exerciseSelected(exercise)">{{exercise.title}}</ion-label>
+      <!--<ion-icon name="arrow-forward" item-right></ion-icon>-->
     </ion-item>
   </ion-list>
 </ion-content>
