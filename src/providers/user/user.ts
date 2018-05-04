@@ -88,4 +88,10 @@ export class UserProvider {
     firebase.database().ref('users/' + userUid + '/exercises')
       .update(exercise);
   }
+
+  removeExercise(exerciseId, userUid) {
+    //TODO this should be a promise?
+    firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId)
+      .remove();
+  }
 }

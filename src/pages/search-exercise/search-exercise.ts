@@ -83,6 +83,7 @@ export class SearchExercisePage {
       this.userProvider.assignExercise(exercise.id, this.userUid);
       this.showToast("Ejercicio " + exercise.title + " asignado");
     } else {
+      this.userProvider.removeExercise(exercise.id, this.userUid);
       this.showToast("Ejercicio " + exercise.title + " desasignado");
     }
   }
