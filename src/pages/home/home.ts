@@ -41,7 +41,7 @@ export class HomePage {
       this.userProvider.getUser(uid).then((user) => {
         let userWithID = user;
         //TODO this is bullshit
-        userWithID.id = uid;
+        userWithID['id'] = uid;
         result.push(userWithID);
       });
     }
