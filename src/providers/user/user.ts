@@ -38,7 +38,7 @@ export class UserProvider {
     return this.angularFireAuth.auth.currentUser.uid;
   }
 
-  get userType(){
+  get userSessionType(){
     return new Promise(resolve => {
       firebase.database().ref('users/' + this.uid + '/type')
         .on('value', (snapshot) => {

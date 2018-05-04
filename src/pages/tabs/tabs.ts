@@ -15,7 +15,7 @@ export class TabsPage {
   userType;
 
   constructor(private userProvider: UserProvider) {
-    this.userProvider.userType.then((responseUserType) => {
+    this.userProvider.userSessionType.then((responseUserType) => {
       this.userType = responseUserType;
     });
   }

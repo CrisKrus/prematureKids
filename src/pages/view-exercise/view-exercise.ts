@@ -10,7 +10,7 @@ export class ViewExercisePage {
   private userSessionType;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, protected userProvider: UserProvider) {
-    userProvider.userType.then((type) => {
+    userProvider.userSessionType.then((type) => {
       this.userSessionType = type;
     });
   }
