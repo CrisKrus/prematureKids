@@ -35,11 +35,14 @@ export class HomePage {
     }
   }
 
-  private setPatients(patientsUid: any) {
+  private setPatients(patientsUid) {
     let result = [];
-    for (let patient in patientsUid){
-      this.userProvider.getUser(patient).then((user) => {
-        result.push(user);
+    for (let uid in patientsUid){
+      this.userProvider.getUser(uid).then((user) => {
+        let userWithID = user;
+        //TODO this is bullshit
+        userWithID.id = uid;
+        result.push(userWithID);
       });
     }
     return result;

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {ExercisesProvider} from "../../providers/exercises/exercises";
 import {NavController, NavParams, ToastController} from "ionic-angular";
 import {ViewExercisePage} from "../view-exercise/view-exercise";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-search-exercise',
@@ -11,15 +12,18 @@ export class SearchExercisePage {
   private allExercises;
   private exercisesToShow: string[];
   private userAssignedExercises: string[];
+  private userUid;
 
   constructor(private navCtrl: NavController,
               protected navParams: NavParams,
               protected exerciseProvider: ExercisesProvider,
+              protected userProvider: UserProvider,
               private toastCtrl: ToastController) {
     exerciseProvider.exercises.then((exercises) => {
       this.allExercises = exercises;
       this.initializeExercisesToShow();
       this.userAssignedExercises = navParams.get('assignedExercises');
+      this.userUid = navParams.get('userId')
     });
   }
 
@@ -74,11 +78,12 @@ export class SearchExercisePage {
     return this.userAssignedExercises[exercise.id] != undefined;
   }
 
-  checkboxChange(event: any, exerciseTitle: string) {
+  checkboxChange(event, exercise) {
     if (event.checked) {
-      this.showToast("Ejercicio " + exerciseTitle + " asignado")
+      this.userProvider.assignExercise(exercise.id, this.userUid);
+      this.showToast("Ejercicio " + exercise.title + " asignado");
     } else {
-      this.showToast("Ejercicio " + exerciseTitle + " desasignado")
+      this.showToast("Ejercicio " + exercise.title + " desasignado");
     }
   }
 

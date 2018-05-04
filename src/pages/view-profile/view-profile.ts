@@ -64,6 +64,6 @@ export class ViewProfilePage {
   }
 
   addExercise() {
-    this.navCtrl.push(SearchExercisePage, {assignedExercises: this.user.exercises || {}});
+    this.navCtrl.push(SearchExercisePage, {assignedExercises: this.user.exercises || {}, userId: this.user.id});
   }
 }

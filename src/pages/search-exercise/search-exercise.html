@@ -9,7 +9,7 @@
     <ion-item *ngFor="let exercise of exercisesToShow">
       <ion-checkbox item-left
                     [checked]="isExerciseAssigned(exercise)"
-                    (ionChange)="checkboxChange($event, exercise.title)"></ion-checkbox>
+                    (ionChange)="checkboxChange($event, exercise)"></ion-checkbox>
       <ion-label (click)="exerciseSelected(exercise)">{{exercise.title}}</ion-label>
       <!--<ion-icon name="arrow-forward" item-right></ion-icon>-->
     </ion-item>

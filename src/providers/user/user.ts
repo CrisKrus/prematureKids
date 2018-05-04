@@ -77,6 +77,15 @@ export class UserProvider {
   }
 
   private setUserData(user, userData) {
+    //TODO should be a promise?
     firebase.database().ref('users/' + user.uid).set(userData);
+  }
+
+  assignExercise(exerciseId, userUid) {
+    //TODO should be a promise?
+    let exercise = {};
+    exercise[exerciseId] = true;
+    firebase.database().ref('users/' + userUid + '/exercises')
+      .update(exercise);
   }
 }
