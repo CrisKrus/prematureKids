@@ -49,7 +49,6 @@ export class HomePage {
     let result = [];
     for (let exerciseID in patientAssignedExercises) {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
-        // let done = this.user['exercises'][exerciseID]['done'];
         result.push(exercise);
       });
     }
