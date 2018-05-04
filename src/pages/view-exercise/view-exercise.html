@@ -16,5 +16,8 @@
     {{navParams.get('observations')}}
   </p>
 
-  <button ion-button color="primary" (click)="exerciseDone()" block>Hecho!</button>
+  <button ion-button
+          *ngIf="isPatient()"
+          color="primary"
+          (click)="exerciseDone()" block>Hecho!</button>
 </ion-content>

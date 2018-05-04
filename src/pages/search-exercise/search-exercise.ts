@@ -78,6 +78,7 @@ export class SearchExercisePage {
     return this.userAssignedExercises[exercise.id] != undefined;
   }
 
+  //TODO toast should be when assignment or remove is complete
   checkboxChange(event, exercise) {
     if (event.checked) {
       this.userProvider.assignExercise(exercise.id, this.userUid);
