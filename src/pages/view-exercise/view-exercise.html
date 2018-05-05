@@ -1,8 +1,8 @@
 <ion-header>
 
+  <!--TODO get directly from navParams here?-->
   <ion-navbar>
-    <!--TODO get directly from navParams here?-->
-    <ion-title>{{navParams.get('title')}}</ion-title>
+    <ion-title>{{exercise.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -10,14 +10,23 @@
 
 <ion-content padding>
 
-  <p>{{navParams.get('description')}}</p>
-  <p *ngIf="navParams.get('observations') != undefined">
+  <p>{{exercise.description}}</p>
+  <p *ngIf="exercise.observations != undefined && exercise.observations != ''">
     <b>Observaciones: </b>
-    {{navParams.get('observations')}}
+    {{exercise.observations}}
   </p>
 
   <button ion-button
           *ngIf="isPatient()"
           color="primary"
           (click)="exerciseDone()" block>Hecho!</button>
+
+  <ion-item-group *ngIf="isDoctor()">
+    <b>Observaciones: </b>
+    <ion-textarea placeholder="Tenga en cuenta..."></ion-textarea>
+    <button ion-button
+            block
+            color="primary"
+            (click)="assignExerciseWithObservations()">Asignar</button>
+  </ion-item-group>
 </ion-content>

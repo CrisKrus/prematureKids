@@ -54,22 +54,26 @@ export class HomePage {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
         //TODO this is bullshit
         exercise['id'] = exerciseID;
-        this.userProvider.timesExerciseWasDone(exerciseID, this.userProvider.uid)
-          .then((numberOfTimesDone) => {
-          exercise['timesDone'] = numberOfTimesDone;
-        })
-          .catch(() => {
-            //TODO handle error
-            exercise['timesDone'] = 0;
-          });
+        this.setNumberOfTimesDone(exerciseID, exercise);
+        exercise['observations'] = patientAssignedExercises[exerciseID].observations || "";
         result.push(exercise);
       });
     }
     return result;
   }
 
+  private setNumberOfTimesDone(exerciseID, exercise) {
+    this.userProvider.timesExerciseWasDone(exerciseID, this.userProvider.uid)
+      .then((numberOfTimesDone) => {
+        exercise['timesDone'] = numberOfTimesDone;
+      }).catch(() => {
+      //TODO handle error
+      exercise['timesDone'] = 0;
+    });
+  }
+
   exerciseSelected(exercise: any) {
-    this.navCtrl.push(ViewExercisePage, exercise);
+    this.navCtrl.push(ViewExercisePage, {"exercise": exercise});
   }
 
   patientSelected(patient: any) {

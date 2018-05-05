@@ -68,20 +68,16 @@ export class SearchExercisePage {
   }
 
   exerciseSelected(exercise: any) {
-    //TODO control if is doctor who view exercise or patient
-    //TODO when doctor assign exercise can add observations
-    //TODO observations have to be on patient history not on exercise data, bc each observations is different fon each patient
-    this.navCtrl.push(ViewExercisePage, exercise);
+    this.navCtrl.push(ViewExercisePage, {"exercise": exercise, userId: this.userUid});
   }
 
   isExerciseAssigned(exercise) {
     return this.userAssignedExercises[exercise.id] != undefined;
   }
 
-  //TODO toast should be when assignment or remove is complete
   checkboxChange(event, exercise) {
     if (event.checked) {
-      this.userProvider.assignExercise(exercise.id, this.userUid).then(() => {
+      this.userProvider.assignExercise(exercise.id, this.userUid, "").then(() => {
         this.showToast("Ejercicio " + exercise.title + " asignado");
       });
     } else {

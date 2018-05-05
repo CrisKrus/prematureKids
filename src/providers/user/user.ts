@@ -81,10 +81,11 @@ export class UserProvider {
     firebase.database().ref('users/' + user.uid).set(userData);
   }
 
-  assignExercise(exerciseId, userUid) {
+  assignExercise(exerciseId, userUid, observations) {
     let exercise = {};
     exercise[exerciseId] = true;
-    console.log('exercise ', exerciseId, ' user ', userUid);
+    exercise[exerciseId] = {"observations": observations};
+    console.log('exercise', exerciseId, 'user', userUid, 'observations', observations);
     return firebase.database().ref('users/' + userUid + '/exercises')
       .update(exercise);
   }
