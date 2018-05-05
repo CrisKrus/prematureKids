@@ -90,9 +90,7 @@ export class UserProvider {
   }
 
   removeExercise(exerciseId, userUid) {
-    //TODO this should be a promise?
-    firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId)
-      .remove();
+    return firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId).remove();
   }
 
   markExerciseDone(exerciseId: string, userUid: string, timeStamp: Date) {
