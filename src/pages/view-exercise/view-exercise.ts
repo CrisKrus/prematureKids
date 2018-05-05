@@ -9,7 +9,9 @@ import {UserProvider} from "../../providers/user/user";
 export class ViewExercisePage {
   private userSessionType;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, protected userProvider: UserProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,  // navParams are use it on html directly
+              protected userProvider: UserProvider) {
     userProvider.userSessionType.then((type) => {
       this.userSessionType = type;
     });
@@ -20,7 +22,9 @@ export class ViewExercisePage {
   }
 
   exerciseDone() {
-    console.log("Exercise done at: ", new Date());
-    this.navCtrl.pop();
+    this.userProvider.markExerciseDone(this.navParams.get('id'), this.userProvider.uid, new Date())
+      .then(() => {
+        this.navCtrl.pop();
+      });
   }
 }

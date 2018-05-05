@@ -39,10 +39,9 @@ export class HomePage {
     let result = [];
     for (let uid in patientsUid){
       this.userProvider.getUser(uid).then((user) => {
-        let userWithID = user;
         //TODO this is bullshit
-        userWithID['id'] = uid;
-        result.push(userWithID);
+        user['id'] = uid;
+        result.push(user);
       });
     }
     return result;
@@ -52,6 +51,8 @@ export class HomePage {
     let result = [];
     for (let exerciseID in patientAssignedExercises) {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
+        //TODO this is bullshit
+        exercise['id'] = exerciseID;
         result.push(exercise);
       });
     }

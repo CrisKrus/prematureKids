@@ -94,4 +94,10 @@ export class UserProvider {
     firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId)
       .remove();
   }
+
+  markExerciseDone(exerciseId: string, userId: string, timeStamp: Date) {
+    let data = {};
+    data[timeStamp.toString()] = timeStamp;
+    return firebase.database().ref('users/' + userId + '/exercises/' + exerciseId + '/done').update(data);
+  }
 }
