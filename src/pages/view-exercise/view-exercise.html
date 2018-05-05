@@ -11,7 +11,7 @@
 <ion-content padding>
 
   <p>{{exercise.description}}</p>
-  <p *ngIf="exercise.observations != undefined && exercise.observations != ''">
+  <p *ngIf="hasObservations() && isPatient()">
     <b>Observaciones: </b>
     {{exercise.observations}}
   </p>
@@ -23,7 +23,7 @@
 
   <ion-item-group *ngIf="isDoctor()">
     <b>Observaciones: </b>
-    <ion-textarea placeholder="Tenga en cuenta..."></ion-textarea>
+    <ion-textarea placeholder="Escriba aquí una observación..." [(ngModel)]="textAreaInput"></ion-textarea>
     <button ion-button
             block
             color="primary"

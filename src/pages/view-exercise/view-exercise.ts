@@ -9,6 +9,7 @@ import {UserProvider} from "../../providers/user/user";
 export class ViewExercisePage {
   private userSessionType;
   private exercise;
+  protected textAreaInput: string;
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,  // navParams are use it on html directly
@@ -17,6 +18,7 @@ export class ViewExercisePage {
       this.userSessionType = type;
     });
     this.exercise = navParams.get('exercise');
+    this.textAreaInput = this.exercise.observations || "";
   }
 
   isPatient(){
@@ -25,6 +27,10 @@ export class ViewExercisePage {
 
   isDoctor(){
     return this.userSessionType == 'doctor';
+  }
+
+  hasObservations(){
+    return this.exercise.observations != undefined && this.exercise.observations != '';
   }
 
   exerciseDone() {

@@ -10,8 +10,8 @@ import {UserProvider} from "../../providers/user/user";
 })
 export class SearchExercisePage {
   private allExercises;
-  private exercisesToShow: string[];
-  private userAssignedExercises: string[];
+  private exercisesToShow;
+  private userAssignedExercises;
   private userUid;
 
   constructor(private navCtrl: NavController,
@@ -68,7 +68,14 @@ export class SearchExercisePage {
   }
 
   exerciseSelected(exercise: any) {
-    this.navCtrl.push(ViewExercisePage, {"exercise": exercise, userId: this.userUid});
+    if(this.isExerciseAssigned(exercise)){
+      this.addObservations(exercise);
+    }
+    this.navCtrl.push(ViewExercisePage, {"exercise": exercise, "userId": this.userUid});
+  }
+
+  private addObservations(exercise: any) {
+    exercise['observations'] = this.userAssignedExercises[exercise.id].observations || "";
   }
 
   isExerciseAssigned(exercise) {
