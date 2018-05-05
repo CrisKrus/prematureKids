@@ -21,10 +21,10 @@ export class SearchPatientPage {
   //TODO all the referent with the list should be extracted to a class 'patient list'
   private initializePatientList() {
     this.searchResult = [];
-    for (let key in this.users) {
-      if (this.isPatient(this.users[key])) {
-        //TODO will need uid then? Should be on a copy on each user
-        this.searchResult.push(this.users[key])
+    for (let userId in this.users) {
+      if (this.isPatient(this.users[userId])) {
+        this.users[userId]['id'] = userId;
+        this.searchResult.push(this.users[userId])
       }
     }
   }
@@ -58,8 +58,8 @@ export class SearchPatientPage {
     }
   }
 
-  userSelected(user: any) {
-    this.navCtrl.push(ViewProfilePage, {user: user});
+  userSelected(patient: any) {
+    this.navCtrl.push(ViewProfilePage, {user: patient});
   }
 
   private nameToSearchIsInUsername(user: any, nameToSearch: string) {
