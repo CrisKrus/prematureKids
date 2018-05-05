@@ -47,12 +47,21 @@ export class HomePage {
     return result;
   }
 
+  //TODO refactor this big thing...
   private setExercises(patientAssignedExercises) {
     let result = [];
     for (let exerciseID in patientAssignedExercises) {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
         //TODO this is bullshit
         exercise['id'] = exerciseID;
+        this.userProvider.timesExerciseWasDone(exerciseID, this.userProvider.uid)
+          .then((numberOfTimesDone) => {
+          exercise['timesDone'] = numberOfTimesDone;
+        })
+          .catch(() => {
+            //TODO handle error
+            exercise['timesDone'] = 0;
+          });
         result.push(exercise);
       });
     }
@@ -66,5 +75,4 @@ export class HomePage {
   patientSelected(patient: any) {
     this.navCtrl.push(ViewProfilePage, {user: patient})
   }
-
 }

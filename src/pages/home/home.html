@@ -13,8 +13,8 @@
     <button ion-item *ngFor="let exercise of exercises" (click)="exerciseSelected(exercise)">
       {{exercise.title}}
       <!--TODO put a button or checkbox where click and marks exercise as done, for mark as done without enter to  view it-->
-      <!--TODO this number should be the times that he done de exercise-->
-      <ion-badge item-end>7</ion-badge>
+      <!--TODO this view should be updated when mark exercise as done and go from exercise view to home page-->
+      <ion-badge item-end>{{exercise.timesDone}}</ion-badge>
     </button>
   </ion-list>
 </ion-content>

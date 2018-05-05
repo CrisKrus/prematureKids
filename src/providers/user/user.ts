@@ -82,10 +82,10 @@ export class UserProvider {
   }
 
   assignExercise(exerciseId, userUid) {
-    //TODO should be a promise?
     let exercise = {};
     exercise[exerciseId] = true;
-    firebase.database().ref('users/' + userUid + '/exercises')
+    console.log('exercise ', exerciseId, ' user ', userUid);
+    return firebase.database().ref('users/' + userUid + '/exercises')
       .update(exercise);
   }
 
@@ -95,9 +95,26 @@ export class UserProvider {
       .remove();
   }
 
-  markExerciseDone(exerciseId: string, userId: string, timeStamp: Date) {
+  markExerciseDone(exerciseId: string, userUid: string, timeStamp: Date) {
     let data = {};
     data[timeStamp.toString()] = timeStamp;
-    return firebase.database().ref('users/' + userId + '/exercises/' + exerciseId + '/done').update(data);
+    return firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId + '/done').update(data);
+  }
+
+  timesExerciseWasDone(exerciseId: string, userUid: string) {
+    return new Promise(resolve => {
+      firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId + '/done')
+        .on('value', (snapshot) => {
+          //if exercise is never done before
+          if (snapshot.val() == null){
+            resolve(0);
+          }else {
+            let numberOfTimesDone = Object.keys(snapshot.val()).length;
+            resolve(numberOfTimesDone);
+          }
+        }, (error) => {
+          error(error.code);
+        });
+    });
   }
 }
