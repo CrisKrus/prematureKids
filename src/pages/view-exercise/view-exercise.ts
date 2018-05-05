@@ -41,6 +41,7 @@ export class ViewExercisePage {
   }
 
   assignExerciseWithObservations(){
-    this.userProvider.assignExercise(this.exercise.id, this.navParams.get('userId'), "blabblabla");
+    this.userProvider.assignExercise(this.exercise.id, this.navParams.get('userId'), this.textAreaInput)
+      .then(() => {this.navCtrl.pop()});
   }
 }
