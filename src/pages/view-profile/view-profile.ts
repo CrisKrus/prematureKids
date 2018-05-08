@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {UserProvider} from "../../providers/user/user";
+import {ChatProvider} from "../../providers/chat/chat";
 
 @Component({
   selector: 'page-view-profile',
@@ -12,7 +13,10 @@ export class ViewProfilePage {
   gender: string;
   isMyProfile: boolean;
 
-  constructor(public navCtrl: NavController, private navParams: NavParams, private userProvider: UserProvider) {
+  constructor(public navCtrl: NavController,
+              private navParams: NavParams,
+              private userProvider: UserProvider,
+              private chatProvider: ChatProvider) {
     if (this.isNotLoggedProfile()) {
       this.chargeDataFromNotLoggedProfile();
     } else {
@@ -59,8 +63,14 @@ export class ViewProfilePage {
     console.log('History');
   }
 
+  //this button is only visible to logged doctors
   chat() {
-    console.log('Chat');
+    // me has doctor want to init chat with that user that I'm viewing it, so I click on that button
+    // then start a new chat with it or open the one who exists
+    // have to check if chat exists yet, if not start a new one
+    this.userProvider.getUser(this.userProvider.uid).then((loggedUser) => {
+      this.chatProvider.createChat(loggedUser.name, this.user.name);
+    });
   }
 
   addExercise() {
