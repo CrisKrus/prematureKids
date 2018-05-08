@@ -6,12 +6,20 @@ import {NavController, NavParams} from 'ionic-angular';
   templateUrl: 'view-chat.html',
 })
 export class ViewChatPage {
+  message: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad ViewChatPage');
+  sendMessage() {
+    console.log('Send message', this.message);//todo
   }
 
+  onFocus(){
+    console.log('On focus');//todo
+  }
+
+  attachVideo() {
+    console.log('Attach video');//todo
+  }
 }

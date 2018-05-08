@@ -1,3 +1,12 @@
 page-view-chat {
-
+  .input-wrap {
+    padding: 5px;
+    display: flex;
+    textarea {
+      flex: 1;
+      border: 0 solid;
+      border-bottom-width: 1px;
+      resize: none;
+    }
+  }
 }

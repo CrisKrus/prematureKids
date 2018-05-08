@@ -29,7 +29,7 @@ export class ChatListPage {
   }
 
   chatSelected(chatId) {
-    console.log('Chat Selected', chatId);
+    console.log('Chat Selected', chatId);//todo
     this.navCtrl.push(ViewChatPage);
   }
 }
