@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {UserProvider} from "../../providers/user/user";
-import {assertArrayOfStrings} from "@angular/compiler/src/assertions";
 
 @Component({
   selector: 'page-view-profile',

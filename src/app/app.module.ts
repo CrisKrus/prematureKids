@@ -20,6 +20,7 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireModule} from "angularfire2";
 import {environment} from "../enviroments/environments";
 import { UserProvider } from '../providers/user/user';
+import { ChatProvider } from '../providers/chat/chat';
 
 @NgModule({
   declarations: [
@@ -59,6 +60,7 @@ import { UserProvider } from '../providers/user/user';
     MunicipalitiesProvider,
     ExercisesProvider,
     UserProvider,
+    ChatProvider,
   ]
 })
 export class AppModule {}
