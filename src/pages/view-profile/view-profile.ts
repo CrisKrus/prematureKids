@@ -65,19 +65,11 @@ export class ViewProfilePage {
 
   //this button is only visible to logged doctors
   chat() {
-    // me has doctor want to init chat with that user that I'm viewing it, so I click on that button
-    // then start a new chat with it or open the one who exists
-    // have to check if chat exists yet, if not start a new one
-
-    //check if logged user (doctor) has a chat with view profile user (patient), user/chats
-    console.log('have a chat with', this.user.id);
-    this.userProvider.haveChatWithPatient(this.user.id).then((haveAChat) => {
-      if (haveAChat) {
+    this.chatProvider.haveAChat(this.userProvider.uid, this.user.id).then((haveIt) => {
+      if (haveIt) {
         console.log('have a chat yet!!');
       } else {
-        this.userProvider.getUser(this.userProvider.uid).then((loggedUser) => {
-          this.chatProvider.createChat(loggedUser.name, this.user.name);
-        });
+        this.chatProvider.createChat(this.userProvider.uid, this.user.id);
       }
     });
   }

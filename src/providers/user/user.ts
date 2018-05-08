@@ -116,20 +116,4 @@ export class UserProvider {
     });
   }
 
-  haveChatWithPatient(patientId) {
-    return new Promise(resolve => {
-      firebase.database().ref('users/' + this.uid + '/chats/')
-        .on('value', (snapshot) => {
-          if (snapshot.val() == null) {
-            resolve(false);
-          }else{
-            // if have any chat check one by one if have any patient is the one on the params
-            for (let chat of snapshot.val()) {
-              console.log('have chat iterator', chat);//todo
-            }
-            resolve(false);
-          }
-        });
-    });
-  }
 }

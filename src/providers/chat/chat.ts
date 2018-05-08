@@ -23,4 +23,17 @@ export class ChatProvider {
     reference[userId] = chatId;
     return firebase.database().ref('chats/' + userIdOwner).update(reference);
   }
+
+  haveAChat(userId, userId2) {
+    return new Promise(resolve => {
+      firebase.database().ref('chats/' + userId)
+        .on('value', (snapshot) => {
+          if (snapshot.val() == null) {
+            resolve(false);
+          } else {
+            resolve(snapshot.val()[userId2] != undefined);
+          }
+        });
+    });
+  }
 }
