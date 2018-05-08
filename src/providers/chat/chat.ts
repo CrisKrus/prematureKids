@@ -14,7 +14,7 @@ export class ChatProvider {
   createChat(doctorId, patientId) {
     this.chatMessages.push().then((chat) => {
       let firstMessage = {};
-      firstMessage[Date.now()] = 'El chat ha sido creado';
+      firstMessage[Date.now()] = {message: 'El chat ha sido creado', name: 'System'};
       this.chatMessages.child(chat.key).set(firstMessage).then(() => {
         //TODO have to wait one for another?
         this.addChatReference(doctorId, patientId, chat.key);
@@ -60,8 +60,10 @@ export class ChatProvider {
   }
 
   getChatMessages(chatId) {
-    this.chatMessages.child(chatId).on('value', (snapshot) => {
-      console.log('get chat', snapshot.val());
+    return new Promise(resolve => {
+      this.chatMessages.child(chatId).on('value', (messages) => {
+        resolve(messages.val());
+      });
     });
   }
 }

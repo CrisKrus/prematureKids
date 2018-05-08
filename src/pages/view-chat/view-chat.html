@@ -9,6 +9,26 @@
 
 <ion-content padding>
 
+  <div class="message-wrap">
+
+    <div *ngFor="let message of messages"
+         class="message"
+         [class.left]=" false "
+         [class.right]=" true">
+      <div class="msg-detail">
+        <div class="msg-info">
+          <p>
+            <!--TODO add time passed from send message to now {{timePassFromMessageToNow(message.date)}}-->
+            {{message.userName}}&nbsp;&nbsp;&nbsp;</p>
+        </div>
+        <div class="msg-content">
+          <span class="triangle"></span>
+          <p class="line-breaker ">{{message.text}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 </ion-content>
 
@@ -19,7 +39,7 @@
     </button>
     <textarea #chat_input
               placeholder="Texto..."
-              [(ngModel)]="message"
+              [(ngModel)]="textAreaMessage"
               (keyup.enter)="sendMessage()"
               (focus)="onFocus()">
       </textarea>

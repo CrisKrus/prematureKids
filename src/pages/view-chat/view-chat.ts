@@ -7,16 +7,30 @@ import {ChatProvider} from "../../providers/chat/chat";
   templateUrl: 'view-chat.html',
 })
 export class ViewChatPage {
-  message: string;
+  private textAreaMessage: string;
   private chatId;
+  private messages = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private chatProvider: ChatProvider) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, protected chatProvider: ChatProvider) {
     this.chatId = navParams.get('chatId');
-    chatProvider.getChatMessages(this.chatId);
+    chatProvider.getChatMessages(this.chatId).then((messages) => {
+      this.initializeMessages(messages);
+    });
+  }
+
+  private initializeMessages(messages) {
+    for(let timestamp in messages) {
+      let item = {
+        date: new Date(parseInt(timestamp)),
+        text: messages[timestamp].message,
+        userName: messages[timestamp].name
+      };
+      this.messages.push(item);
+    }
   }
 
   sendMessage() {
-    console.log('Send message', this.message);//todo
+    console.log('Send message', this.textAreaMessage);//todo
   }
 
   onFocus(){
@@ -25,5 +39,17 @@ export class ViewChatPage {
 
   attachVideo() {
     console.log('Attach video');//todo
+  }
+
+  timePassFromMessageToNow(date) {
+    let difference = new Date(Date.now() - date);
+    console.log('time pass',
+      difference.getFullYear(), 'years',//this fail a bit much
+      difference.getMonth(), 'months',
+      difference.getDay(), 'days',//this fail a bit much
+      difference.getHours(), 'hours',
+      difference.getMinutes(), 'minutes',
+      difference.getSeconds(), 'seconds',
+      );
   }
 }
