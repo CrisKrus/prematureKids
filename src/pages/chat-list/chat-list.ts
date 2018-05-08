@@ -12,7 +12,7 @@ export class ChatListPage {
   private chatList = [];
 
   constructor(public navCtrl: NavController, private userProvider: UserProvider, protected chatProvider: ChatProvider) {
-    chatProvider.getChats(userProvider.uid).then((chats) => {
+    chatProvider.getChatsFromUser(userProvider.uid).then((chats) => {
       this.initializeChatList(chats);
     });
   }
@@ -29,7 +29,6 @@ export class ChatListPage {
   }
 
   chatSelected(chatId) {
-    console.log('Chat Selected', chatId);//todo
-    this.navCtrl.push(ViewChatPage);
+    this.navCtrl.push(ViewChatPage, {chatId: chatId});
   }
 }

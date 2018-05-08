@@ -3,14 +3,19 @@ import * as firebase from "firebase";
 
 @Injectable()
 export class ChatProvider {
+  private chatMessages;
+  private chats;
+
   constructor() {
+    this.chatMessages = firebase.database().ref('chat-messages');
+    this.chats = firebase.database().ref('chats');
   }
 
   createChat(doctorId, patientId) {
-    firebase.database().ref('chat-messages/').push().then((chat) => {
+    this.chatMessages.push().then((chat) => {
       let firstMessage = {};
       firstMessage[Date.now()] = 'El chat ha sido creado';
-      firebase.database().ref('chat-messages/' + chat.key).set(firstMessage).then(() => {
+      this.chatMessages.child(chat.key).set(firstMessage).then(() => {
         //TODO have to wait one for another?
         this.addChatReference(doctorId, patientId, chat.key);
         this.addChatReference(patientId, doctorId, chat.key);
@@ -21,17 +26,17 @@ export class ChatProvider {
   private addChatReference(userIdOwner, userId, chatId) {
     let reference = {};
     reference[userId] = chatId;
-    return firebase.database().ref('chats/' + userIdOwner).update(reference);
+    return this.chats.child(userIdOwner).update(reference);
   }
 
   haveAChat(userId, userId2) {
     return new Promise(resolve => {
-      firebase.database().ref('chats/' + userId)
-        .on('value', (snapshot) => {
-          if (this.isNotDefined(snapshot)) {
+      this.chats.child(userId)
+        .on('value', (chatList) => {
+          if (this.isNotDefined(chatList)) {
             resolve(false);
           } else {
-            resolve(snapshot.val()[userId2] != undefined);
+            resolve(this.isUserInChatList(chatList, userId2));
           }
         });
     });
@@ -41,12 +46,22 @@ export class ChatProvider {
     return snapshot.val() == null;
   }
 
-  getChats(userId: string) {
+  private isUserInChatList(snapshot, userId2) {
+    return snapshot.val()[userId2] != undefined;
+  }
+
+  getChatsFromUser(userId: string) {
     return new Promise(resolve => {
-      firebase.database().ref('chats/' + userId)
+      this.chats.child(userId)
         .on('value', (snapshot) => {
           resolve(snapshot.val() || {});
         });
+    });
+  }
+
+  getChatMessages(chatId) {
+    this.chatMessages.child(chatId).on('value', (snapshot) => {
+      console.log('get chat', snapshot.val());
     });
   }
 }

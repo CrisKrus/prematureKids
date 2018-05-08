@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
+import {ChatProvider} from "../../providers/chat/chat";
 
 @Component({
   selector: 'page-view-chat',
@@ -7,8 +8,11 @@ import {NavController, NavParams} from 'ionic-angular';
 })
 export class ViewChatPage {
   message: string;
+  private chatId;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private chatProvider: ChatProvider) {
+    this.chatId = navParams.get('chatId');
+    chatProvider.getChatMessages(this.chatId);
   }
 
   sendMessage() {
