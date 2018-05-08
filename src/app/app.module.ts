@@ -21,6 +21,7 @@ import {AngularFireModule} from "angularfire2";
 import {environment} from "../enviroments/environments";
 import { UserProvider } from '../providers/user/user';
 import { ChatProvider } from '../providers/chat/chat';
+import {ChatListPage} from "../pages/chat-list/chat-list";
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { ChatProvider } from '../providers/chat/chat';
     ViewProfilePage,
     ViewExercisePage,
     TabsPage,
-    SearchExercisePage
+    SearchExercisePage,
+    ChatListPage
   ],
   imports: [
     BrowserModule,
@@ -51,7 +53,8 @@ import { ChatProvider } from '../providers/chat/chat';
     ViewProfilePage,
     ViewExercisePage,
     TabsPage,
-    SearchExercisePage
+    SearchExercisePage,
+    ChatListPage
   ],
   providers: [
     StatusBar,
