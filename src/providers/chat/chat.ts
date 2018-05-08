@@ -6,13 +6,21 @@ export class ChatProvider {
   constructor() {
   }
 
-  createChat(doctorName: string, patientName: string) {
-    firebase.database().ref('chats/').push().then((chat) => {
-      firebase.database().ref('chats/' + chat.key).set({doctor: doctorName, patient: patientName})
-        .then(()=>{
-          console.log('chat created', chat.key);
-        //todo add chat id to patient chat list and doctor chat list
-        });
+  createChat(doctorId, patientId) {
+    firebase.database().ref('chat-messages/').push().then((chat) => {
+      let firstMessage = {};
+      firstMessage[Date.now()] = 'El chat ha sido creado';
+      firebase.database().ref('chat-messages/' + chat.key).set(firstMessage).then(() => {
+        //TODO have to wait one for another?
+        this.addChatReference(doctorId, patientId, chat.key);
+        this.addChatReference(patientId, doctorId, chat.key);
+      });
     });
+  }
+
+  private addChatReference(userIdOwner, userId, chatId) {
+    let reference = {};
+    reference[userId] = chatId;
+    return firebase.database().ref('chats/' + userIdOwner).update(reference);
   }
 }
