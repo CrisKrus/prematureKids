@@ -28,11 +28,24 @@ export class ChatProvider {
     return new Promise(resolve => {
       firebase.database().ref('chats/' + userId)
         .on('value', (snapshot) => {
-          if (snapshot.val() == null) {
+          if (this.isNotDefined(snapshot)) {
             resolve(false);
           } else {
             resolve(snapshot.val()[userId2] != undefined);
           }
+        });
+    });
+  }
+
+  private isNotDefined(snapshot) {
+    return snapshot.val() == null;
+  }
+
+  getChats(userId: string) {
+    return new Promise(resolve => {
+      firebase.database().ref('chats/' + userId)
+        .on('value', (snapshot) => {
+          resolve(snapshot.val() || {});
         });
     });
   }

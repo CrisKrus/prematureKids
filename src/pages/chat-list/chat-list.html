@@ -1,14 +1,18 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>chat-list</ion-title>
+    <ion-title>Conversaciones</ion-title>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+  <p *ngIf="chatList.length == 0">Lo setimos, no tiene conversaciones activas :(</p>
 
-  <p>Hello World!</p>
+  <ion-list>
+    <button ion-item *ngFor="let chat of chatList" (click)="chatSelected(chat.chatId)">
+      {{chat.user}}
+    </button>
+  </ion-list>
 
 </ion-content>
