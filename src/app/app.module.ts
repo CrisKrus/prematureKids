@@ -22,6 +22,7 @@ import {environment} from "../enviroments/environments";
 import { UserProvider } from '../providers/user/user';
 import { ChatProvider } from '../providers/chat/chat';
 import {ChatListPage} from "../pages/chat-list/chat-list";
+import {ViewChatPage} from "../pages/view-chat/view-chat";
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import {ChatListPage} from "../pages/chat-list/chat-list";
     ViewExercisePage,
     TabsPage,
     SearchExercisePage,
-    ChatListPage
+    ChatListPage,
+    ViewChatPage
   ],
   imports: [
     BrowserModule,
@@ -54,7 +56,8 @@ import {ChatListPage} from "../pages/chat-list/chat-list";
     ViewExercisePage,
     TabsPage,
     SearchExercisePage,
-    ChatListPage
+    ChatListPage,
+    ViewChatPage
   ],
   providers: [
     StatusBar,

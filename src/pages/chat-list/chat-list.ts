@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import {ChatProvider} from "../../providers/chat/chat";
+import {ViewChatPage} from "../view-chat/view-chat";
 
 @Component({
   selector: 'page-chat-list',
@@ -29,5 +30,6 @@ export class ChatListPage {
 
   chatSelected(chatId) {
     console.log('Chat Selected', chatId);
+    this.navCtrl.push(ViewChatPage);
   }
 }
