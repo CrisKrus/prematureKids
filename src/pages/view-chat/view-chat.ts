@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavParams} from 'ionic-angular';
 import {ChatProvider} from "../../providers/chat/chat";
 import {UserProvider} from "../../providers/user/user";
 
@@ -31,7 +31,6 @@ export class ViewChatPage {
         isSystem: this.isSystem(message),
         isSender: this.isSender(message)
       };
-      console.log(item.isSender, item.isSystem);
       this.messages.push(item);
     }
   }
@@ -46,7 +45,7 @@ export class ViewChatPage {
   }
 
   sendMessage(textArea) {
-    console.log('Send message', textArea);//todo
+    this.chatProvider.sendMessage(this.chatId, textArea, this.userProvider.uid);
   }
 
   onFocus(){

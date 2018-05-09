@@ -100,18 +100,5 @@ page-view-chat {
         }
       }
     }
-
-    .message.center{
-      .msg-info{
-        text-align: center;
-      }
-      .msg-content{
-        background-color: darkgray;
-        span.triangle {
-          visibility: hidden;
-        }
-      }
-    }
-
   }
 }

@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
 import * as firebase from "firebase";
+import {UserProvider} from "../user/user";
 
 @Injectable()
 export class ChatProvider {
   private chatMessages;
   private chats;
 
-  constructor() {
+  constructor(private userProvider: UserProvider) {
     this.chatMessages = firebase.database().ref('chat-messages');
     this.chats = firebase.database().ref('chats');
   }
@@ -64,6 +65,18 @@ export class ChatProvider {
       this.chatMessages.child(chatId).on('value', (messages) => {
         resolve(messages.val());
       });
+    });
+  }
+
+  sendMessage(chatId, message: string, userId) {
+    this.userProvider.getUser(userId).then((user) => {
+      let item = {};
+      item[Date.now()] = {
+        text: message,
+        userName: user['name'],
+        uid: userId
+      };
+      this.chatMessages.child(chatId).update(item).then(console.log(userId, 'send', message, 'on', chatId));
     });
   }
 }

@@ -41,7 +41,7 @@
     <textarea #chat_input
               placeholder="Mensaje..."
               [(ngModel)]="textAreaMessage"
-              (keyup.enter)="sendMessage()"
+              (keyup.enter)="sendMessage(textAreaMessage)"
               (focus)="onFocus()">
       </textarea>
     <button ion-button clear icon-only item-right (click)="sendMessage(textAreaMessage)">
