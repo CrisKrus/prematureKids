@@ -7,7 +7,7 @@ import {ChatProvider} from "../../providers/chat/chat";
   templateUrl: 'view-chat.html',
 })
 export class ViewChatPage {
-  private textAreaMessage: string;
+  textAreaMessage: string;
   private chatId;
   private messages = [];
 
@@ -29,8 +29,8 @@ export class ViewChatPage {
     }
   }
 
-  sendMessage() {
-    console.log('Send message', this.textAreaMessage);//todo
+  sendMessage(textArea) {
+    console.log('Send message', textArea);//todo
   }
 
   onFocus(){

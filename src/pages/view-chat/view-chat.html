@@ -13,8 +13,9 @@
 
     <div *ngFor="let message of messages"
          class="message"
-         [class.left]=" false "
-         [class.right]=" true">
+         [class.left]="false"
+         [class.right]="false"
+         [class.center]="true">
       <div class="msg-detail">
         <div class="msg-info">
           <p>
@@ -38,12 +39,12 @@
       <ion-icon name="attach"></ion-icon>
     </button>
     <textarea #chat_input
-              placeholder="Texto..."
+              placeholder="Mensaje..."
               [(ngModel)]="textAreaMessage"
               (keyup.enter)="sendMessage()"
               (focus)="onFocus()">
       </textarea>
-    <button ion-button clear icon-only item-right (click)="sendMessage()">
+    <button ion-button clear icon-only item-right (click)="sendMessage(textAreaMessage)">
       <ion-icon name="send"></ion-icon>
     </button>
   </div>
