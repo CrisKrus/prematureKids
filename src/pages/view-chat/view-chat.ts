@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {NavParams} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, NavParams} from 'ionic-angular';
 import {ChatProvider} from "../../providers/chat/chat";
 import {UserProvider} from "../../providers/user/user";
 
@@ -8,21 +8,23 @@ import {UserProvider} from "../../providers/user/user";
   templateUrl: 'view-chat.html',
 })
 export class ViewChatPage {
+
+  @ViewChild(Content) content: Content;
   textAreaMessage: string;
   private chatId;
   private messages = [];
 
-  constructor(public navParams: NavParams,
-              protected chatProvider: ChatProvider,
-              private userProvider: UserProvider) {
+  constructor(public navParams: NavParams, protected chatProvider: ChatProvider, private userProvider: UserProvider) {
     this.chatId = navParams.get('chatId');
+    chatProvider.onMessageAdded(this.chatId);
     chatProvider.getChatMessages(this.chatId).then((messages) => {
       this.initializeMessages(messages);
     });
+    this.scrollToBottom();
   }
 
   private initializeMessages(messages) {
-    for(let timestamp in messages) {
+    for (let timestamp in messages) {
       let message = messages[timestamp];
       let item = {
         date: new Date(parseInt(timestamp)),
@@ -36,7 +38,7 @@ export class ViewChatPage {
   }
 
   private isSender(message) {
-    if(message.userName == 'System') return false;
+    if (message.userName == 'System') return false;
     return message.uid == this.userProvider.uid;
   }
 
@@ -48,7 +50,7 @@ export class ViewChatPage {
     this.chatProvider.sendMessage(this.chatId, textArea, this.userProvider.uid);
   }
 
-  onFocus(){
+  onFocus() {
     console.log('On focus');//todo
   }
 
@@ -65,7 +67,14 @@ export class ViewChatPage {
       difference.getHours(), 'hours',
       difference.getMinutes(), 'minutes',
       difference.getSeconds(), 'seconds',
-      );
+    );
   }
 
+  private scrollToBottom() {
+    setTimeout(() => {
+      if (this.content.scrollToBottom) {
+        this.content.scrollToBottom();
+      }
+    }, 400)
+  }
 }

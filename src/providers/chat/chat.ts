@@ -76,7 +76,16 @@ export class ChatProvider {
         userName: user['name'],
         uid: userId
       };
-      this.chatMessages.child(chatId).update(item).then(console.log(userId, 'send', message, 'on', chatId));
+      this.chatMessages.child(chatId).update(item);
+    });
+  }
+
+  onMessageAdded(chatId){
+    return new Promise(resolve => {
+      this.chatMessages.child(chatId).on('child_added',  (messageList) => {
+        console.log('child added', messageList.val().text);//todo
+        resolve(messageList);
+      })
     });
   }
 }
