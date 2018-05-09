@@ -13,14 +13,14 @@
 
     <div *ngFor="let message of messages"
          class="message"
-         [class.left]="false"
-         [class.right]="false"
-         [class.center]="true">
+         [class.left]="!message.isSender"
+         [class.right]="message.isSender"
+         [class.center]="isSystem">
       <div class="msg-detail">
         <div class="msg-info">
           <p>
             <!--TODO add time passed from send message to now {{timePassFromMessageToNow(message.date)}}-->
-            {{message.userName}}&nbsp;&nbsp;&nbsp;</p>
+            {{message.userName}}</p>
         </div>
         <div class="msg-content">
           <span class="triangle"></span>

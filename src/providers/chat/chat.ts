@@ -14,7 +14,7 @@ export class ChatProvider {
   createChat(doctorId, patientId) {
     this.chatMessages.push().then((chat) => {
       let firstMessage = {};
-      firstMessage[Date.now()] = {message: 'El chat ha sido creado', name: 'System'};
+      firstMessage[Date.now()] = {text: 'El chat ha sido creado', userName: 'System'};
       this.chatMessages.child(chat.key).set(firstMessage).then(() => {
         //TODO have to wait one for another?
         this.addChatReference(doctorId, patientId, chat.key);

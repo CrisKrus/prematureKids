@@ -77,6 +77,7 @@ page-view-chat {
       .msg-content {
         color: #343434;
         span.triangle {
+          background-color: $toUserBackgroundColor;
           border-top-width: 0;
           border-right-width: 0;
           left: -5px;
@@ -106,7 +107,6 @@ page-view-chat {
       }
       .msg-content{
         background-color: darkgray;
-        text-align: center;
         span.triangle {
           visibility: hidden;
         }

@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {ChatProvider} from "../../providers/chat/chat";
+import {UserProvider} from "../../providers/user/user";
 
 @Component({
   selector: 'page-view-chat',
@@ -11,7 +12,9 @@ export class ViewChatPage {
   private chatId;
   private messages = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, protected chatProvider: ChatProvider) {
+  constructor(public navParams: NavParams,
+              protected chatProvider: ChatProvider,
+              private userProvider: UserProvider) {
     this.chatId = navParams.get('chatId');
     chatProvider.getChatMessages(this.chatId).then((messages) => {
       this.initializeMessages(messages);
@@ -20,13 +23,26 @@ export class ViewChatPage {
 
   private initializeMessages(messages) {
     for(let timestamp in messages) {
+      let message = messages[timestamp];
       let item = {
         date: new Date(parseInt(timestamp)),
-        text: messages[timestamp].message,
-        userName: messages[timestamp].name
+        text: message.text,
+        userName: message.userName,
+        isSystem: this.isSystem(message),
+        isSender: this.isSender(message)
       };
+      console.log(item.isSender, item.isSystem);
       this.messages.push(item);
     }
+  }
+
+  private isSender(message) {
+    if(message.userName == 'System') return false;
+    return message.uid == this.userProvider.uid;
+  }
+
+  private isSystem(message) {
+    return message.userName == 'System';
   }
 
   sendMessage(textArea) {
@@ -52,4 +68,5 @@ export class ViewChatPage {
       difference.getSeconds(), 'seconds',
       );
   }
+
 }
