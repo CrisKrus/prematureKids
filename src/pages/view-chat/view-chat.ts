@@ -16,25 +16,29 @@ export class ViewChatPage {
 
   constructor(public navParams: NavParams, protected chatProvider: ChatProvider, private userProvider: UserProvider) {
     this.chatId = navParams.get('chatId');
-    chatProvider.onMessageAdded(this.chatId);
-    chatProvider.getChatMessages(this.chatId).then((messages) => {
-      this.initializeMessages(messages);
-    });
+  }
+
+  ionViewDidEnter() {
+    this.chatProvider.onMessageAdded(this.chatId,
+      (childAdded) => {
+        this.addMessageToView(childAdded.val(), childAdded.key);
+      },
+      (error) => {
+        console.log('Error on child added', error.key);
+      });
     this.scrollToBottom();
   }
 
-  private initializeMessages(messages) {
-    for (let timestamp in messages) {
-      let message = messages[timestamp];
-      let item = {
-        date: new Date(parseInt(timestamp)),
-        text: message.text,
-        userName: message.userName,
-        isSystem: this.isSystem(message),
-        isSender: this.isSender(message)
-      };
-      this.messages.push(item);
-    }
+  private addMessageToView(message, timestamp) {
+    let item = {
+      date: new Date(parseInt(timestamp)),
+      text: message.text,
+      userName: message.userName,
+      isSystem: this.isSystem(message),
+      isSender: this.isSender(message)
+    };
+    this.messages.push(item);
+    this.scrollToBottom()
   }
 
   private isSender(message) {

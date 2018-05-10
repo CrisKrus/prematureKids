@@ -60,14 +60,6 @@ export class ChatProvider {
     });
   }
 
-  getChatMessages(chatId) {
-    return new Promise(resolve => {
-      this.chatMessages.child(chatId).on('value', (messages) => {
-        resolve(messages.val());
-      });
-    });
-  }
-
   sendMessage(chatId, message: string, userId) {
     this.userProvider.getUser(userId).then((user) => {
       let item = {};
@@ -80,12 +72,21 @@ export class ChatProvider {
     });
   }
 
-  onMessageAdded(chatId){
-    return new Promise(resolve => {
-      this.chatMessages.child(chatId).on('child_added',  (messageList) => {
-        console.log('child added', messageList.val().text);//todo
-        resolve(messageList);
-      })
-    });
+  onMessageAdded(chatId, callback, errorFunction) {
+    return this.chatMessages.child(chatId).on('child_added',
+      (messageAdded) => {
+        callback(messageAdded);
+      },
+      (error) => {
+        errorFunction(error)
+      }
+    );
+
+    // return new Promise(resolve => {
+    //   this.chatMessages.child(chatId).on('child_added', (messageList) => {
+    //     console.log('child added', messageList.val().text);//todo
+    //     resolve(messageList);
+    //   })
+    // });
   }
 }
