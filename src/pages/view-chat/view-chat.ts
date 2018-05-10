@@ -19,14 +19,21 @@ export class ViewChatPage {
   }
 
   ionViewDidEnter() {
+    //TODO stop this because if a new message is added and the user is on other view the app crash
     this.chatProvider.onMessageAdded(this.chatId,
       (childAdded) => {
         this.addMessageToView(childAdded.val(), childAdded.key);
       },
       (error) => {
+        //TODO handle error
         console.log('Error on child added', error.key);
       });
     this.scrollToBottom();
+  }
+
+  ionVewWillLeave(){
+    //TODO this do nothing
+    this.chatProvider.unsubscribeFromNewMessages(this.chatId);
   }
 
   private addMessageToView(message, timestamp) {
@@ -51,7 +58,14 @@ export class ViewChatPage {
   }
 
   sendMessage(textArea) {
-    this.chatProvider.sendMessage(this.chatId, textArea, this.userProvider.uid);
+    if(this.inNotEmpty(textArea)){
+      this.chatProvider.sendMessage(this.chatId, textArea, this.userProvider.uid);
+      this.textAreaMessage = '';
+    }
+  }
+
+  private inNotEmpty(textArea) {
+    return textArea && textArea.trim() != '';
   }
 
   onFocus() {

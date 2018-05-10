@@ -81,12 +81,9 @@ export class ChatProvider {
         errorFunction(error)
       }
     );
+  }
 
-    // return new Promise(resolve => {
-    //   this.chatMessages.child(chatId).on('child_added', (messageList) => {
-    //     console.log('child added', messageList.val().text);//todo
-    //     resolve(messageList);
-    //   })
-    // });
+  unsubscribeFromNewMessages(chatId) {
+    this.chatMessages.child(chatId).off('child_added', () => {console.log('cancel');});
   }
 }
