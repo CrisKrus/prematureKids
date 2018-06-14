@@ -26,21 +26,35 @@ export class ViewExercisePage {
 
   ionViewWillEnter() {
     if (this.haveMediaTheExercise() && this.haveImagesTheExercise()) {
-      for (let mediaID of this.exercise.media.images) {
-        firebase.storage().ref('/exercises/' + this.exercise.id + '/' + mediaID).getDownloadURL().then((url) => {
-          this.images.push(url);
-        });
-      }
+      this.fillImages();
     }
 
     if (this.haveMediaTheExercise() && this.haveVideoTheExercise()) {
-      for (let mediaID of this.exercise.media.video) {
-        firebase.storage().ref('/exercises/' + this.exercise.id + '/' + mediaID).getDownloadURL().then((url) => {
-          this.video.push(url);
-        });
-      }
+      this.fillVideos();
     }
 
+  }
+
+  private fillVideos() {
+    for (let mediaID of this.exercise.media.video) {
+      firebase.storage()
+        .ref('/exercises/' + this.exercise.id + '/' + mediaID)
+        .getDownloadURL()
+        .then((url) => {
+          this.video.push(url);
+        });
+    }
+  }
+
+  private fillImages() {
+    for (let mediaID of this.exercise.media.images) {
+      firebase.storage()
+        .ref('/exercises/' + this.exercise.id + '/' + mediaID)
+        .getDownloadURL()
+        .then((url) => {
+          this.images.push(url);
+        });
+    }
   }
 
   private haveImagesTheExercise() {
