@@ -1,32 +1,47 @@
 <ion-header>
 
-  <!--TODO get directly from navParams here?-->
-  <ion-navbar>
-    <ion-title>{{exercise.title}}</ion-title>
-  </ion-navbar>
+    <!--TODO get directly from navParams here?-->
+    <ion-navbar>
+        <ion-title>{{exercise.title}}</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
 
-  <p>{{exercise.description}}</p>
-  <p *ngIf="hasObservations() && isPatient()">
-    <b>Observaciones: </b>
-    {{exercise.observations}}
-  </p>
+    <ion-slides *ngIf="images.length > 0" pager="true" >
+        <ion-slide *ngFor="let element of images">
+            <img src="{{element}}">
+        </ion-slide>
+    </ion-slides>
 
-  <button ion-button
-          *ngIf="isPatient()"
-          color="primary"
-          (click)="exerciseDone()" block>Hecho!</button>
+    <ion-slides *ngIf="video.length > 0" pager="true">
+        <ion-slide *ngFor="let element of video">
+            <video width="100%" src="{{element}}" type="video/mp4" autoplay></video>
+        </ion-slide>
+    </ion-slides>
 
-  <ion-item-group *ngIf="isDoctor()">
-    <b>Observaciones: </b>
-    <ion-textarea placeholder="Escriba aquí una observación..." [(ngModel)]="textAreaInput"></ion-textarea>
+    <p>{{exercise.description}}</p>
+    <p *ngIf="hasObservations() && isPatient()">
+        <b>Observaciones: </b>
+        {{exercise.observations}}
+    </p>
+
     <button ion-button
-            block
+            *ngIf="isPatient()"
             color="primary"
-            (click)="assignExerciseWithObservations()">Asignar</button>
-  </ion-item-group>
+            (click)="exerciseDone()" block>Hecho!
+    </button>
+
+    <ion-item-group *ngIf="isDoctor()">
+        <b>Observaciones: </b>
+        <ion-textarea placeholder="Escriba aquí una observación..."
+                      [(ngModel)]="textAreaInput"></ion-textarea>
+        <button ion-button
+                block
+                color="primary"
+                (click)="assignExerciseWithObservations()">Asignar
+        </button>
+    </ion-item-group>
 </ion-content>
