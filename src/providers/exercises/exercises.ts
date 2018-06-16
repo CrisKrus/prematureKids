@@ -3,6 +3,7 @@ import * as firebase from "firebase";
 
 @Injectable()
 export class ExercisesProvider {
+
   getExercise(exerciseUid: string) {
     return new Promise(resolve => {
       firebase.database().ref('exercises/' + exerciseUid)

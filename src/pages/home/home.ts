@@ -54,22 +54,12 @@ export class HomePage {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
         //TODO this is bullshit
         exercise['id'] = exerciseID;
-        this.setNumberOfTimesDone(exerciseID, exercise);
         exercise['observations'] = patientAssignedExercises[exerciseID].observations || "";
+        exercise['done'] = patientAssignedExercises[exerciseID].done;
         result.push(exercise);
       });
     }
     return result;
-  }
-
-  private setNumberOfTimesDone(exerciseID, exercise) {
-    this.userProvider.timesExerciseWasDone(exerciseID, this.userProvider.uid)
-      .then((numberOfTimesDone) => {
-        exercise['timesDone'] = numberOfTimesDone;
-      }).catch(() => {
-      //TODO handle error
-      exercise['timesDone'] = 0;
-    });
   }
 
   exerciseSelected(exercise: any) {

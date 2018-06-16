@@ -10,6 +10,7 @@ export class UserProvider {
   //TODO create two separate sets of users one for doctors another for patients
   // user/patients/uid and user/doctors/uid
   // them have to change data access
+  // users need to have by default observation = "" and done = false
   createUser(userData) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password)
       .then((user) => {
@@ -99,21 +100,8 @@ export class UserProvider {
     return firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId + '/done').update(data);
   }
 
-  timesExerciseWasDone(exerciseId: string, userUid: string) {
-    return new Promise(resolve => {
-      firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId + '/done')
-        .on('value', (snapshot) => {
-          //if exercise is never done before
-          if (snapshot.val() == null){
-            resolve(0);
-          }else {
-            let numberOfTimesDone = Object.keys(snapshot.val()).length;
-            resolve(numberOfTimesDone);
-          }
-        }, (error) => {
-          error(error.code);
-        });
-    });
+  exerciseIsDone(exercise){
+    return exercise.done != undefined && exercise.done != false;
   }
 
 }

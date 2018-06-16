@@ -19,8 +19,8 @@ import {AngularFireAuthModule} from "angularfire2/auth";
 import {AngularFireDatabaseModule} from "angularfire2/database";
 import {AngularFireModule} from "angularfire2";
 import {environment} from "../enviroments/environments";
-import { UserProvider } from '../providers/user/user';
-import { ChatProvider } from '../providers/chat/chat';
+import {UserProvider} from '../providers/user/user';
+import {ChatProvider} from '../providers/chat/chat';
 import {ChatListPage} from "../pages/chat-list/chat-list";
 import {ViewChatPage} from "../pages/view-chat/view-chat";
 
@@ -69,4 +69,5 @@ import {ViewChatPage} from "../pages/view-chat/view-chat";
     ChatProvider,
   ]
 })
-export class AppModule {}
+export class AppModule {
+}

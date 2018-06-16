@@ -1,20 +1,22 @@
 <ion-content>
-  <ion-list *ngIf="isDoctor">
-    <p *ngIf="patients == null || patients.length == 0">Usted no tiene pacientes asignados</p>
+    <ion-list *ngIf="isDoctor">
+        <p *ngIf="patients == null || patients.length == 0">Usted no tiene
+            pacientes asignados</p>
 
-    <button ion-item *ngFor="let patient of patients" (click)="patientSelected(patient)">
-      {{patient.name}}
-    </button>
-  </ion-list>
+        <button ion-item *ngFor="let patient of patients"
+                (click)="patientSelected(patient)">
+            {{patient.name}}
+        </button>
+    </ion-list>
 
-  <ion-list *ngIf="!isDoctor">
-    <p *ngIf="exercises == null || exercises.length == 0">Usted no tiene ejercicios asignados</p>
+    <ion-list *ngIf="!isDoctor">
+        <p *ngIf="exercises == null || exercises.length == 0">Usted no tiene
+            ejercicios asignados</p>
 
-    <button ion-item *ngFor="let exercise of exercises" (click)="exerciseSelected(exercise)">
-      {{exercise.title}}
-      <!--TODO put a button or checkbox where click and marks exercise as done, for mark as done without enter to  view it-->
-      <!--TODO this view should be updated when mark exercise as done and go from exercise view to home page-->
-      <ion-badge item-end>{{exercise.timesDone}}</ion-badge>
-    </button>
-  </ion-list>
+        <button ion-item *ngFor="let exercise of exercises"
+                (click)="exerciseSelected(exercise)">
+            {{exercise.title}}
+            <p>{{userProvider.exerciseIsDone(exercise)}}</p>
+        </button>
+    </ion-list>
 </ion-content>
