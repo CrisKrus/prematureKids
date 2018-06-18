@@ -10,7 +10,7 @@
 
 <ion-content padding>
 
-    <ion-slides *ngIf="images.length > 0" pager="true" >
+    <ion-slides *ngIf="images.length > 0" pager="true">
         <ion-slide *ngFor="let element of images">
             <img src="{{element}}">
         </ion-slide>
@@ -18,7 +18,8 @@
 
     <ion-slides *ngIf="video.length > 0" pager="true">
         <ion-slide *ngFor="let element of video">
-            <video width="100%" src="{{element}}" type="video/mp4" autoplay></video>
+            <video width="100%" src="{{element}}" type="video/mp4"
+                   autoplay></video>
         </ion-slide>
     </ion-slides>
 
@@ -29,7 +30,7 @@
     </p>
 
     <button ion-button
-            *ngIf="isPatient()"
+            *ngIf="isPatient() && this.userProvider.exerciseIsDone(exercise)"
             color="primary"
             (click)="exerciseDone()" block>Hecho!
     </button>
