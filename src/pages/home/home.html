@@ -10,13 +10,20 @@
     </ion-list>
 
     <ion-list *ngIf="!isDoctor">
-        <p *ngIf="exercises == null || exercises.length == 0">Usted no tiene
+        <p *ngIf="exercisesNotDone == null || exercisesNotDone.length == 0">
+            Usted no tiene
             ejercicios asignados</p>
 
-        <button ion-item *ngFor="let exercise of exercises"
+        <button ion-item *ngFor="let exercise of exercisesNotDone"
                 (click)="exerciseSelected(exercise)">
             {{exercise.title}}
-            <p>{{userProvider.exerciseIsDone(exercise)}}</p>
+        </button>
+
+        <br>
+
+        <button ion-item *ngFor="let exercise of exerciseDone" color="gray"
+                (click)="exerciseSelected(exercise)">
+            {{exercise.title}}
         </button>
     </ion-list>
 </ion-content>

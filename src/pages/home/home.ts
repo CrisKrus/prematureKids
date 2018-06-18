@@ -13,7 +13,8 @@ export class HomePage {
   private user: any | null;
   protected isDoctor: boolean;
   protected patients: any[];
-  protected exercises: any[];
+  protected exercisesNotDone = [];
+  protected exerciseDone = [];
 
   constructor(public navCtrl: NavController, private userProvider: UserProvider, private exercisesProvider: ExercisesProvider) {
     userProvider.getUser(userProvider.uid).then((user) => {
@@ -28,38 +29,38 @@ export class HomePage {
   }
 
   private setDataToShow() {
-    if (this.isDoctor){
-      this.patients = this.setPatients(this.user['patients']);
-    }else{
-      this.exercises = this.setExercises(this.user['exercises']);
+    if (this.isDoctor) {
+      this.setPatients(this.user['patients']);
+    } else {
+      this.setExercises(this.user['exercises']);
     }
   }
 
   private setPatients(patientsUid) {
-    let result = [];
-    for (let uid in patientsUid){
+    for (let uid in patientsUid) {
       this.userProvider.getUser(uid).then((user) => {
         //TODO this is bullshit
         user['id'] = uid;
-        result.push(user);
+        this.patients.push(user);
       });
     }
-    return result;
   }
 
   //TODO refactor this big thing...
   private setExercises(patientAssignedExercises) {
-    let result = [];
     for (let exerciseID in patientAssignedExercises) {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
         //TODO this is bullshit
+        let assignedExercise = patientAssignedExercises[exerciseID];
         exercise['id'] = exerciseID;
-        exercise['observations'] = patientAssignedExercises[exerciseID].observations || "";
-        exercise['done'] = patientAssignedExercises[exerciseID].done;
-        result.push(exercise);
+        exercise['observations'] = assignedExercise.observations || "";
+        if (this.userProvider.exerciseIsDone(assignedExercise)) {
+          this.exerciseDone.push(exercise);
+        } else {
+          this.exercisesNotDone.push(exercise);
+        }
       });
     }
-    return result;
   }
 
   exerciseSelected(exercise: any) {
