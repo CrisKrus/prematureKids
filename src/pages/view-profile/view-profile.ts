@@ -61,15 +61,17 @@ export class ViewProfilePage {
 
   chat() {
     this.chatProvider.haveAChat(this.userProvider.uid, this.user.id).then((haveIt) => {
-      if (haveIt) {
-        console.log('have a chat yet!!');
-      } else {
+      if (!haveIt) {
         this.chatProvider.createChat(this.userProvider.uid, this.user.id);
       }
+      //TODO go to chat page
     });
   }
 
   addExercise() {
-    this.navCtrl.push(SearchExercisePage, {assignedExercises: this.user.exercises || {}, userId: this.user.id});
+    this.navCtrl.push(SearchExercisePage, {
+      assignedExercises: this.user.exercises || {},
+      userId: this.user.id
+    });
   }
 }
