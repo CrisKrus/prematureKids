@@ -84,7 +84,7 @@ export class SearchExercisePage {
 
   checkboxChange(event, exercise) {
     if (event.checked) {
-      this.userProvider.assignExercise(exercise.id, this.userUid, "").then(() => {
+      this.userProvider.assignExercise(exercise.id, this.userUid).then(() => {
         this.showToast("Ejercicio " + exercise.title + " asignado");
       });
     } else {

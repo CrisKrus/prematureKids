@@ -9,7 +9,6 @@ export class UserProvider {
 
   //TODO create two separate sets of users one for doctors another for patients
   // user/patients/uid and user/doctors/uid
-  // them have to change data access
   // users need to have by default observation = "" and done = false
   createUser(userData) {
     return this.angularFireAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password)
@@ -19,6 +18,12 @@ export class UserProvider {
         return Promise.resolve(user);
       })
       .catch(err => Promise.reject(err));
+  }
+
+  // them have to change data access
+  private setUserData(user, userData) {
+    //TODO should be a promise?
+    firebase.database().ref('users/' + user.uid).set(userData);
   }
 
   login(email: string, password: string): Promise<any> {
@@ -77,14 +82,9 @@ export class UserProvider {
     this.angularFireAuth.auth.signOut();
   }
 
-  private setUserData(user, userData) {
-    //TODO should be a promise?
-    firebase.database().ref('users/' + user.uid).set(userData);
-  }
-
-  assignExercise(exerciseId, userUid, observations) {
+  assignExercise(exerciseId, userUid, observations = "") {
     let exercise = {};
-    exercise[exerciseId] = true;
+    exercise[exerciseId] = {"done": false};
     exercise[exerciseId] = {"observations": observations};
     return firebase.database().ref('users/' + userUid + '/exercises')
       .update(exercise);
