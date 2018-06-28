@@ -12,7 +12,7 @@ import {UserProvider} from "../../providers/user/user";
 export class HomePage {
   private user: any | null;
   protected isDoctor: boolean;
-  protected patients: any[];
+  protected patients = [];
   protected exercisesNotDone = [];
   protected exerciseDone = [];
 
