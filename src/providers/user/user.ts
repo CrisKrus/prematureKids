@@ -101,6 +101,7 @@ export class UserProvider {
   }
 
   exerciseIsDone(exercise){
+    console.log(exercise);//todo
     return exercise.done != undefined && exercise.done != false;
   }
 

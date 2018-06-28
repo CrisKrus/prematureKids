@@ -16,7 +16,9 @@ export class HomePage {
   protected exercisesNotDone = [];
   protected exerciseDone = [];
 
-  constructor(public navCtrl: NavController, private userProvider: UserProvider, private exercisesProvider: ExercisesProvider) {
+  constructor(public navCtrl: NavController,
+              private userProvider: UserProvider,
+              private exercisesProvider: ExercisesProvider) {
     userProvider.getUser(userProvider.uid).then((user) => {
       this.user = user;
       this.setUserType();
@@ -64,6 +66,7 @@ export class HomePage {
   }
 
   exerciseSelected(exercise: any) {
+    console.log('Selected', exercise);//todo
     this.navCtrl.push(ViewExercisePage, {"exercise": exercise});
   }
 

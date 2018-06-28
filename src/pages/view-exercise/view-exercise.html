@@ -30,7 +30,7 @@
     </p>
 
     <button ion-button
-            *ngIf="isPatient() && this.userProvider.exerciseIsDone(exercise)"
+            *ngIf="isPatient() && isNotDone()"
             color="primary"
             (click)="exerciseDone()" block>Hecho!
     </button>

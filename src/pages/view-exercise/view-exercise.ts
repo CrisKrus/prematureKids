@@ -94,4 +94,8 @@ export class ViewExercisePage {
         this.navCtrl.pop()
       });
   }
+
+  isNotDone() {
+    this.userProvider.exerciseIsDone(this.exercise);
+  }
 }
