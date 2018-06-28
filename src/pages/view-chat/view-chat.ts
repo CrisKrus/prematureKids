@@ -76,18 +76,6 @@ export class ViewChatPage {
     console.log('Attach video');//todo
   }
 
-  timePassFromMessageToNow(date) {
-    let difference = new Date(Date.now() - date);
-    console.log('time pass',
-      difference.getFullYear(), 'years',//this fail a bit much
-      difference.getMonth(), 'months',
-      difference.getDay(), 'days',//this fail a bit much
-      difference.getHours(), 'hours',
-      difference.getMinutes(), 'minutes',
-      difference.getSeconds(), 'seconds',
-    );
-  }
-
   private scrollToBottom() {
     setTimeout(() => {
       if (this.content.scrollToBottom) {
