@@ -96,8 +96,10 @@ export class UserProvider {
 
   markExerciseDone(exerciseId: string, userUid: string, timeStamp: Date) {
     let data = {};
-    data[timeStamp.toString()] = timeStamp;
-    return firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId + '/done').update(data);
+    data['done'] = timeStamp;
+    return firebase.database()
+      .ref('users/' + userUid + '/exercises/' + exerciseId)
+      .update(data);
   }
 
   exerciseIsDone(exercise) {

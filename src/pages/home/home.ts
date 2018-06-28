@@ -70,6 +70,7 @@ export class HomePage {
   }
 
   patientSelected(patient: any) {
+    //TODO update timestamp of last view of this patient
     this.navCtrl.push(ViewProfilePage, {user: patient})
   }
 }
