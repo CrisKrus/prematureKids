@@ -105,4 +105,11 @@ export class UserProvider {
     return exercise.done != undefined && exercise.done != false;
   }
 
+  updateTimestampLastViewPatient(doctorId, patientId) {
+    let data = {};
+    data[patientId] = new Date();
+    firebase.database()
+      .ref('users/' + doctorId + '/patients/')
+      .update(data);
+  }
 }

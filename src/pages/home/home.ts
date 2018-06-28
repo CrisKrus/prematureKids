@@ -69,8 +69,8 @@ export class HomePage {
     this.navCtrl.push(ViewExercisePage, {"exercise": exercise});
   }
 
-  patientSelected(patient: any) {
-    //TODO update timestamp of last view of this patient
+  patientSelected(patient) {
+    this.userProvider.updateTimestampLastViewPatient(this.userProvider.uid, patient.id);
     this.navCtrl.push(ViewProfilePage, {user: patient})
   }
 }
