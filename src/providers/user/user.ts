@@ -84,8 +84,7 @@ export class UserProvider {
 
   assignExercise(exerciseId, userUid, observations = "") {
     let exercise = {};
-    exercise[exerciseId] = {"done": false};
-    exercise[exerciseId] = {"observations": observations};
+    exercise[exerciseId] = {"done": false, "observations": observations};
     return firebase.database().ref('users/' + userUid + '/exercises')
       .update(exercise);
   }
