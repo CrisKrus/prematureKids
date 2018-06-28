@@ -39,7 +39,7 @@ export class UserProvider {
     return this.angularFireAuth.auth.currentUser.uid;
   }
 
-  get userSessionType(){
+  get userSessionType() {
     return new Promise(resolve => {
       firebase.database().ref('users/' + this.uid + '/type')
         .on('value', (snapshot) => {
@@ -51,7 +51,7 @@ export class UserProvider {
     });
   }
 
-  get users(){
+  get users() {
     return new Promise(resolve => {
       firebase.database().ref('users/')
         .on('value', (snapshot) => {
@@ -100,8 +100,7 @@ export class UserProvider {
     return firebase.database().ref('users/' + userUid + '/exercises/' + exerciseId + '/done').update(data);
   }
 
-  exerciseIsDone(exercise){
-    console.log(exercise);//todo
+  exerciseIsDone(exercise) {
     return exercise.done != undefined && exercise.done != false;
   }
 

@@ -66,7 +66,6 @@ export class HomePage {
   }
 
   exerciseSelected(exercise: any) {
-    console.log('Selected', exercise);//todo
     this.navCtrl.push(ViewExercisePage, {"exercise": exercise});
   }
 
