@@ -3,6 +3,7 @@ import {NavController, NavParams} from 'ionic-angular';
 import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {UserProvider} from "../../providers/user/user";
 import {ChatProvider} from "../../providers/chat/chat";
+import {PatientHistoryPage} from "../patient-history/patient-history";
 
 @Component({
   selector: 'page-view-profile',
@@ -68,10 +69,15 @@ export class ViewProfilePage {
     });
   }
 
+  seeHistory(){
+    this.navCtrl.push(PatientHistoryPage);
+  }
+
   addExercise() {
-    this.navCtrl.push(SearchExercisePage, {
-      assignedExercises: this.user.exercises || {},
-      userId: this.user.id
-    });
+    this.navCtrl.push(SearchExercisePage,
+      {
+        assignedExercises: this.user.exercises || {},
+        userId: this.user.id
+      });
   }
 }
