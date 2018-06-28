@@ -101,7 +101,7 @@ export class UserProvider {
       .update(data);
   }
 
-  exerciseIsDone(exercise) {
+  isExerciseDone(exercise) {
     return exercise.done != undefined && exercise.done != false;
   }
 

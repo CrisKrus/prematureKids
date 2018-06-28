@@ -5,7 +5,8 @@
 
         <button ion-item *ngFor="let patient of patients"
                 (click)="patientSelected(patient)">
-            {{patient.name}}
+            {{patient.name }}
+          <ion-icon name="alert" *ngIf="patient.news"></ion-icon>
         </button>
     </ion-list>
 

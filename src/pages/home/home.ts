@@ -43,12 +43,25 @@ export class HomePage {
       this.userProvider.getUser(uid).then((user) => {
         //TODO this is bullshit
         user['id'] = uid;
+        user['news'] = false;
+        for (let exerciseID in user['exercises']) {
+          if (this.userProvider.isExerciseDone(user['exercises'][exerciseID])) {
+            if (this.wasExerciseView(user['exercises'][exerciseID], uid)) {
+              user['news'] = true;
+              break;
+            }
+          }
+        }
         this.patients.push(user);
       });
     }
   }
 
-  //TODO refactor this big thing...
+  private wasExerciseView(exercise, uid) {
+    return exercise['done'] > this.user['patients'][uid];
+  }
+
+//TODO refactor this big thing...
   private setExercises(patientAssignedExercises) {
     for (let exerciseID in patientAssignedExercises) {
       this.exercisesProvider.getExercise(exerciseID).then((exercise) => {
@@ -56,7 +69,7 @@ export class HomePage {
         let assignedExercise = patientAssignedExercises[exerciseID];
         exercise['id'] = exerciseID;
         exercise['observations'] = assignedExercise.observations || "";
-        if (this.userProvider.exerciseIsDone(assignedExercise)) {
+        if (this.userProvider.isExerciseDone(assignedExercise)) {
           this.exerciseDone.push(exercise);
         } else {
           this.exercisesNotDone.push(exercise);
