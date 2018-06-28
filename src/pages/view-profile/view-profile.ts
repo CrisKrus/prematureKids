@@ -59,11 +59,6 @@ export class ViewProfilePage {
     this.userProvider.logout();
   }
 
-  seeHistory() {
-    console.log('History');
-  }
-
-  //this button is only visible to logged doctors
   chat() {
     this.chatProvider.haveAChat(this.userProvider.uid, this.user.id).then((haveIt) => {
       if (haveIt) {
