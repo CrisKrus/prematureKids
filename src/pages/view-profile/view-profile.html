@@ -29,18 +29,29 @@
   </ion-item-group>
 
   <ion-fab bottom right *ngIf="isMyProfile">
-    <button ion-fab (click)="editProfile()"><ion-icon name="create"></ion-icon></button>
+    <button ion-fab (click)="editProfile()">
+      <ion-icon name="create"></ion-icon>
+    </button>
   </ion-fab>
 
   <button *ngIf="isMyProfile"
-          ion-button color="danger" block (click)="logout()">Cerrar Sesion</button>
+          ion-button color="danger" block (click)="logout()">Cerrar Sesion
+  </button>
 
   <ion-fab right bottom *ngIf="!isMyProfile">
-    <button ion-fab color="light"><ion-icon name="add"></ion-icon></button>
+    <button ion-fab color="light">
+      <ion-icon name="add"></ion-icon>
+    </button>
     <ion-fab-list side="top">
-      <button ion-fab (click)="seeHistory()"><ion-icon name="document"></ion-icon></button>
-      <button ion-fab (click)="addExercise()"><ion-icon name="add"></ion-icon></button>
-      <button ion-fab (click)="chat()"><ion-icon name="chatboxes"></ion-icon></button>
+      <button ion-fab (click)="seeHistory()">
+        <ion-icon name="document"></ion-icon>
+      </button>
+      <button ion-fab (click)="addExercise()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+      <button ion-fab (click)="chat()">
+        <ion-icon name="chatboxes"></ion-icon>
+      </button>
     </ion-fab-list>
   </ion-fab>
 
