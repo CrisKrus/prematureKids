@@ -69,8 +69,8 @@ export class ViewProfilePage {
     });
   }
 
-  seeHistory(){
-    this.navCtrl.push(PatientHistoryPage);
+  seeHistory() {
+    this.navCtrl.push(PatientHistoryPage, {user: this.user});
   }
 
   addExercise() {

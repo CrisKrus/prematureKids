@@ -1,17 +1,25 @@
 import {Component} from '@angular/core';
-import {NavController, NavParams} from 'ionic-angular';
+import {NavParams} from "ionic-angular";
+import {ExercisesProvider} from "../../providers/exercises/exercises";
 
 @Component({
   selector: 'page-patient-history',
   templateUrl: 'patient-history.html',
 })
 export class PatientHistoryPage {
+  private exercises = [];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navParams: NavParams, public exerciseProvider: ExercisesProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PatientHistoryPage');
+  ionViewWillEnter() {
+    let assignedExercises = this.navParams.get('user').exercises;
+    for (let exerciseID in assignedExercises) {
+      this.exerciseProvider.getExercise(exerciseID)
+        .then((exercise) => {
+          exercise['done'] = assignedExercises[exerciseID].done;
+          this.exercises.push(exercise);
+        });
+    }
   }
-
 }
