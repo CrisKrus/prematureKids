@@ -1,8 +1,5 @@
 <ion-content>
     <ion-list *ngIf="isDoctor">
-        <p *ngIf="patients == null || patients.length == 0">Usted no tiene
-            pacientes asignados</p>
-
         <button ion-item *ngFor="let patient of patients"
                 (click)="patientSelected(patient)">
             {{patient.name }}

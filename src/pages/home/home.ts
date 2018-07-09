@@ -89,7 +89,6 @@ export class HomePage {
     }
 
     patientSelected(patient) {
-        this.userProvider.updateTimestampLastViewPatient(this.userProvider.uid, patient.id);
         this.navCtrl.push(ViewProfilePage, {user: patient})
     }
 }

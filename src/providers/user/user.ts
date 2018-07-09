@@ -105,7 +105,7 @@ export class UserProvider {
     return exercise.done != undefined && exercise.done != false;
   }
 
-  updateTimestampLastViewPatient(doctorId, patientId) {
+  updateTimestampLastViewPatientHistory(doctorId, patientId) {
     let data = {};
     data[patientId] = new Date();
     firebase.database()
