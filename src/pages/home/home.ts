@@ -42,6 +42,7 @@ export class HomePage {
     }
 
     private setPatients(patientsUid) {
+        this.patients = [];
         for (let uid in patientsUid) {
             this.userProvider.getUser(uid).then((user) => {
                 //TODO this is bullshit
@@ -64,7 +65,7 @@ export class HomePage {
         return exercise['done'] > this.user['patients'][uid];
     }
 
-//TODO refactor this big thing...
+    //TODO refactor this big thing...
     private setExercises(patientAssignedExercises) {
         this.exerciseDone = [];
         this.exercisesNotDone = [];
