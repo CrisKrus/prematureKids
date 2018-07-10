@@ -4,94 +4,96 @@ import {UserProvider} from "../../providers/user/user";
 import * as firebase from "firebase";
 
 @Component({
-  selector: 'page-view-exercise',
-  templateUrl: 'view-exercise.html',
+    selector: 'page-view-exercise',
+    templateUrl: 'view-exercise.html',
 })
 export class ViewExercisePage {
-  private userSessionType;
-  private exercise;
-  protected textAreaInput: string;
-  private images = [];
-  private video = [];
+    private userSessionType;
+    private exercise;
+    protected textAreaInput: string;
+    private images = [];
+    private video = [];
 
-  constructor(public navCtrl: NavController,
-              public navParams: NavParams,  // navParams are use it on html directly
-              protected userProvider: UserProvider) {
-    userProvider.userSessionType.then((type) => {
-      this.userSessionType = type;
-    });
-    this.exercise = navParams.get('exercise');
-    this.textAreaInput = this.exercise.observations || "";
-  }
-
-  ionViewWillEnter() {
-    if (this.haveMediaTheExercise() && this.haveImagesTheExercise()) {
-      this.fillImages();
-    }
-
-    if (this.haveMediaTheExercise() && this.haveVideoTheExercise()) {
-      this.fillVideos();
-    }
-
-  }
-
-  private fillVideos() {
-    for (let mediaID of this.exercise.media.video) {
-      firebase.storage()
-        .ref('/exercises/' + this.exercise.id + '/' + mediaID)
-        .getDownloadURL()
-        .then((url) => {
-          this.video.push(url);
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,  // navParams are use it on html directly
+                protected userProvider: UserProvider) {
+        userProvider.userSessionType.then((type) => {
+            this.userSessionType = type;
         });
+        this.exercise = navParams.get('exercise');
+        this.textAreaInput = this.exercise.observations || "";
     }
-  }
 
-  private fillImages() {
-    for (let mediaID of this.exercise.media.images) {
-      firebase.storage()
-        .ref('/exercises/' + this.exercise.id + '/' + mediaID)
-        .getDownloadURL()
-        .then((url) => {
-          this.images.push(url);
-        });
+    ionViewWillEnter() {
+        if (this.haveMediaTheExercise() && this.haveImagesTheExercise()) {
+            this.fillImages();
+        }
+
+        if (this.haveMediaTheExercise() && this.haveVideoTheExercise()) {
+            this.fillVideos();
+        }
+
     }
-  }
 
-  private haveImagesTheExercise() {
-    return this.exercise.media.images != undefined;
-  }
+    private fillVideos() {
+        for (let mediaID of this.exercise.media.video) {
+            firebase.storage()
+                .ref('/exercises/' + this.exercise.id + '/' + mediaID)
+                .getDownloadURL()
+                .then((url) => {
+                    this.video.push(url);
+                });
+        }
+    }
 
-  private haveVideoTheExercise() {
-    return this.exercise.media.video != undefined;
-  }
+    private fillImages() {
+        for (let mediaID of this.exercise.media.images) {
+            firebase.storage()
+                .ref('/exercises/' + this.exercise.id + '/' + mediaID)
+                .getDownloadURL()
+                .then((url) => {
+                    this.images.push(url);
+                });
+        }
+    }
 
-  private haveMediaTheExercise() {
-    return this.exercise.media != undefined;
-  }
+    private haveImagesTheExercise() {
+        return this.exercise.media.images != undefined;
+    }
 
-  isPatient() {
-    return this.userSessionType == 'patient';
-  }
+    private haveVideoTheExercise() {
+        return this.exercise.media.video != undefined;
+    }
 
-  isDoctor() {
-    return this.userSessionType == 'doctor';
-  }
+    private haveMediaTheExercise() {
+        return this.exercise.media != undefined;
+    }
 
-  hasObservations() {
-    return this.exercise.observations != undefined && this.exercise.observations != '';
-  }
+    isPatient() {
+        return this.userSessionType == 'patient';
+    }
 
-  exerciseDone() {
-    this.userProvider.markExerciseDone(this.exercise.id, this.userProvider.uid, new Date())
-      .then(() => {
-        this.navCtrl.pop();
-      });
-  }
+    isDoctor() {
+        return this.userSessionType == 'doctor';
+    }
 
-  assignExerciseWithObservations() {
-    this.userProvider.assignExercise(this.exercise.id, this.navParams.get('userId'), this.textAreaInput)
-      .then(() => {
-        this.navCtrl.pop()
-      });
-  }
+    hasObservations() {
+        return this.exercise.observations != undefined && this.exercise.observations != '';
+    }
+
+    exerciseDone() {
+        this.userProvider.markExerciseDone(this.exercise.id, this.userProvider.uid, new Date())
+            .then(() => {
+                this.navCtrl.pop();
+            });
+    }
+
+    assignExerciseWithObservations() {
+        let userId = this.navParams.get('userId');
+        this.userProvider.updateTimestampLastViewPatientHistory(this.userProvider.uid, userId);
+        this.userProvider.assignExercise(this.exercise.id, userId, this.textAreaInput)
+            .then(() => {
+                this.navCtrl.pop()
+            });
+    }
 }
