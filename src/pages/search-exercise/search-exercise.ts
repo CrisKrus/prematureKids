@@ -19,11 +19,14 @@ export class SearchExercisePage {
                 protected exerciseProvider: ExercisesProvider,
                 protected userProvider: UserProvider,
                 private toastCtrl: ToastController) {
-        exerciseProvider.exercises.then((exercises) => {
+    }
+
+    ionViewWillEnter() {
+        this.exerciseProvider.exercises.then((exercises) => {
             this.allExercises = exercises;
             this.initializeExercisesToShow();
-            this.userAssignedExercises = navParams.get('assignedExercises');
-            this.userUid = navParams.get('userId')
+            this.userAssignedExercises = this.navParams.get('assignedExercises');
+            this.userUid = this.navParams.get('userId')
         });
     }
 
