@@ -39,9 +39,8 @@
 
         <ion-item>
             <ion-label stacked>Fecha de nacimiento</ion-label>
-            <ion-input formControlName="day" type="number" min="1" max="31" placeholder="Dia"></ion-input>
-            <ion-input formControlName="month" type="number" min="1" max="12" placeholder="Mes"></ion-input>
-            <ion-input formControlName="year" type="number" min="1940" placeholder="Año"></ion-input>
+            <ion-datetime pickerFormat="DD-MM-YYYY" formControlName="birthday" tabindex="4">
+            </ion-datetime>
         </ion-item>
 
         <ion-item>

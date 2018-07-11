@@ -25,13 +25,11 @@ export class EditProfilePage {
         let user = this.navParams.get('user');
         this.user.setValue({
             city: user.city,
-            day: user.day,
             email: user.email,
             gender: user.gender,
-            month: user.month,
             name: user.name,
             phone: user.phone,
-            year: user.year
+            birthday: user.birthday
         });
     }
 
@@ -46,13 +44,7 @@ export class EditProfilePage {
             gender: ['', Validators.compose([
                 Validators.required
             ])],
-            day: ['', Validators.compose([
-                Validators.required
-            ])],
-            month: ['', Validators.compose([
-                Validators.required
-            ])],
-            year: ['', Validators.compose([
+            birthday: ['', Validators.compose([
                 Validators.required
             ])],
             city: ['', Validators.compose([
