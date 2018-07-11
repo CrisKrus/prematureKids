@@ -31,16 +31,19 @@ export class SigningUpPage {
             gender: ['', Validators.compose([
                 Validators.required
             ])],
-            day: ['', Validators.compose([
-                Validators.required
-            ])],
-            month: ['', Validators.compose([
-                Validators.required
-            ])],
-            year: ['', Validators.compose([
-                Validators.required
-            ])],
+            // day: ['', Validators.compose([
+            //     Validators.required
+            // ])],
+            // month: ['', Validators.compose([
+            //     Validators.required
+            // ])],
+            // year: ['', Validators.compose([
+            //     Validators.required
+            // ])],
             city: ['', Validators.compose([
+                Validators.required
+            ])],
+            birthday: ['', Validators.compose([
                 Validators.required
             ])],
             phone: ['', Validators.compose([
@@ -66,40 +69,19 @@ export class SigningUpPage {
     }
 
 
-    submit(userFields: any): void {
-        let areValidFields =
-            this.validateDate(userFields) &&
-            this.validatePassword(userFields);
-
-        if (areValidFields) {
+    submit(userFields: any) {
+        if (this.arePasswordsEquals(userFields)) {
             this.userProvider.createUser(userFields);
         }
     }
 
-    private validatePassword(userFields) {
+    private arePasswordsEquals(userFields) {
         if (userFields.password != userFields.password_confirmation) {
             this.showWarning("Las contraseñas no coinciden");
             return false;
         } else {
             return true
         }
-    }
-
-    private validateDate(userFields) {
-        let birthday = new Date(userFields.year + "-" + userFields.month + "-" + userFields.day);
-
-        if (this.user.valid) {
-            if (this.isNotValidDate(birthday)) {
-                this.showWarning("La fecha introducida no es valida");
-                return false;
-            } else {
-                return true;
-            }
-        }
-    }
-
-    private isNotValidDate(birthday: Date) {
-        return birthday.toString() == 'Invalid Date';
     }
 
     private showWarning(message: string) {
