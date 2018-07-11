@@ -113,11 +113,8 @@ export class UserProvider {
             .update(data);
     }
 
-    assignPatient(doctorId: string, userId: string) {
-        let data = {};
-        data[userId] = new Date();
-        firebase.database()
-            .ref('users/' + doctorId + '/patients/')
-            .update(data);
+    editProfileData(userData, uid) {
+        return firebase.database().ref('/users/' + uid)
+            .update(userData);
     }
 }

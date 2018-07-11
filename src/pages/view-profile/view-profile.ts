@@ -4,6 +4,7 @@ import {SearchExercisePage} from "../search-exercise/search-exercise";
 import {UserProvider} from "../../providers/user/user";
 import {ChatProvider} from "../../providers/chat/chat";
 import {PatientHistoryPage} from "../patient-history/patient-history";
+import {EditProfilePage} from "../edit-profile/edit-profile";
 
 @Component({
     selector: 'page-view-profile',
@@ -18,6 +19,14 @@ export class ViewProfilePage {
                 private navParams: NavParams,
                 private userProvider: UserProvider,
                 private chatProvider: ChatProvider) {
+        if (this.isNotLoggedProfile()) {
+            this.chargeDataFromNotLoggedProfile();
+        } else {
+            this.chargeDataFromLoggedProfile();
+        }
+    }
+
+    ionViewDidLoad() {
         if (this.isNotLoggedProfile()) {
             this.chargeDataFromNotLoggedProfile();
         } else {
@@ -53,7 +62,7 @@ export class ViewProfilePage {
     }
 
     editProfile() {
-        console.log('Edit-profile');
+        this.navCtrl.push(EditProfilePage, {user: this.user});
     }
 
     logout() {

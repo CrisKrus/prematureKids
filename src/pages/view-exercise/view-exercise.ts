@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {NavController, NavParams} from 'ionic-angular';
 import {UserProvider} from "../../providers/user/user";
 import * as firebase from "firebase";
+import ServerValue = firebase.database.ServerValue;
 
 @Component({
     selector: 'page-view-exercise',
@@ -82,7 +83,7 @@ export class ViewExercisePage {
     }
 
     exerciseDone() {
-        this.userProvider.markExerciseDone(this.exercise.id, this.userProvider.uid, new Date())
+        this.userProvider.markExerciseDone(this.exercise.id, this.userProvider.uid, (ServerValue.TIMESTAMP as Date) )
             .then(() => {
                 this.navCtrl.pop();
             });
