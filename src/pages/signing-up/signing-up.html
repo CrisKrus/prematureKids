@@ -42,7 +42,7 @@
     </ion-item>
 
     <ion-item>
-      <ion-label stacked>Cumpleaños</ion-label>
+      <ion-label stacked>Fecha de nacimiento</ion-label>
       <ion-input formControlName="day" type="number" min="1" max="31" placeholder="Dia"></ion-input>
       <ion-input formControlName="month" type="number" min="1" max="12" placeholder="Mes"></ion-input>
       <ion-input formControlName="year" type="number" min="1940" placeholder="Año"></ion-input>
@@ -77,6 +77,11 @@
     <ion-item [ngClass]="{'error-border': !user.controls.password.valid && user.controls.password.touched}">
       <ion-label floating>Contraseña</ion-label>
       <ion-input formControlName="password" type="password"></ion-input>
+    </ion-item>
+
+    <ion-item [ngClass]="{'error-border': !user.controls.password_confirmation.valid && user.controls.password_confirmation.touched}">
+      <ion-label floating>Repetir Contraseña</ion-label>
+      <ion-input formControlName="password_confirmation" type="password"></ion-input>
     </ion-item>
 
     <ion-item *ngIf="user.controls.password.hasError('required') && user.controls.password.touched">
