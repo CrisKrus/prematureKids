@@ -83,7 +83,9 @@ export class ViewExercisePage {
     }
 
     exerciseDone() {
-        this.userProvider.markExerciseDone(this.exercise.id, this.userProvider.uid, (ServerValue.TIMESTAMP as Date) )
+        //TODO change all timestamps for (ServerValue.TIMESTAMP as Date)
+        //doing this the timestamp is take from server and not from local machine
+        this.userProvider.markExerciseDone(this.exercise.id, this.userProvider.uid, new Date())
             .then(() => {
                 this.navCtrl.pop();
             });
