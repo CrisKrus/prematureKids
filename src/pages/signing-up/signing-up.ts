@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
 import {ToastController} from 'ionic-angular';
-import {FormBuilder, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {MunicipalitiesProvider} from "../../providers/municipalities/municipalities";
 import {UserProvider} from "../../providers/user/user";
 
@@ -31,15 +31,6 @@ export class SigningUpPage {
             gender: ['', Validators.compose([
                 Validators.required
             ])],
-            // day: ['', Validators.compose([
-            //     Validators.required
-            // ])],
-            // month: ['', Validators.compose([
-            //     Validators.required
-            // ])],
-            // year: ['', Validators.compose([
-            //     Validators.required
-            // ])],
             city: ['', Validators.compose([
                 Validators.required
             ])],
