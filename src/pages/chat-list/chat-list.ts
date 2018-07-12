@@ -5,30 +5,31 @@ import {ChatProvider} from "../../providers/chat/chat";
 import {ViewChatPage} from "../view-chat/view-chat";
 
 @Component({
-  selector: 'page-chat-list',
-  templateUrl: 'chat-list.html',
+    selector: 'page-chat-list',
+    templateUrl: 'chat-list.html',
 })
 export class ChatListPage {
-  private chatList = [];
+    private chatList = [];
 
-  constructor(public navCtrl: NavController, private userProvider: UserProvider, protected chatProvider: ChatProvider) {
-    chatProvider.getChatsFromUser(userProvider.uid).then((chats) => {
-      this.initializeChatList(chats);
-    });
-  }
-
-  private initializeChatList(chatsReferences) {
-    for(let userId in chatsReferences) {
-      let data = [];
-      data['chatId'] = chatsReferences[userId];
-      this.userProvider.getUser(userId).then((user) => {
-        data['user'] = user['name'];
-        this.chatList.push(data);
-      });
+    constructor(public navCtrl: NavController, private userProvider: UserProvider, protected chatProvider: ChatProvider) {
+        chatProvider.getChatsFromUser(userProvider.uid)
+            .then((chats) => {
+                this.initializeChatList(chats);
+            });
     }
-  }
 
-  chatSelected(chatId) {
-    this.navCtrl.push(ViewChatPage, {chatId: chatId});
-  }
+    private initializeChatList(chatsReferences) {
+        for (let userId in chatsReferences) {
+            let data = [];
+            data['chatId'] = chatsReferences[userId];
+            this.userProvider.getUser(userId).then((user) => {
+                data['user'] = user['name'];
+                this.chatList.push(data);
+            });
+        }
+    }
+
+    chatSelected(chatId, username) {
+        this.navCtrl.push(ViewChatPage, {chatId: chatId, username: username});
+    }
 }

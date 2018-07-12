@@ -13,9 +13,11 @@ export class ViewChatPage {
     textAreaMessage: string;
     private chatId;
     private messages = [];
+    private username: string;
 
     constructor(public navParams: NavParams, protected chatProvider: ChatProvider, private userProvider: UserProvider) {
         this.chatId = navParams.get('chatId');
+        this.username = navParams.get('username');
     }
 
     ionViewDidEnter() {
