@@ -12,12 +12,13 @@ export class ChatListPage {
     private chatList = [];
 
     constructor(public navCtrl: NavController, private userProvider: UserProvider, protected chatProvider: ChatProvider) {
-        chatProvider.getChatsFromUser(userProvider.uid)
+    }
+    ionViewDidLoad() {
+        this.chatProvider.getChatsFromUser(this.userProvider.uid)
             .then((chats) => {
                 this.initializeChatList(chats);
             });
     }
-
     private initializeChatList(chatsReferences) {
         for (let userId in chatsReferences) {
             let data = [];
