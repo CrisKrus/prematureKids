@@ -14,6 +14,7 @@ export class UserProvider {
         return this.angularFireAuth.auth.createUserWithEmailAndPassword(userData.email, userData.password)
             .then((user) => {
                 delete userData.password;
+                delete userData.password_confirmation; //todo test that
                 this.setUserData(user, userData);
                 return Promise.resolve(user);
             })
