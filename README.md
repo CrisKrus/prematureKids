@@ -3,7 +3,7 @@ App Asistencial para niños prematuros
 
   Para poder usar se han creado usuario de prueba *usuario:contraseña*
 
-  __cristia@doctor.com : cristiandoctor__
+  __cristian@doctor.com : cristiandoctor__
 
   __josefa.vera@paciente.com : paciente__
 
