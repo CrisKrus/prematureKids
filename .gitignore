@@ -13,6 +13,8 @@ www/
 .idea/
 plugins/
 platforms/
+*.keystore
+*.jks
 
 .vscode/
 .sass-cache/
